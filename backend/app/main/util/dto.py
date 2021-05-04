@@ -45,3 +45,12 @@ class CategoriasDto:
         'nombre':fields.String(required=True,description='categoria nombre'),
         'id_area':fields.Integer(required=True,description='categoria id_area'),
     })
+
+class MovimientosDto:
+    api = Namespace('movimientos', description='movimientos functions')
+    movimiento = api.model('movimiento',{
+        'id': fields.Integer(required=True, description='movimiento id'),
+        'id_item': fields.Integer(required=True, description='id_item'),
+        'accion': fields.Integer(required=True,description='accion'),
+        'cantidad': fields.Integer(required=True,description='cantidad'),
+    })
