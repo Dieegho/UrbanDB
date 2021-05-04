@@ -20,16 +20,6 @@ interface tableArr {
     timestamp: string;
   }[];
 
-  // bodyArrNewItems ? : {
-  //   id: number;
-  //   codigo: string;
-  //   nombre: string;
-  //   unidad_medida: number;
-  //   critico: string;
-  //   cantidad: number;
-  //   id_categoria: number;
-  // }[];
-
   bodyArrAreas ? : {
     id: number;
     nombre: string;
@@ -41,7 +31,7 @@ interface tableArr {
   }[];
 }
 
-const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCategorias, /*bodyArrNewItems*/}) => {
+const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCategorias}) => {
   let columns=[];
   let rows=[];
   if(bodyArrItems){
@@ -56,10 +46,6 @@ const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCate
       columns= headArr
       rows=bodyArrCategorias
   }
-  // else if(bodyArrNewItems){
-  //   columns= headArr
-  //   rows=bodyArrNewItems
-  // }
 
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">

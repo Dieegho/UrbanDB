@@ -39,6 +39,14 @@ let headTable = [
     dataField: 'cantidad',
     text: 'Cantidad'
   },
+  // {
+  //   dataField: 'rank',
+  //   text: 'Rank',
+  //   formatter: (cell, row) => rankFormatter(row.cantidad, row.critico),
+  //   formatExtraData: {
+  //     up: 'glyphicon glyphicon-chevron-up',
+  //     down: 'glyphicon glyphicon-chevron-down'
+  // },
   {
     dataField: 'critico',
     text: 'Stock Crítico'
@@ -48,6 +56,13 @@ let headTable = [
     text: 'Fecha'
   },
 ];
+
+// const rankFormatter = (cantidad, critico) =>{
+//   let 
+//   return (
+//     <i className={ formatExtraData[cell] } />
+//   );
+// }
 
 const IngresarProducto = () => {
   const [items, setItems] = useState([]);

@@ -3,7 +3,7 @@ import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
 
 interface props{
-  alertas:{
+  alertas_menu:{
     critico: string;
     cantidad: string;
     nombre:string;
@@ -12,15 +12,14 @@ interface props{
   }[];
 };
 
-let Alerts: FC<props> = ({alertas}) => {
-  console.log(alertas[1]);
+let Alerts: FC<props> = ({alertas_menu}) => {
   let countR = 0;
   let countA = 0;
   const [bajo, setBajo] = useState(true);
   const [medio, setMedio] = useState(true);
   const [alto, setAlto] = useState(true);
 //hacer un count if count >= 1 return alerta
-  let mapeoR = alertas.map((elem) => {
+  let mapeoR = alertas_menu.map((elem) => {
     if(elem.cantidad <= (elem.critico + 2)){
       countR++;
       return(
@@ -31,7 +30,7 @@ let Alerts: FC<props> = ({alertas}) => {
     }
   })
 
-  let mapeoA = alertas.map((elem) =>{
+  let mapeoA = alertas_menu.map((elem) =>{
     if(elem.cantidad > (elem.critico + 2) && elem.cantidad <= (elem.critico + 4)){
         countA++;
         return(
