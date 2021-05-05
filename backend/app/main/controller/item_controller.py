@@ -56,11 +56,8 @@ class Items(Resource):
     @api.doc('Obtiene todo de los items')
     # @api.marshal_with(_item)
     def get(self, id):
-        print(id)
         item = tabla_todo(id)
-        print(item)
         if not item:
             api.abort(404)
         else:
-            print(item)
             return item

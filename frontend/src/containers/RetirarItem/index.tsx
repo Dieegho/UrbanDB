@@ -71,6 +71,11 @@ const IngresarProducto = () => {
         <MyNavbar menuArr={menuNav}> </MyNavbar>
       </div>
       <div className="IngresarProducto">
+        <h3>
+          Retirar Producto
+        </h3>
+      </div>
+      <div className="IngresarProducto">
         <MyForm handleRetirarItems={handleRetirarItems}></MyForm>
 
         <MyTable headArr={headTable} bodyArrItems={items}></MyTable>

@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import MyTable from '../../components/Table';
 
 interface props {
   handleAddItemsTable ?: (item) => void;
@@ -21,7 +20,16 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
     const [critico, setCritico] = useState("");
     const [cantidad, setCantidad] = useState("");
     const [id_categoria, setId_categoria] = useState("");
+    const [validated, setValidated] = useState(false);
+
     const handleSubmit = (e) =>{
+      const form = e.currentTarget;
+
+      if (form.checkValidity() === false) {
+        e.preventDefault();
+        e.stopPropagation();        
+      }
+      setValidated(true);
       e.preventDefault();
       const data = {
         codigo: codigo,
@@ -31,73 +39,91 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
         cantidad: cantidad,
         id_categoria: id_categoria,
       }
-      handleAddItemsTable(data);
 
+      handleAddItemsTable(data);
       axios.post('http://127.0.0.1:5000/item/', {codigo, name, unidadMedida, critico, cantidad, id_categoria} )
       .then(res => {
         console.log(res);
       })
     }
+
     return(
       <div>
-        <Form onSubmit = {handleSubmit}>
+        <Form noValidate validated={validated} onSubmit = {handleSubmit}>
           <Form.Row>
-          <Form.Group as={Col} controlId="codigo">
+          <Form.Group as={Col} md="4" controlId="codigo">
               <Form.Label>Código</Form.Label>
               <Form.Control
+                required 
                 type="text"
                 placeholder="Ingrese el código del producto"
                 value={codigo}
                 onChange={(e) => setCodigo(e.target.value)}
               />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="nombre">
+            <Form.Group as={Col} md="4" controlId="nombre">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
+                required 
                 type="text"
                 placeholder="Ingrese el nombre del producto"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="unidad_medida">
+            <Form.Group as={Col} md="4" controlId="unidad_medida">
               <Form.Label>Unidad de Medida</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Ingrese la unidad de medida"
+                required type="text"  
+                as="select"
                 value={unidadMedida}
-                onChange={(e) => setUnidadMedida(e.target.value)}
-              />
+                onChange={(e) => setUnidadMedida(e.target.value)}  
+              >
+                <option>UN</option>
+                <option>kit</option>
+              </Form.Control>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} controlId="id_categoria">
-              <Form.Label>ID Categoría</Form.Label>
+          <Form.Group as={Col} md="4" controlId="id_categoria">
+            <Form.Label>ID Categoría</Form.Label>
               <Form.Control
+                required type="number" 
                 value={id_categoria}
                 onChange={(e) => setId_categoria(e.target.value)}
               />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="critico">
+            <Form.Group as={Col} md="4" controlId="critico">
               <Form.Label>Stock crítico</Form.Label>
               <Form.Control
+                required 
+                type="number" 
                 value={critico}
                 onChange={(e) => setCritico(e.target.value)}
               />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="cantidad">
+            <Form.Group as={Col} md="4" controlId="cantidad">
               <Form.Label>Cantidad de Productos</Form.Label>
               <Form.Control
+                required 
+                type="number" 
                 value={cantidad}
                 onChange={(e) => setCantidad(e.target.value)}
               />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
+
           <Button variant="outline-dark" type="submit">
             Ingresar
           </Button>
@@ -191,7 +217,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
         password: password,
       }
       handleLoginUsers(data);
-      axios.post('http://127.0.0.1:5000/api/user/<public_id>', {data} )
+      axios.post('http://127.0.0.1:5000/api/user/<public_id>', {email, username, password} )
       .then(res => {
         console.log(res);
       })

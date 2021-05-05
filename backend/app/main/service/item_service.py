@@ -28,7 +28,7 @@ def ingresar_items(data):
 
     if exists:
         cambio = db.session().query(Items) \
-            .filter_by(codigo=codigo,nombre=nombre,unidad_medida=unidad_medida) \
+            .filter_by(codigo=codigo,nombre=nombre, unidad_medida=unidad_medida) \
             .update({Items.cantidad: Items.cantidad + cantidad})
         db.session.commit()
         response_object = {
@@ -41,11 +41,11 @@ def ingresar_items(data):
     else:
         new_item.codigo = codigo
         new_item.nombre = nombre
-        new_item.unidad_medida = unidad_medida
         new_item.id_categoria = id_categoria
         new_item.critico = critico
         new_item.cantidad = cantidad
-
+        new_item.unidad_medida = unidad_medida
+        
         db.session.add(new_item)
         db.session.commit()
         response_object = {
@@ -110,7 +110,7 @@ def tabla_retirar():
     return ans, 201
 
 def tabla_todo(id):
-    tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(id_categoria=id).join(Categorias).filter_by(id_area=id).join(Areas).all()
+    tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(id_categoria=id).join(Categorias).join(Areas).all()
     ans = []
     for elem in tabla:
         myItem = elem[0]
@@ -133,5 +133,6 @@ def tabla_todo(id):
             "timestamp": item_timestamp.astimezone(tz=STGO).strftime("%d-%m-%Y %H:%M")
         }
         ans.append(aux)
+    print("TABLA TODO")
     print(ans)
     return ans, 201
