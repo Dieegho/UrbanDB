@@ -13,6 +13,7 @@ interface tableArr {
     codigo: string;
     nombre: string;
     cantidad: number;
+    rank: number;
     unidad_medida: number;
     critico: number;
     categoria: string;
