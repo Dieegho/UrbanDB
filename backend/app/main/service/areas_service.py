@@ -6,6 +6,7 @@ from app.main.model.areas import Areas
 
 def lista_areas():
     areas = Areas.query.order_by(Areas.id).all()
+    print(areas)
     # ans = []
     # for elem in areas:
     #     # print(elem)
