@@ -9,10 +9,9 @@ interface props {
   handleAddItemsTable ?: (item) => void;
   handleRetirarItems ?: (item) => void;
   handleLoginUsers ?: (user) => void;
-  handleAddNewItemsTable ?: (item) => void;
 }
 
-const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLoginUsers, handleAddNewItemsTable}) => {
+const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLoginUsers}) => {
 
   if(handleAddItemsTable){
     const [codigo, setCodigo] = useState("");
@@ -79,9 +78,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
             <Form.Group as={Col} md="4" controlId="unidad_medida">
               <Form.Label>Unidad de Medida</Form.Label>
               <Form.Control
-                required 
-                type="text"
-                defaultValue="Choose..."  
+                required type="text"  
                 as="select"
                 value={unidadMedida}
                 onChange={(e) => setUnidadMedida(e.target.value)}  
@@ -204,115 +201,6 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
       </div>
     )
   }
-  else if(handleAddNewItemsTable){
-    const [codigo, setCodigo] = useState("");
-    const [name, setName] = useState("");
-    const [unidadMedida, setUnidadMedida] = useState("");
-    const [critico, setCritico] = useState("");
-    const [id_categoria, setId_categoria] = useState("");
-    const [validated, setValidated] = useState(false);
-
-    const handleSubmit = (e) =>{
-      const form = e.currentTarget;
-
-      if (form.checkValidity() === false) {
-        e.preventDefault();
-        e.stopPropagation();        
-      }
-      setValidated(true);
-      e.preventDefault();
-      const data = {
-        codigo: codigo,
-        nombre: name,
-        unidad_medida: unidadMedida,
-        critico : critico,
-        cantidad: cantidad,
-        id_categoria: id_categoria,
-      }
-
-      handleAddNewItemsTable(data);
-      axios.post('http://127.0.0.1:5000/item/', {codigo, name, unidadMedida, critico, id_categoria} )
-      .then(res => {
-        console.log(res);
-      })
-    }
-
-    return(
-      <div>
-        <Form noValidate validated={validated} onSubmit = {handleSubmit}>
-          <Form.Row>
-          <Form.Group as={Col} md="4" controlId="codigo">
-              <Form.Label>Código</Form.Label>
-              <Form.Control
-                required 
-                type="text"
-                placeholder="Ingrese el código del producto"
-                value={codigo}
-                onChange={(e) => setCodigo(e.target.value)}
-              />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group as={Col} md="4" controlId="nombre">
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control
-                required 
-                type="text"
-                placeholder="Ingrese el nombre del producto"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group as={Col} md="4" controlId="unidad_medida">
-              <Form.Label>Unidad de Medida</Form.Label>
-              <Form.Control
-                required 
-                type="text"
-                defaultValue="Choose..."  
-                as="select"
-                value={unidadMedida}
-                onChange={(e) => setUnidadMedida(e.target.value)}  
-              >
-                <option>UN</option>
-                <option>kit</option>
-              </Form.Control>
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-
-          <Form.Row>
-          <Form.Group as={Col} md="4" controlId="id_categoria">
-            <Form.Label>ID Categoría</Form.Label>
-              <Form.Control
-                required type="number" 
-                value={id_categoria}
-                onChange={(e) => setId_categoria(e.target.value)}
-              />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group as={Col} md="4" controlId="critico">
-              <Form.Label>Stock crítico</Form.Label>
-              <Form.Control
-                required 
-                type="number" 
-                value={critico}
-                onChange={(e) => setCritico(e.target.value)}
-              />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-
-          <Button variant="outline-dark" type="submit">
-            Ingresar
-          </Button>
-        </Form>
-      </div>
-    )
-  }
-
   else if(handleLoginUsers){
     const [validated, setValidated] = useState(false);
     const handleSubmit = (e) => {
@@ -337,6 +225,11 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
     return(
       <div>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form.Group md="4" controlId="username">
+            <Form.Label>Nombre</Form.Label>
+            <Form.Control required type="text" placeholder="First name"/>
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
           <Form.Group md="4" controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control required type="email" placeholder="Enter email" />

@@ -42,9 +42,8 @@ let Alerts: FC<props> = ({alertas_menu}) => {
   })  
 
 
-  if((bajo && countR > 0) || (medio && countA > 0)){
+  if(bajo && countR > 0){
     return (
-      <div>
       <Alert variant="danger" onClose={() => setBajo(false)} dismissible>
         <Alert.Heading>Stock bajo!</Alert.Heading>
         <p>
@@ -52,6 +51,10 @@ let Alerts: FC<props> = ({alertas_menu}) => {
           {mapeoR}
         </p>
       </Alert>
+    ); 
+  }    
+  if(medio && countA > 0){
+    return(
       <Alert variant="warning" onClose={() => setMedio(false)} dismissible>
         <Alert.Heading>Stock casi bajo!</Alert.Heading>
         <p>
@@ -59,10 +62,8 @@ let Alerts: FC<props> = ({alertas_menu}) => {
           {mapeoA}
         </p>
       </Alert>
-      </div>
-    ); 
-  }    
-  
+    )
+  }
   if(alto && (countA == 0) && (countR ==0)){
     return(
       <Alert variant="success" onClose={() => setAlto(false)} dismissible>

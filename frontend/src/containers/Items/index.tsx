@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
 import MyTittle from '../../components/Tittle';
-import MyTable from '../../components/Table';
-import MyButton from '../../components/Buttons';
 import MyFooter from '../../components/Footer';
 import Alert from 'react-bootstrap/Alert';
 
-let menuNavItems = [
+let menuNav = [
   {
     name: "Menú",
     rute: "/menu"
@@ -15,6 +14,10 @@ let menuNavItems = [
   {
     name: "Áreas",
     rute: "/areas"
+  },
+  {
+    name: "Categorías",
+    rute: `/categorias/:id`,
   },
 ];
 
@@ -76,14 +79,13 @@ const Items = ({match}) => {
   return (
     <div>
       <div className="Items">
-        <MyNavbar menuArr={menuNavItems}/>
+        <MyNavbar menuArr={menuNav}/>
       </div>
       <div className="Items">
         <MyTittle nombres_items={items}/>
       </div>
       <div className="Items">
         <MyTable headArr={headTable} bodyArrItems={items}/>
-        <MyButton items={items}/>
       </div>
       {/* <div className="Items">
         <MyFooter/>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import MyNavbar from '../../components/Navbar';
 import MyForm from '../../components/Form';
 
-let menuNavLog =[
+let menuNav =[
   {
   name: "",
   rute: ""
@@ -27,7 +27,7 @@ const Login = () => {
   return (
     <div>
       <div className="Login">
-        <MyNavbar menuArrLog={menuNavLog}> </MyNavbar>
+        <MyNavbar menuArr={menuNav}> </MyNavbar>
       </div>
       <div className="Login">
         <h2>Bienvenido</h2>
