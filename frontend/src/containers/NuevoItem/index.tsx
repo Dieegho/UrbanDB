@@ -39,14 +39,6 @@ let headTable = [
     dataField: 'cantidad',
     text: 'Cantidad'
   },
-  // {
-  //   dataField: 'rank',
-  //   text: 'Rank',
-  //   formatter: (cell, row) => rankFormatter(row.cantidad, row.critico),
-  //   formatExtraData: {
-  //     up: 'glyphicon glyphicon-chevron-up',
-  //     down: 'glyphicon glyphicon-chevron-down'
-  // },
   {
     dataField: 'critico',
     text: 'Stock Crítico'
@@ -57,17 +49,10 @@ let headTable = [
   },
 ];
 
-// const rankFormatter = (cantidad, critico) =>{
-//   let 
-//   return (
-//     <i className={ formatExtraData[cell] } />
-//   );
-// }
-
-const IngresarProducto = () => {
+const NuevoItem = () => {
   const [items, setItems] = useState([]);
   const [newItems, setnewItems] = useState([]);
-  const handleAddItemsTable = (data) => {
+  const handleAddNewItemsTable = (data) => {
     console.log(newItems);
     let aux = [...newItems];
     aux.push(data);
@@ -88,11 +73,11 @@ const IngresarProducto = () => {
       </div>
       <div>
         <h3>
-        Por favor ingrese un producto  
+        Por favor ingrese un nuevo producto  
         </h3>
       </div>
       <div className="IngresarProducto">
-        <MyForm handleAddItemsTable={handleAddItemsTable}></MyForm>
+        <MyForm handleAddNewItemsTable={handleAddNewItemsTable}></MyForm>
         <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
       </div>
       {/* <div className="IngresarProducto inline (css)">
@@ -102,4 +87,4 @@ const IngresarProducto = () => {
   );
 };
 
-export default IngresarProducto;
+export default NuevoItem;

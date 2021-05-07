@@ -18,7 +18,7 @@ const Menu = () => {
 
   return (
     <div>
-      <Alerts alertas={items}></Alerts>
+      <Alerts alertas_menu={items}></Alerts>
       <div className="Menu">
         <MyNavbar menuArr={menuNav}> </MyNavbar>
       </div>
@@ -30,6 +30,7 @@ const Menu = () => {
           <Button variant="outline-dark" as={Link} to="/areas">Revisar Inventario</Button>
           <Button variant="outline-dark" as={Link} to="/ingresar-item">Ingresar Producto</Button>
           <Button variant="outline-dark" as={Link} to="/retirar-item">Retirar Productos</Button>
+          <Button variant="outline-dark" as={Link} to="/nuevo-item">Ingresar Nuevo Producto</Button>
         </ButtonGroup>
         {/* <Nav defaultActiveKey="/home" className="flex-column">
           <Nav.Link as={Link} to="/areas"> Revisar Inventario </Nav.Link>

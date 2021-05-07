@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
-//import '../App.global.css';
 import axios from 'axios';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
 import MyForm from '../../components/Form';
 import MyFooter from '../../components/Footer';
 
-let menuNav = [
+let menuNavMod = [
   {
     name:"Menú",
     rute: "/menu"
@@ -68,7 +67,7 @@ const IngresarProducto = () => {
   return (
     <div>
       <div className="IngresarProducto">
-        <MyNavbar menuArr={menuNav}> </MyNavbar>
+        <MyNavbar menuArr={menuNavMod}> </MyNavbar>
       </div>
       <div className="IngresarProducto">
         <h3>
