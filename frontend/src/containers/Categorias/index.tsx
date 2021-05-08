@@ -3,6 +3,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import { Link} from 'react-router-dom';
 import MyTable from '../../components/Table';
+import MyButton from '../../components/Buttons';
 import MyTittle from '../../components/Tittle';
 import MyNavbar from '../../components/Navbar';
 import MyFooter from '../../components/Footer';
@@ -54,8 +55,11 @@ const Categorias = ({match}) => {
         <MyTittle nombres_areas={categorias}></MyTittle>
       </div>
       <div className="Categorias">
-        <MyTable headArr={headTable} bodyArrCategorias={categorias}></MyTable>
+        <MyTable headArr={headTable} bodyArrCategorias={categorias}/>
       </div>
+        <div>
+            <Button variant="outline-dark" as={Link} to={'/areas'}>Regresar a Áreas</Button> 
+        </div>
       {/* <div className="Categorias">
         <MyFooter></MyFooter>
       </div> */}

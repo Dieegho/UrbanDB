@@ -17,6 +17,7 @@ def lista_items():
 
 
 def ingresar_items(data):
+    print(data)
     codigo = data['codigo']
     nombre = data['name']
     unidad_medida = data['unidadMedida']
@@ -25,8 +26,9 @@ def ingresar_items(data):
     cantidad = data['cantidad']
     new_item = Items()
     exists = db.session.query(db.exists().where(Items.codigo == codigo)).scalar()
-
+    print(exists)
     if exists:
+        print("wENAAA")
         cambio = db.session().query(Items) \
             .filter_by(codigo=codigo,nombre=nombre, unidad_medida=unidad_medida) \
             .update({Items.cantidad: Items.cantidad + cantidad})
@@ -36,6 +38,7 @@ def ingresar_items(data):
             'message': 'Successfully registered.',
             'id': cambio
         }
+        print(cambio)
         print(response_object)
         return response_object, 201
     else:
