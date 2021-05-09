@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import { Link} from 'react-router-dom';
 import MyTable from '../../components/Table';
-import MyButton from '../../components/Buttons';
 import MyTittle from '../../components/Tittle';
 import MyNavbar from '../../components/Navbar';
-import MyFooter from '../../components/Footer';
 
 let menuNav = [
   {
@@ -47,22 +46,13 @@ const Categorias = ({match}) => {
   },[])
 
   return (
-    <div>
-      <div className="Categorias">
-        <MyNavbar menuArr={menuNav}></MyNavbar>
-      </div>
-      <div className="Categorias">
+    <div className="Categorias">
+      <MyNavbar menuArr={menuNav}></MyNavbar>
+      <Container style={{marginTop: "150px"}}>
         <MyTittle nombres_areas={categorias}></MyTittle>
-      </div>
-      <div className="Categorias">
         <MyTable headArr={headTable} bodyArrCategorias={categorias}/>
-      </div>
-        <div>
-            <Button variant="outline-dark" as={Link} to={'/areas'}>Regresar a Áreas</Button> 
-        </div>
-      {/* <div className="Categorias">
-        <MyFooter></MyFooter>
-      </div> */}
+        <Button variant="outline-danger" as={Link} to={'/areas'}>Regresar a Áreas</Button> 
+      </Container>
     </div>
   );
 };

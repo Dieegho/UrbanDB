@@ -2,10 +2,13 @@ import React, {useEffect, useState} from 'react';
 //import { useHistory } from 'react-router-dom';
 //import '../App.global.css';
 import axios from 'axios';
+
+import Container from 'react-bootstrap/Container';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
+import MyCodigo from '../../components/Codigo';
 import MyForm from '../../components/Form';
-import MySubmitButton from '../../components/Tittle';
+import Alert from 'react-bootstrap/Alert';
 import MyFooter from '../../components/Footer';
 
 let menuNav = [
@@ -55,6 +58,14 @@ let headTable = [
     dataField: 'timestamp',
     text: 'Fecha'
   },
+  {
+    text: ' alerta ',
+    formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
+  },
+  {
+    text: 'código',
+    formatter: (cell, row) => codigo(row.id, row.nombre)
+  }
 ];
 
 // const rankFormatter = (cantidad, critico) =>{
@@ -63,6 +74,34 @@ let headTable = [
 //     <i className={ formatExtraData[cell] } />
 //   );
 // }
+
+let aviso_stock = (cantidad, critico) => {
+  if (cantidad > (critico + 4)) {
+    return (
+      <Alert variant='success'>Stock Ok</Alert>
+    )
+  }
+  else if (cantidad > (critico + 2) && cantidad <= (critico + 4)){
+    return (
+      <Alert variant='warning'>Stock casi bajo</Alert>
+    )
+  }
+  else if (cantidad <= (critico + 2)){
+    return (
+      <Alert variant='danger'>¡Stock Bajo!</Alert>
+    )
+  }
+};
+
+let codigo = (id, nombre) => {
+  let items = {
+    id: id,
+    nombre: nombre
+  }
+  return (
+    <MyCodigo items={items}/>
+  );
+};
 
 const IngresarProducto = () => {
   const [items, setItems] = useState([]);
@@ -82,23 +121,13 @@ const IngresarProducto = () => {
   },[])
 
   return (
-    <div>
-      <div className="IngresarProducto">
-        <MyNavbar menuArr={menuNav}> </MyNavbar>
-      </div>
-      <div>
-        <h3>
-        Por favor ingrese un producto  
-        </h3>
-      </div>
-      <div className="IngresarProducto">
+    <>
+      <MyNavbar menuArr={menuNav}> </MyNavbar>
+      <Container style={{marginTop: "150px"}}>
         <MyForm handleAddItemsTable={handleAddItemsTable}></MyForm>
         <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
-      </div>
-      {/* <div className="IngresarProducto inline (css)">
-        <MyFooter></MyFooter>
-      </div> */}
-    </div>
+      </Container>
+    </>
   );
 };
 

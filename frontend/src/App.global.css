@@ -5,10 +5,8 @@
 body {
   position: relative;
   color: white;
-  height: 100vh;
   background: white;
   font-family: sans-serif;
-  overflow-y: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,9 +45,9 @@ a:hover {
   text-decoration: none;
 }
 
-.Hello {
+/* .Hello {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0;
-}
+} */

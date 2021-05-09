@@ -19,10 +19,10 @@ const Login = () => {
     setUsers(aux);
   };
 
-  useEffect(()=>{
-    axios.get(`http://127.0.0.1:5000/user`)
-    .then(res => res.data.item)
-  },[])
+  // useEffect(()=>{
+  //   axios.get(`http://127.0.0.1:5000/user`)
+  //   .then(res => res.data.item)
+  // },[])
 
   return (
     <div>

@@ -23,7 +23,7 @@ const MyButton: FC<props> = ({items}) => {
 
     return(
         <div>
-            <Button variant="outline-dark" as={Link} to={`/categorias/${id}`}> {mensaje} {categoria}</Button> 
+            <Button variant="outline-danger" as={Link} to={`/categorias/${id}`}> {mensaje} {categoria}</Button> 
         </div>
     )
 };
