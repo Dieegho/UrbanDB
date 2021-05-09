@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import { Link } from 'react-router-dom';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
-import MyFooter from '../../components/Footer';
 
 let menuNavAreas = [
   {
     name: "Menú",
-    rute: "/"
+    rute: "/menu"
   },
 ];
 let headTable = [
@@ -39,24 +39,13 @@ const Areas = () =>  {
   },[])
 
   return (
-    <div>
-      <div className="Areas">
-        <MyNavbar menuArr={menuNavAreas}/>
-      </div>
-      <div className="Areas">
-        <h1>a</h1>
-        <h2>Bienvenido al control de inventarios</h2>
-        <h3>Por favor seleccione el área que desea revisar.</h3>
-      </div>
-      <div className="Areas">
+    <div className="Areas">
+      <MyNavbar menuArr={menuNavAreas}/>
+      <Container style={{marginTop: "150px"}}>
         <MyTable headArr={headTable} bodyArrAreas={areas}/>
-      </div>
-      <div>
-          <Button variant="outline-dark" as={Link} to={'menu'}> Regresar al menú</Button> 
-      </div>
-      {/* <div className="Areas">
-        <MyFooter></MyFooter>
-      </div> */}
+        <Button variant="outline-danger" as={Link} to={'menu'}> Regresar al menú</Button> 
+      </Container>
+
     </div>
   );
 };

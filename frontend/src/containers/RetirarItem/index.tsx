@@ -3,7 +3,10 @@ import axios from 'axios';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
 import MyForm from '../../components/Form';
+import MyCodigo from '../../components/Codigo';
 import MyFooter from '../../components/Footer';
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/esm/Container';
 
 let menuNavMod = [
   {
@@ -44,7 +47,43 @@ let headTable = [
     dataField: 'timestamp',
     text: 'Fecha'
   },
+  {
+    text: ' alerta ',
+    formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
+  },
+  {
+    text: 'código',
+    formatter: (cell, row) => codigo(row.id, row.nombre)
+  }
 ];
+
+let aviso_stock = (cantidad, critico) => {
+  if (cantidad > (critico + 4)) {
+    return (
+      <Alert variant='success'>Stock Ok</Alert>
+    )
+  }
+  else if (cantidad > (critico + 2) && cantidad <= (critico + 4)){
+    return (
+      <Alert variant='warning'>Stock casi bajo</Alert>
+    )
+  }
+  else if (cantidad <= (critico + 2)){
+    return (
+      <Alert variant='danger'>¡Stock Bajo!</Alert>
+    )
+  }
+};
+
+let codigo = (id, nombre) => {
+  let items = {
+    id: id,
+    nombre: nombre
+  }
+  return (
+    <MyCodigo items={items}/>
+  );
+};
 
 const IngresarProducto = () => {
   const [items, setItems] = useState([]);
@@ -65,24 +104,13 @@ const IngresarProducto = () => {
   },[])
 
   return (
-    <div>
-      <div className="IngresarProducto">
+      <>
         <MyNavbar menuArr={menuNavMod}> </MyNavbar>
-      </div>
-      <div className="IngresarProducto">
-        <h3>
-          Retirar Producto
-        </h3>
-      </div>
-      <div className="IngresarProducto">
-        <MyForm handleRetirarItems={handleRetirarItems}></MyForm>
-
-        <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
-      </div>
-      {/* <div className="IngresarProducto">
-        <MyFooter></MyFooter>
-      </div> */}
-    </div>
+        <Container style={{marginTop: "150px"}}>
+          <MyForm handleRetirarItems={handleRetirarItems}  ></MyForm>
+          <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
+        </Container>
+      </>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.global.css';
+// import './App.global.css';
 import Menu from './containers/Menu';
 import Areas from './containers/Areas';
 import IngresarItem from './containers/IngresarItem';

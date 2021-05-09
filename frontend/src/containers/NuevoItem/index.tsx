@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 //import { useHistory } from 'react-router-dom';
 //import '../App.global.css';
 import axios from 'axios';
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
 import MyForm from '../../components/Form';
-import MySubmitButton from '../../components/Tittle';
-import MyFooter from '../../components/Footer';
+import MyCodigo from '../../components/Codigo';
 
 let menuNav = [
   {
@@ -47,7 +48,43 @@ let headTable = [
     dataField: 'timestamp',
     text: 'Fecha'
   },
+  {
+    text: ' alerta ',
+    formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
+  },
+  {
+    text: 'código',
+    formatter: (cell, row) => codigo(row.id, row.nombre)
+  }
 ];
+
+let aviso_stock = (cantidad, critico) => {
+  if (cantidad > (critico + 4)) {
+    return (
+      <Alert variant='success'>Stock Ok</Alert>
+    )
+  }
+  else if (cantidad > (critico + 2) && cantidad <= (critico + 4)){
+    return (
+      <Alert variant='warning'>Stock casi bajo</Alert>
+    )
+  }
+  else if (cantidad <= (critico + 2)){
+    return (
+      <Alert variant='danger'>¡Stock Bajo!</Alert>
+    )
+  }
+};
+
+let codigo = (id, nombre) => {
+  let items = {
+    id: id,
+    nombre: nombre
+  }
+  return (
+    <MyCodigo items={items}/>
+  );
+};
 
 const NuevoItem = () => {
   const [items, setItems] = useState([]);
@@ -67,22 +104,12 @@ const NuevoItem = () => {
   },[])
 
   return (
-    <div>
-      <div className="IngresarProducto">
-        <MyNavbar menuArr={menuNav}> </MyNavbar>
-      </div>
-      <div>
-        <h3>
-        Por favor ingrese un nuevo producto  
-        </h3>
-      </div>
-      <div className="IngresarProducto">
+    <div className="IngresarProducto">
+      <MyNavbar menuArr={menuNav}> </MyNavbar>
+      <Container style={{marginTop: "150px"}}>
         <MyForm handleAddNewItemsTable={handleAddNewItemsTable}></MyForm>
         <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
-      </div>
-      {/* <div className="IngresarProducto inline (css)">
-        <MyFooter></MyFooter>
-      </div> */}
+      </Container>
     </div>
   );
 };
