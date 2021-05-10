@@ -55,15 +55,19 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
       console.log(id);
       setScannerId(id);
       
-      //llamada a backend
-
       const data = {
-        codigo: "codigo",
-        nombre: "name",
-        unidad_medida: (id % 2 === 0 ? "kit":"UN") ,
-        critico: id,
-        id_categoria: id,
+        codigo: codigo,
+        nombre: name,
+        unidad_medida: unidadMedida,
+        critico: critico,
+        id_categoria: id_categoria,
       }
+
+      axios.get(`http://127.0.0.1:5000/item/pistola/${id}`)
+      .then(res => {
+        console.log(res);
+      })
+
       setCodigo(data.codigo)
       setName(data.nombre)
       setUnidadMedida(data.unidad_medida)
