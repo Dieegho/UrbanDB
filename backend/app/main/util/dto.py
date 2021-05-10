@@ -4,11 +4,11 @@ from flask_restplus import Namespace, fields
 class UserDto:
     api = Namespace('user', description='user related operations')
     user = api.model('user', {
-        'id': fields.Integer(required=True, description='user id'),
+        # 'id': fields.Integer(required=True, description='user id'),
         'email': fields.String(required=True, description='user email address'),
         'username': fields.String(required=True, description='user username'),
         'password': fields.String(required=True, description='user password'),
-        'public_id': fields.String(description='user Identifier')
+        # 'public_id': fields.String(description='user Identifier')
     })
 
 
@@ -44,4 +44,13 @@ class CategoriasDto:
         'id': fields.Integer(required=True, description='categoria id'),
         'nombre':fields.String(required=True,description='categoria nombre'),
         'id_area':fields.Integer(required=True,description='categoria id_area'),
+    })
+
+class MovimientosDto:
+    api = Namespace('movimientos', description='movimientos functions')
+    movimiento = api.model('movimiento',{
+        'id': fields.Integer(required=True, description='movimiento id'),
+        'id_item': fields.Integer(required=True, description='id_item'),
+        'accion': fields.Integer(required=True,description='accion'),
+        'cantidad': fields.Integer(required=True,description='cantidad'),
     })
