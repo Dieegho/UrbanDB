@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import { Link } from 'react-router-dom';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
-import MyFooter from '../../components/Footer';
 
-let menuNav = [
+let menuNavAreas = [
   {
     name: "Menú",
-    rute: "/"
+    rute: "/menu"
   },
 ];
 let headTable = [
@@ -23,9 +23,7 @@ let headTable = [
   }
 ];
 
-let revisar = (id) => {
-  console.log(id);
-  
+let revisar = (id) => {  
   return(
     <Button variant="outline-dark" as={Link} to={`/categorias/${id}`}> Revisar </Button>
   )
@@ -36,28 +34,18 @@ const Areas = () =>  {
   useEffect(()=>{
     axios.get('http://127.0.0.1:5000/area/')
     .then(res => {
-      console.log(res);
       setAreas(res.data.data)
-      console.log(res.data.data);
     })
   },[])
 
   return (
-    <div>
-      <div className="Areas">
-        <MyNavbar menuArr={menuNav}></MyNavbar>
-      </div>
-      <div className="Areas">
-        <h1>a</h1>
-        <h2>Bienvenido al control de inventarios</h2>
-        <h3>Por favor seleccione el área que desea revisar.</h3>
-      </div>
-      <div className="Areas">
-        <MyTable headArr={headTable} bodyArrAreas={areas}></MyTable>
-      </div>
-      {/* <div className="Areas">
-        <MyFooter></MyFooter>
-      </div> */}
+    <div className="Areas">
+      <MyNavbar menuArr={menuNavAreas}/>
+      <Container style={{marginTop: "150px"}}>
+        <MyTable headArr={headTable} bodyArrAreas={areas}/>
+        <Button variant="outline-danger" as={Link} to={'menu'}> Regresar al menú</Button> 
+      </Container>
+
     </div>
   );
 };

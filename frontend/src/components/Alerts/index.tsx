@@ -18,7 +18,7 @@ let Alerts: FC<props> = ({alertas_menu}) => {
   const [bajo, setBajo] = useState(true);
   const [medio, setMedio] = useState(true);
   const [alto, setAlto] = useState(true);
-//hacer un count if count >= 1 return alerta
+
   let mapeoR = alertas_menu.map((elem) => {
     if(elem.cantidad <= (elem.critico + 2)){
       countR++;
@@ -42,28 +42,27 @@ let Alerts: FC<props> = ({alertas_menu}) => {
   })  
 
 
-  if(bajo && countR > 0){
+  if((bajo && countR > 0) || (medio && countA > 0)){
     return (
-      <Alert variant="danger" onClose={() => setBajo(false)} dismissible>
-        <Alert.Heading>Stock bajo!</Alert.Heading>
-        <p>
-          Tu stock se encuentra al límite. 
-          {mapeoR}
-        </p>
-      </Alert>
+      <div>
+        <Alert variant="danger" onClose={() => setBajo(false)}>
+          <Alert.Heading>Stock bajo!</Alert.Heading>
+          <p>
+            Tu stock se encuentra al límite. 
+            {mapeoR}
+          </p>
+        </Alert>
+        <Alert variant="warning" onClose={() => setMedio(false)}>
+          <Alert.Heading>Stock casi bajo!</Alert.Heading>
+          <p>
+            Tu stock está a punto de llegar a niveles críticos!
+            {mapeoA}
+          </p>
+        </Alert>
+      </div>
     ); 
   }    
-  if(medio && countA > 0){
-    return(
-      <Alert variant="warning" onClose={() => setMedio(false)} dismissible>
-        <Alert.Heading>Stock casi bajo!</Alert.Heading>
-        <p>
-          Tu stock está a punto de llegar a niveles críticos!
-          {mapeoA}
-        </p>
-      </Alert>
-    )
-  }
+  
   if(alto && (countA == 0) && (countR ==0)){
     return(
       <Alert variant="success" onClose={() => setAlto(false)} dismissible>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import MyNavbar from '../../components/Navbar';
 import MyForm from '../../components/Form';
 
-let menuNav =[
+let menuNavLog =[
   {
   name: "",
   rute: ""
@@ -19,15 +19,15 @@ const Login = () => {
     setUsers(aux);
   };
 
-  useEffect(()=>{
-    axios.get(`http://127.0.0.1:5000/user`)
-    .then(res => res.data.item)
-  },[])
+  // useEffect(()=>{
+  //   axios.get(`http://127.0.0.1:5000/user`)
+  //   .then(res => res.data.item)
+  // },[])
 
   return (
     <div>
       <div className="Login">
-        <MyNavbar menuArr={menuNav}> </MyNavbar>
+        <MyNavbar menuArrLog={menuNavLog}> </MyNavbar>
       </div>
       <div className="Login">
         <h2>Bienvenido</h2>

@@ -13,6 +13,7 @@ interface tableArr {
     codigo: string;
     nombre: string;
     cantidad: number;
+    rank: number;
     unidad_medida: number;
     critico: number;
     categoria: string;
@@ -72,9 +73,9 @@ const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCate
     paginationTotalRenderer: customTotal,
     disablePageTitle: true,
     sizePerPageList: [{
-      text: '4', value: 4
+      text: '5', value: 5
     }, {
-      text: '6', value: 6
+      text: '10', value: 10
     },
     // {
     //   text: 'All', value: rows.length

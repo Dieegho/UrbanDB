@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import MyTable from '../../components/Table';
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 import MyNavbar from '../../components/Navbar';
 import MyTittle from '../../components/Tittle';
-import MyFooter from '../../components/Footer';
-import Alert from 'react-bootstrap/Alert';
+import MyTable from '../../components/Table';
+import MyButton from '../../components/Buttons';
+import MyCodigo from '../../components/Codigo';
 
-let menuNav = [
+let menuNavItems = [
   {
     name: "Menú",
     rute: "/menu"
@@ -14,10 +16,6 @@ let menuNav = [
   {
     name: "Áreas",
     rute: "/areas"
-  },
-  {
-    name: "Categorías",
-    rute: `/categorias/:id`,
   },
 ];
 
@@ -45,6 +43,10 @@ let headTable = [
   {
     text: ' alerta ',
     formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
+  },
+  {
+    text: 'código',
+    formatter: (cell, row) => codigo(row.id, row.nombre)
   }
 ];
 
@@ -66,6 +68,16 @@ let aviso_stock = (cantidad, critico) => {
   }
 };
 
+let codigo = (id, nombre) => {
+  let items = {
+    id: id,
+    nombre: nombre
+  }
+  return (
+    <MyCodigo items={items}/>
+  );
+};
+
 const Items = ({match}) => {
   let params = match.params;
   const [items, setItems] = useState([]);
@@ -77,19 +89,13 @@ const Items = ({match}) => {
   },[])
 
   return (
-    <div>
-      <div className="Items">
-        <MyNavbar menuArr={menuNav}/>
-      </div>
-      <div className="Items">
+    <div className="Items">
+      <MyNavbar menuArr={menuNavItems}/>
+      <Container style={{marginTop: "150px"}}>
         <MyTittle nombres_items={items}/>
-      </div>
-      <div className="Items">
         <MyTable headArr={headTable} bodyArrItems={items}/>
-      </div>
-      {/* <div className="Items">
-        <MyFooter/>
-      </div> */}
+        <MyButton items={items}/>
+      </Container>
     </div>
   );
 };
