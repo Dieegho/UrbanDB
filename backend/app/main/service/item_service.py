@@ -138,3 +138,31 @@ def tabla_todo(id):
     print("TABLA TODO")
     print(ans)
     return ans, 201
+
+def data_pistola(id):
+    tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(id=id).join(Categorias).join(Areas).all()
+    ans = []
+    for elem in tabla:
+        myItem = elem[0]
+        myCategoria = elem[1]
+        myArea = elem[2]
+        
+        item_timestamp = UTC.localize(myItem.timestamp)
+
+        aux = {
+            "id": myItem.id,
+            "codigo": myItem.codigo,
+            "nombre": myItem.nombre,
+            "area": myArea.nombre,
+            "id_area": myArea.id,
+            "categoria": myCategoria.nombre,
+            "id_categoria": myCategoria.id,
+            "cantidad": myItem.cantidad,
+            "unidad_medida": myItem.unidad_medida,
+            "critico": myItem.critico,
+            "timestamp": item_timestamp.astimezone(tz=STGO).strftime("%d-%m-%Y %H:%M")
+        }
+        ans.append(aux)
+    print("pistola")
+    print(ans)
+    return ans, 201
