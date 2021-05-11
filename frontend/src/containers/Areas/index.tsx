@@ -36,7 +36,7 @@ const Areas = () =>  {
     .then(res => {
       setAreas(res.data.data)
     })
-  },[])
+  },[])  
 
   return (
     <div className="Areas">

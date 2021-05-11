@@ -107,7 +107,7 @@ const IngresarProducto = () => {
       <>
         <MyNavbar menuArr={menuNavMod}> </MyNavbar>
         <Container style={{marginTop: "150px"}}>
-          <MyForm handleRetirarItems={handleRetirarItems}  ></MyForm>
+          <MyForm handleRetirarItems={handleRetirarItems} items_id={items} ></MyForm>
           <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
         </Container>
       </>

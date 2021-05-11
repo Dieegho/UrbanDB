@@ -21,8 +21,6 @@ def ingresar_items(data):
     codigo = data['codigo']
     nombre = data['name']
     unidad_medida = data['unidadMedida']
-    id_categoria = data['id_categoria']
-    critico = data['critico']
     cantidad = data['cantidad']
     new_item = Items()
     exists = db.session.query(db.exists().where(Items.codigo == codigo)).scalar()
@@ -152,13 +150,13 @@ def data_pistola(id):
         aux = {
             "id": myItem.id,
             "codigo": myItem.codigo,
-            "nombre": myItem.nombre,
+            "name": myItem.nombre,
             "area": myArea.nombre,
             "id_area": myArea.id,
             "categoria": myCategoria.nombre,
             "id_categoria": myCategoria.id,
             "cantidad": myItem.cantidad,
-            "unidad_medida": myItem.unidad_medida,
+            "unidadMedida": myItem.unidad_medida,
             "critico": myItem.critico,
             "timestamp": item_timestamp.astimezone(tz=STGO).strftime("%d-%m-%Y %H:%M")
         }
