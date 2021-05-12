@@ -376,7 +376,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
       }
 
       handleAddNewItemsTable(data);
-      axios.post('http://127.0.0.1:5000/item/', {codigo, name, unidadMedida, critico, categoria, area} )
+      axios.post('http://127.0.0.1:5000/item/nuevo_item', {codigo, name, unidadMedida, critico, categoria, area} )
       .then(res => {
         console.log(res);
       })
@@ -384,7 +384,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
 
     return(
       <div>
-        <Form noValidate validated={validated} onSubmit = {handleSubmit}>
+        <Form validated={validated} onSubmit = {handleSubmit}>
           <Form.Row>
           <Form.Group as={Col} md="4" controlId="codigo">
               <Form.Label>Código</Form.Label>
@@ -414,8 +414,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
               <Form.Label>Unidad de Medida</Form.Label>
               <Form.Control
                 required 
-                type="text"
-                defaultValue="Choose..."  
+                defaultValue="UN"  
                 as="select"
                 value={unidadMedida}
                 onChange={(e) => setUnidadMedida(e.target.value)}  
@@ -435,6 +434,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
                 type="number" 
                 value={critico}
                 onChange={(e) => setCritico(e.target.value)}
+                min={1}
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
@@ -443,7 +443,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
               <Form.Label>Área</Form.Label>
               <Form.Control
                 required 
-                type="number" 
+                type="text" 
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
               />
@@ -453,7 +453,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
             <Form.Group as={Col} md="4" controlId="categoria">
               <Form.Label>Categoría</Form.Label>
               <Form.Control
-                required type="number" 
+                required type="text" 
                 value={categoria}
                 onChange={(e) => setCategoria(e.target.value)}
               />
