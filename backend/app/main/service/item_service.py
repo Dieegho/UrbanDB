@@ -20,8 +20,6 @@ def ingresar_items(data):
     codigo = data['codigo']
     nombre = data['name']
     unidad_medida = data['unidadMedida']
-    id_categoria = data['id_categoria']
-    critico = data['critico']
     cantidad = data['cantidad']
     new_item = Items()
     exists = db.session.query(db.exists().where(Items.codigo == codigo)).scalar()
@@ -138,6 +136,7 @@ def tabla_todo(id):
     print(ans)
     return ans, 201
 
+
 def ingresar_nuevo_item(data):
     exists = db.session.query(db.exists().where(Areas.nombre == data['area'],Categorias.nombre == data['categoria'])).scalar()
     if exists:
@@ -155,5 +154,6 @@ def ingresar_nuevo_item(data):
             'status': 'success',
             'message': 'Successfully registered.',
             # 'id': new_item.id
+
         }
         return response_object, 201
