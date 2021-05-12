@@ -1,7 +1,7 @@
 from flask import request
 from flask_restplus import Resource
 
-from ..service.item_service import lista_items, ingresar_items, lista_link_items, tabla_retirar, retirar_item, tabla_todo, data_pistola
+from ..service.item_service import lista_items, ingresar_items, lista_link_items, tabla_retirar, retirar_item, tabla_todo, ingresar_nuevo_item
 from ..util.dto import ItemDto
 
 api = ItemDto.api
@@ -74,3 +74,12 @@ class Items(Resource):
             api.abort(404)
         else:
             return item
+
+@api.route('/nuevo_item')
+class ItemsListRetirar(Resource):
+    @api.response(201, 'Item nuevo')
+    @api.doc('Ingresa un nuevo item')
+    # @api.expect(_item, validate=True)
+    def post(self):
+        data = request.json
+        return ingresar_nuevo_item(data=data)
