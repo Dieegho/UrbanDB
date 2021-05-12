@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
@@ -18,6 +19,19 @@ let menuNavItems = [
     rute: "/areas"
   },
 ];
+
+//debo poner las alertas
+const selectOptionsArr = [{
+  value: 0,
+  label: 'Stock Ok'
+}, {
+  value: 1,
+  label: 'Stock casi bajo'
+}, {
+  value: 2,
+  label: '¡Stock Bajo!'
+}];
+
 
 let headTable = [
   {
@@ -41,11 +55,14 @@ let headTable = [
     text: 'Fecha'
   },
   {
-    text: ' alerta ',
+    text: ' Estado ',
     formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
+    filter: selectFilter({
+      options: selectOptionsArr
+    })
   },
   {
-    text: 'código',
+    text: 'Código',
     formatter: (cell, row) => codigo(row.id, row.nombre)
   }
 ];
