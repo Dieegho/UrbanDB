@@ -62,18 +62,18 @@ class Items(Resource):
         else:
             return item
 
-@api.route('/pistola/<id>')
-@api.param('id', 'The categoria identifier for an item')
-@api.response(404, 'Item not found.')
-class Items(Resource):
-    @api.doc('Obtiene todo de los items')
-    # @api.marshal_with(_item)
-    def get(self, id):
-        item = data_pistola(id)
-        if not item:
-            api.abort(404)
-        else:
-            return item
+# @api.route('/pistola/<id>')
+# @api.param('id', 'The categoria identifier for an item')
+# @api.response(404, 'Item not found.')
+# class Items(Resource):
+#     @api.doc('Obtiene todo de los items')
+#     # @api.marshal_with(_item)
+#     def get(self, id):
+#         item = data_pistola(id)
+#         if not item:
+#             api.abort(404)
+#         else:
+#             return item
 
 @api.route('/nuevo_item')
 class New_Item(Resource):
