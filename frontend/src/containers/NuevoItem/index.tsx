@@ -52,10 +52,6 @@ let headTable = [
     text: ' alerta ',
     formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
   },
-  {
-    text: 'código',
-    formatter: (cell, row) => codigo(row.id, row.nombre)
-  }
 ];
 
 let aviso_stock = (cantidad, critico) => {
@@ -74,16 +70,6 @@ let aviso_stock = (cantidad, critico) => {
       <Alert variant='danger'>¡Stock Bajo!</Alert>
     )
   }
-};
-
-let codigo = (id, nombre) => {
-  let items = {
-    id: id,
-    nombre: nombre
-  }
-  return (
-    <MyCodigo items={items}/>
-  );
 };
 
 const NuevoItem = () => {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 interface props {
   handleAddItemsTable ?: (item) => void;
@@ -14,6 +15,7 @@ interface props {
     codigo: string;
     nombre: string;
     unidad_medida: string;
+    cantidad: string;
   }[];
 }
 
@@ -21,13 +23,14 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
   
   if(handleAddItemsTable){
 
-    const [scannerid, setScannerId] = useState("")
+    const [scannerid, setScannerId] = useState(false);
     const [codigo, setCodigo] = useState("");
     const [name, setName] = useState("");
     const [unidadMedida, setUnidadMedida] = useState("");
     const [cantidad, setCantidad] = useState("");
     const [validated, setValidated] = useState(false);
     const idScannerRef = useRef(null);
+    const [show, setShow] = useState(false);
     
     const handleSubmit = (e) =>{
       const form = e.currentTarget;
@@ -124,7 +127,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
             </Form.Group>
           </Form.Row>
 
-          <Form.Row>
+          {/* <Form.Row>
             <Form.Group as={Col} md="4" controlId="id_scanner">
               <Form.Control
                 required
@@ -135,14 +138,49 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
                 onChange={handleIdScanner}
               />
             </Form.Group>
-          </Form.Row>
+          </Form.Row> */}
 
-          <Button variant="outline-dark" type="submit">
+          <Button variant="dark" type="submit">
             Ingresar
           </Button>
-          <Button variant="outline-dark" onClick = {(e) => idScannerRef.current.focus()}>
+          <Button 
+            variant="danger" 
+            onClick = {() =>{
+              setShow(true);
+            }}>
             Escanear
           </Button>
+
+          <Modal show={show} onHide={() => setShow(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Por favor escanee el código</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Recuerde mantener los códigos de barra en buen estado para una mejor lectura.
+              <Form>
+                <Form.Row>
+                  <Form.Group as={Col} md="4" controlId="id_scanner">
+                    <Form.Control
+                      required
+                      hidden={false}
+                      ref={idScannerRef}
+                      type="number" 
+                      value={scannerid}
+                      onChange={handleIdScanner}
+                    />
+                  </Form.Group>
+                </Form.Row>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="danger" onClick = {(e) => idScannerRef.current.focus()}>
+                Iniciar Escaneo
+              </Button>
+              <Button variant="outline-secondary" onClick={() => setShow(false)}>
+                Cancelar
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Form>
       </div>
     )
@@ -156,6 +194,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
     const [cantidad, setCantidad] = useState("");
     const [validated, setValidated] = useState(false);
     const idScannerRef = useRef(null);
+    const [show, setShow] = useState(false);
 
     const handleRetirarData = (e) => {
       const form = e.currentTarget;
@@ -180,6 +219,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
     }
 
     const handleIdScanner = (e) => {
+      let cantidad_tabla;
       let id = e.target.value;
       console.log(id);
       setScannerId(id);
@@ -191,6 +231,9 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
           setUnidadMedida(elem.unidad_medida);
         }
       })
+
+      console.log(cantidad_tabla);
+      
     }
 
     return(
@@ -224,6 +267,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
               <Form.Control
                 value={cantidad}
                 onChange={(e) => setCantidad(e.target.value)}
+                min={1}
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
@@ -244,7 +288,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
             </Form.Group>
           </Form.Row>
 
-          <Form.Row>
+          {/* <Form.Row>
             <Form.Group as={Col} md="4" controlId="id_scanner">
               <Form.Control
                 required
@@ -255,25 +299,62 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
                 onChange={handleIdScanner}
               />
             </Form.Group>
-          </Form.Row>
+          </Form.Row> */}
 
-          <Button variant="outline-dark" type="submit">
+          <Button variant="dark" type="submit">
             Retirar
           </Button>
 
-          <Button variant="outline-dark" onClick = {(e) => idScannerRef.current.focus()}>
+          <Button 
+            variant="danger" 
+            onClick = {() =>{
+              setShow(true);
+            }}>
             Escanear
           </Button>
+
+          <Modal show={show} onHide={() => setShow(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Por favor escanee el código</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Recuerde mantener los códigos de barra en buen estado para una mejor lectura.
+              <Form>
+                <Form.Row>
+                  <Form.Group as={Col} md="4" controlId="id_scanner">
+                    <Form.Control
+                      required
+                      hidden={false}
+                      ref={idScannerRef}
+                      type="number" 
+                      value={scannerid}
+                      onChange={handleIdScanner}
+                    />
+                  </Form.Group>
+                </Form.Row>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="danger" onClick = {(e) => idScannerRef.current.focus()}>
+                Iniciar Escaneo
+              </Button>
+              <Button variant="outline-secondary" onClick={() => setShow(false)}>
+                Cancelar
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Form>
       </div>
     )
   }
+
   else if(handleAddNewItemsTable){
     const [codigo, setCodigo] = useState("");
     const [name, setName] = useState("");
     const [unidadMedida, setUnidadMedida] = useState("");
     const [critico, setCritico] = useState("");
-    const [id_categoria, setId_categoria] = useState("");
+    const [categoria, setCategoria] = useState("");
+    const [area, setArea] = useState("");
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = (e) =>{
@@ -290,11 +371,12 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
         nombre: name,
         unidad_medida: unidadMedida,
         critico : critico,
-        id_categoria: id_categoria,
+        categoria: categoria,
+        area: area,
       }
 
       handleAddNewItemsTable(data);
-      axios.post('http://127.0.0.1:5000/item/', {codigo, name, unidadMedida, critico, id_categoria} )
+      axios.post('http://127.0.0.1:5000/item/nuevo_item', {codigo, name, unidadMedida, critico, categoria, area} )
       .then(res => {
         console.log(res);
       })
@@ -302,7 +384,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
 
     return(
       <div>
-        <Form noValidate validated={validated} onSubmit = {handleSubmit}>
+        <Form validated={validated} onSubmit = {handleSubmit}>
           <Form.Row>
           <Form.Group as={Col} md="4" controlId="codigo">
               <Form.Label>Código</Form.Label>
@@ -332,8 +414,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
               <Form.Label>Unidad de Medida</Form.Label>
               <Form.Control
                 required 
-                type="text"
-                defaultValue="Choose..."  
+                defaultValue="UN"  
                 as="select"
                 value={unidadMedida}
                 onChange={(e) => setUnidadMedida(e.target.value)}  
@@ -346,16 +427,6 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
           </Form.Row>
 
           <Form.Row>
-          <Form.Group as={Col} md="4" controlId="id_categoria">
-            <Form.Label>ID Categoría</Form.Label>
-              <Form.Control
-                required type="number" 
-                value={id_categoria}
-                onChange={(e) => setId_categoria(e.target.value)}
-              />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-
             <Form.Group as={Col} md="4" controlId="critico">
               <Form.Label>Stock crítico</Form.Label>
               <Form.Control
@@ -363,12 +434,35 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
                 type="number" 
                 value={critico}
                 onChange={(e) => setCritico(e.target.value)}
+                min={1}
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
+
+            <Form.Group as={Col} md="4" controlId="area">
+              <Form.Label>Área</Form.Label>
+              <Form.Control
+                required 
+                type="text" 
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group as={Col} md="4" controlId="categoria">
+              <Form.Label>Categoría</Form.Label>
+              <Form.Control
+                required type="text" 
+                value={categoria}
+                onChange={(e) => setCategoria(e.target.value)}
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+
           </Form.Row>
 
-          <Button variant="outline-dark" type="submit">
+          <Button variant="dark" type="submit">
             Ingresar
           </Button>
         </Form>
@@ -425,7 +519,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
   
-          <Button type="submit">Ingresar</Button>
+          <Button variant="dark" /*onClick={}*/>Ingresar</Button>
         </Form>
       </div>
     )

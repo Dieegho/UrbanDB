@@ -1,8 +1,9 @@
 from flask import request
-from flask_restplus import Resource
+from flask_restx import Resource
 
 from app.main.service.auth_helper import Auth
 from ..util.dto import AuthDto
+from typing import Dict, Tuple
 
 api = AuthDto.api
 user_auth = AuthDto.user_auth
@@ -15,10 +16,9 @@ class UserLogin(Resource):
     """
     @api.doc('user login')
     @api.expect(user_auth, validate=True)
-    def post(self):
+    def post(self) -> Tuple[Dict[str, str], int]:
         # get the post data
         post_data = request.json
-        print(post_data)
         return Auth.login_user(data=post_data)
 
 
@@ -28,7 +28,7 @@ class LogoutAPI(Resource):
     Logout Resource
     """
     @api.doc('logout a user')
-    def post(self):
+    def post(self) -> Tuple[Dict[str, str], int]:
         # get auth token
         auth_header = request.headers.get('Authorization')
         return Auth.logout_user(data=auth_header)

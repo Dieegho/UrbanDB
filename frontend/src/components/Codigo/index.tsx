@@ -29,10 +29,10 @@ const MyCodigo: FC<props> = ({items}) => {
             <Barcode value={items.id}/>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="outline-secondary" onClick={() => setShow(false)}>
+            <Button variant="secondary" onClick={() => setShow(false)}>
               Cancelar
             </Button>
-            <Button variant="outline-danger" onClick={() => setShow(false)}>
+            <Button variant="danger" onClick={() => setShow(false)}>
               Imprimir
             </Button>
           </Modal.Footer>
