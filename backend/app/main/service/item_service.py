@@ -17,7 +17,6 @@ def lista_items():
 
 
 def ingresar_items(data):
-
     codigo = data['codigo']
     nombre = data['name']
     unidad_medida = data['unidadMedida']
@@ -137,30 +136,24 @@ def tabla_todo(id):
     print(ans)
     return ans, 201
 
-def data_pistola(id):
-    tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(id=id).join(Categorias).join(Areas).all()
-    ans = []
-    for elem in tabla:
-        myItem = elem[0]
-        myCategoria = elem[1]
-        myArea = elem[2]
-        
-        item_timestamp = UTC.localize(myItem.timestamp)
 
-        aux = {
-            "id": myItem.id,
-            "codigo": myItem.codigo,
-            "name": myItem.nombre,
-            "area": myArea.nombre,
-            "id_area": myArea.id,
-            "categoria": myCategoria.nombre,
-            "id_categoria": myCategoria.id,
-            "cantidad": myItem.cantidad,
-            "unidadMedida": myItem.unidad_medida,
-            "critico": myItem.critico,
-            "timestamp": item_timestamp.astimezone(tz=STGO).strftime("%d-%m-%Y %H:%M")
+def ingresar_nuevo_item(data):
+    exists = db.session.query(db.exists().where(Areas.nombre == data['area'],Categorias.nombre == data['categoria'])).scalar()
+    if exists:
+        new_item = Items(
+            codigo = data['codigo'],
+            nombre = data['name'],
+            unidad_medida = data['unidadMedida'],
+            id_categoria = data['id_categoria'],
+            critico = data['critico'],
+            cantidad = data['cantidad']
+        )
+        db.session.add(new_item)
+        db.session.commit()
+        response_object = {
+            'status': 'success',
+            'message': 'Successfully registered.',
+            # 'id': new_item.id
+
         }
-        ans.append(aux)
-    print("pistola")
-    print(ans)
-    return ans, 201
+        return response_object, 201
