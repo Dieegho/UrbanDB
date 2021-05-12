@@ -139,15 +139,21 @@ def tabla_todo(id):
     return ans, 201
 
 def ingresar_nuevo_item(data):
-    exists = db.session.query(db.exists().where(Areas.nombre == data['area'],Categorias.nombre == data['categoria'])).scalar()
-    if exists:
+    area =  Areas.query.filter_by(nombre=data['nombre']).first()
+
+            
+    categoria = Categorias.query.filter_by(nombre=data['nombre']).first()
+    # exists = db.session.query(db.exists().where(area = data['area'],categoria= data['categoria'])).scalar()
+    if not area and not categoria:
         new_item = Items(
             codigo = data['codigo'],
             nombre = data['name'],
             unidad_medida = data['unidadMedida'],
             id_categoria = data['id_categoria'],
             critico = data['critico'],
-            cantidad = data['cantidad']
+            cantidad = data['cantidad'],
+            area = data['area'],
+            categoria = data['categoria']
         )
         db.session.add(new_item)
         db.session.commit()
