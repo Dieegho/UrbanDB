@@ -76,7 +76,7 @@ class Items(Resource):
             return item
 
 @api.route('/nuevo_item')
-class ItemsListRetirar(Resource):
+class New_Item(Resource):
     @api.response(201, 'Item nuevo')
     @api.doc('Ingresa un nuevo item')
     # @api.expect(_item, validate=True)
