@@ -374,7 +374,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
         categoria: categoria,
         area: area,
       }
-
+      console.log(data.unidad_medida);
       handleAddNewItemsTable(data);
       axios.post('http://127.0.0.1:5000/item/nuevo_item', {codigo, name, unidadMedida, critico, categoria, area} )
       .then(res => {
@@ -410,7 +410,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group as={Col} md="4" controlId="unidad_medida">
+            {/* <Form.Group as={Col} md="4" controlId="unidad_medida">
               <Form.Label>Unidad de Medida</Form.Label>
               <Form.Control
                 required 
@@ -422,6 +422,16 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
                 <option>UN</option>
                 <option>kit</option>
               </Form.Control>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group> */}
+            <Form.Group as={Col} md="4" controlId="unidad_medida">
+              <Form.Label>Unidad de Medida</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                value={unidadMedida}
+                onChange={(e) => setUnidadMedida(e.target.value)}
+              />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
