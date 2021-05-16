@@ -104,18 +104,20 @@ let codigo = (id, nombre) => {
 };
 
 const IngresarProducto = () => {
+
   const [items, setItems] = useState([]);
   const [newItems, setnewItems] = useState([]);
+
   const handleAddItemsTable = (data) => {
     console.log(newItems);
     let aux = [...newItems];
     aux.push(data);
-    setnewItems(aux);
+    setnewItems(aux);    
   };
+
   useEffect(()=>{
     axios.get('http://127.0.0.1:5000/item/todo')
     .then(res => {
-      console.log(res);
       setItems(res.data)
     })
   },[])
@@ -124,7 +126,7 @@ const IngresarProducto = () => {
     <>
       <MyNavbar menuArr={menuNav}> </MyNavbar>
       <Container style={{marginTop: "150px"}}>
-        <MyForm handleAddItemsTable={handleAddItemsTable}></MyForm>
+        <MyForm handleAddItemsTable={handleAddItemsTable} items_id={items}></MyForm>
         <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
       </Container>
     </>

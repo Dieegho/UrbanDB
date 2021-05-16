@@ -20,8 +20,6 @@ def ingresar_items(data):
     codigo = data['codigo']
     nombre = data['name']
     unidad_medida = data['unidadMedida']
-    id_categoria = data['id_categoria']
-    critico = data['critico']
     cantidad = data['cantidad']
     new_item = Items()
     exists = db.session.query(db.exists().where(Items.codigo == codigo)).scalar()
@@ -138,28 +136,36 @@ def tabla_todo(id):
     print(ans)
     return ans, 201
 
-def ingresar_nuevo_item(data):
-    area =  Areas.query.filter_by(nombre=data['nombre']).first()
 
-            
-    categoria = Categorias.query.filter_by(nombre=data['nombre']).first()
-    # exists = db.session.query(db.exists().where(area = data['area'],categoria= data['categoria'])).scalar()
-    if not area and not categoria:
-        new_item = Items(
-            codigo = data['codigo'],
-            nombre = data['name'],
-            unidad_medida = data['unidadMedida'],
-            id_categoria = data['id_categoria'],
-            critico = data['critico'],
-            cantidad = data['cantidad'],
-            area = data['area'],
-            categoria = data['categoria']
-        )
+def ingresar_nuevo_item(data):
+    area = data['area']
+    categoriaid =  Categorias.query.filter_by(nombre=data['categoria']).first()
+    categoria = data['categoria']
+    codigo = data['codigo']
+    nombre = data['name']
+    unidad_medida = data['unidadMedida']
+    critico = data['critico']
+    new_item = Items()
+    exists = db.session.query(db.exists().where(Areas.nombre == area)).scalar()
+    cambio = db.session.query(db.exists().where(Categorias.nombre == categoria)).scalar()
+    print(exists)
+    print(cambio)
+    if exists and cambio:
+        new_item.codigo = codigo
+        new_item.nombre = nombre
+        new_item.id_categoria = categoriaid.id
+        new_item.critico = critico
+        new_item.cantidad = 0
+        new_item.unidad_medida = unidad_medida
         db.session.add(new_item)
         db.session.commit()
         response_object = {
             'status': 'success',
             'message': 'Successfully registered.',
-            # 'id': new_item.id
+            'id': new_item.id
         }
         return response_object, 201
+    else:
+        pass
+        
+
