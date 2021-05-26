@@ -3,6 +3,7 @@ import logo from '../../img/logo.png';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import AuthService from "./../../services/auth.services";
 
 interface MenuNav {
   menuArr: {
@@ -16,6 +17,10 @@ interface MenuNav {
 }
 
 const MyNavbar: FC<MenuNav> = ({menuArr, menuArrLog}) => {
+  const logOut = () => {
+    AuthService.logout();
+  };
+
   if(menuArrLog){
     return (
       <Navbar expand="lg" bg="dark" variant="dark" fixed="top">
@@ -66,7 +71,7 @@ const MyNavbar: FC<MenuNav> = ({menuArr, menuArrLog}) => {
           })}
         </Nav>
         <Nav>
-          <Nav.Link as={Link} key={"#" + '/'} to={'/'}>Cerrar Sesión</Nav.Link>
+          <Nav.Link as={Link} key={"#" + '/'} to={'/'} onClick={logOut}>Cerrar Sesión</Nav.Link>
         </Nav>
         </Navbar.Collapse>
       </Navbar>
