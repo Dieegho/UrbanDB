@@ -14,6 +14,7 @@ def save_new_user(data: Dict[str, str]) -> Tuple[Dict[str, str], int]:
             email=data['email'],
             username=data['username'],
             password=data['password'],
+            admin=data['admin'],
             registered_on=datetime.datetime.utcnow()
         )
         save_changes(new_user)
@@ -33,7 +34,6 @@ def get_all_users():
 def get_a_user(public_id):
     return User.query.filter_by(public_id=public_id).first()
 
-
 def generate_token(user: User) -> Tuple[Dict[str, str], int]:
     try:
         # generate the auth token
@@ -41,7 +41,7 @@ def generate_token(user: User) -> Tuple[Dict[str, str], int]:
         response_object = {
             'status': 'success',
             'message': 'Successfully registered.',
-            'Authorization': auth_token.decode()
+            'Authorization': auth_token
         }
         return response_object, 201
     except Exception as e:

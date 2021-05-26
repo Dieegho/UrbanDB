@@ -1,4 +1,4 @@
-import React, { useState, FC, useRef, useEffect } from 'react';
+import React, { useState, FC, useRef } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 interface props {
   handleAddItemsTable ?: (item) => void;
   handleRetirarItems ?: (item) => void;
-  handleLoginUsers ?: (user) => void;
+  // handleLoginUsers ?: (user) => void;
   handleAddNewItemsTable ?: (item) => void;
   items_id:{
     id:number;
@@ -19,7 +19,7 @@ interface props {
   }[];
 }
 
-const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLoginUsers, handleAddNewItemsTable, items_id}) => {
+const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleAddNewItemsTable, items_id}) => {
   
   if(handleAddItemsTable){
 
@@ -39,8 +39,10 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
         e.preventDefault();
         e.stopPropagation();        
       }
+
       setValidated(true);
       e.preventDefault();
+      
       const data = {
         codigo: codigo,
         nombre: name,
@@ -480,60 +482,60 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, handleLogi
     )
   }
 
-  else if(handleLoginUsers){
-    const [validated, setValidated] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  // else if(handleLoginUsers){
+  //   const [validated, setValidated] = useState(false);
+  //   const [email, setEmail] = useState("");
+  //   const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
-      const form = e.currentTarget;
-      if (form.checkValidity() === false) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-      setValidated(true);
-      e.preventDefault();
-      const data ={
-        email: email,
-        password: password,
-      }
-      handleLoginUsers(data);
-      axios.post('http://127.0.0.1:5000/auth/login', {email, password} )
-      .then(res => {
-        console.log(res);
-      })
-    }
-    return(
-      <div>
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <Form.Group md="4" controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control 
-              required 
-              type="email" 
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group md="4" controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control 
-              required 
-              type="password" 
-              placeholder="Contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
+  //   const handleSubmit = (e) => {
+  //     const form = e.currentTarget;
+  //     if (form.checkValidity() === false) {
+  //       e.preventDefault();
+  //       e.stopPropagation();
+  //     }
+  //     setValidated(true);
+  //     e.preventDefault();
+  //     const data ={
+  //       email: email,
+  //       password: password,
+  //     }
+  //     handleLoginUsers(data);
+  //     axios.post('http://127.0.0.1:5000/auth/login', {email, password} )
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  //   }
+  //   return(
+  //     <div>
+  //       <Form noValidate validated={validated} onSubmit={handleSubmit}>
+  //         <Form.Group md="4" controlId="email">
+  //           <Form.Label>Email</Form.Label>
+  //           <Form.Control 
+  //             required 
+  //             type="email" 
+  //             placeholder="Enter email"
+  //             value={email}
+  //             onChange={(e) => setEmail(e.target.value)}
+  //           />
+  //           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+  //         </Form.Group>
+  //         <Form.Group md="4" controlId="password">
+  //           <Form.Label>Password</Form.Label>
+  //           <Form.Control 
+  //             required 
+  //             type="password" 
+  //             placeholder="Contraseña"
+  //             value={password}
+  //             onChange={(e) => setPassword(e.target.value)}
+  //             />
+  //           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+  //         </Form.Group>
   
-          <Button variant="dark" /*onClick={}*/>Ingresar</Button>
-        </Form>
-      </div>
-    )
-  }
+  //         <Button variant="dark" /*onClick={}*/>Ingresar</Button>
+  //       </Form>
+  //     </div>
+  //   )
+  // }
   return(
     <div></div>
   )
