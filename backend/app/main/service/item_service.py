@@ -2,6 +2,7 @@ import uuid
 import datetime
 import pytz
 from dateutil import tz
+from sqlalchemy import func
 
 from app.main import db
 from app.main.model.item import Items
@@ -11,6 +12,29 @@ from app.main.model.areas import Areas
 STGO = tz.gettz('America/Santiago')
 UTC = pytz.timezone("UTC")
 
+def generar_codigo(area):
+    # area = Areas.nombre
+    cant = db.session.query(func.count(area),area).group_by(area).all()
+    if area == 'Bombas':
+        codigo = '134'
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    elif area == 'Electricidad':
+        codigo = '135' 
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    elif area == 'Clima':
+        codigo = '136'
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    elif area == 'Detección':
+        codigo = '137'
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    else:
+        pass
+
+    
 def lista_items():
     items = Items.query.order_by(Items.id).all()
     return items, 201
@@ -141,7 +165,7 @@ def ingresar_nuevo_item(data):
     area = data['area']
     categoriaid =  Categorias.query.filter_by(nombre=data['categoria']).first()
     categoria = data['categoria']
-    codigo = data['codigo']
+    codigo = generar_codigo(area)
     nombre = data['name']
     unidad_medida = data['unidadMedida']
     critico = data['critico']
