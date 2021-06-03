@@ -14,7 +14,10 @@ UTC = pytz.timezone("UTC")
 
 def generar_codigo(area):
     # area = Areas.nombre
+    print("PRINT CANT")
     cant = db.session.query(func.count(area),area).group_by(area).all()
+    print(cant)
+
     if area == 'Bombas':
         codigo = '134'
         codigo_item = codigo+str(cant)
@@ -29,6 +32,10 @@ def generar_codigo(area):
         return codigo_item
     elif area == 'Detección':
         codigo = '137'
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    elif area == 'A1':
+        codigo = '138'
         codigo_item = codigo+str(cant)
         return codigo_item
     else:
@@ -194,7 +201,10 @@ def ingresar_nuevo_item(data):
     area = data['area']
     categoriaid =  Categorias.query.filter_by(nombre=data['categoria']).first()
     categoria = data['categoria']
+    print("CODIGO AKI")
     codigo = generar_codigo(area)
+    print(codigo)
+
     nombre = data['name']
     unidad_medida = data['unidadMedida']
     critico = data['critico']
