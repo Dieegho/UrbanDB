@@ -21,12 +21,12 @@ let headTable = [
     text: 'Código'
   },
   {
-    dataField: 'categoria',
-    text: 'Categoría'
-  },
-  {
     dataField: 'area',
     text: 'Área'
+  },
+  {
+    dataField: 'categoria',
+    text: 'Categoría'
   },
   {
     dataField: 'nombre',
@@ -36,22 +36,22 @@ let headTable = [
     dataField: 'unidad_medida',
     text: 'UM'
   },
-  {
-    dataField: 'cantidad',
-    text: 'Cantidad'
-  },
+  // {
+  //   dataField: 'cantidad',
+  //   text: 'Cantidad'
+  // },
   {
     dataField: 'critico',
     text: 'Stock Crítico'
   },
-  {
-    dataField: 'timestamp',
-    text: 'Fecha'
-  },
-  {
-    text: ' alerta ',
-    formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
-  },
+  // {
+  //   dataField: 'timestamp',
+  //   text: 'Fecha'
+  // },
+  // {
+  //   text: ' alerta ',
+  //   formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
+  // },
 ];
 
 let aviso_stock = (cantidad, critico) => {
@@ -94,7 +94,7 @@ const NuevoItem = () => {
       <MyNavbar menuArr={menuNav}> </MyNavbar>
       <Container style={{marginTop: "150px"}}>
         <MyForm handleAddNewItemsTable={handleAddNewItemsTable}></MyForm>
-        <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
+        <MyTable headArr={headTable} bodyArrItems={newItems}></MyTable>
       </Container>
     </div>
   );

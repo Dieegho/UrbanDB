@@ -60,22 +60,22 @@ def ingresar_items(data):
         }
 
         return response_object, 201
-    else:
-        new_item.codigo = codigo
-        new_item.nombre = nombre
-        new_item.id_categoria = id_categoria
-        new_item.critico = critico
-        new_item.cantidad = cantidad
-        new_item.unidad_medida = unidad_medida
+    # else:
+    #     new_item.codigo = codigo
+    #     new_item.nombre = nombre
+    #     new_item.id_categoria = id_categoria
+    #     new_item.critico = critico
+    #     new_item.cantidad = cantidad
+    #     new_item.unidad_medida = unidad_medida
         
-        db.session.add(new_item)
-        db.session.commit()
-        response_object = {
-            'status': 'success',
-            'message': 'Successfully registered.',
-            'id': new_item.id
-        }
-        return response_object, 201
+    #     db.session.add(new_item)
+    #     db.session.commit()
+    #     response_object = {
+    #         'status': 'success',
+    #         'message': 'Successfully registered.',
+    #         'id': new_item.id
+    #     }
+        # return response_object, 201
 
 
 def save_changes(data):
@@ -160,8 +160,37 @@ def tabla_todo(id):
     print(ans)
     return ans, 201
 
+def tabla_buscador_item(nombre):
+    tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(nombre=nombre).join(Categorias).join(Areas).all()
+    ans = []
+    for elem in tabla:
+        myItem = elem[0]
+        myCategoria = elem[1]
+        myArea = elem[2]
+        
+        item_timestamp = UTC.localize(myItem.timestamp)
+
+        aux = {
+            "id": myItem.id,
+            "codigo": myItem.codigo,
+            "nombre": myItem.nombre,
+            "area": myArea.nombre,
+            "id_area": myArea.id,
+            "categoria": myCategoria.nombre,
+            "id_categoria": myCategoria.id,
+            "cantidad": myItem.cantidad,
+            "unidad_medida": myItem.unidad_medida,
+            "critico": myItem.critico,
+            "timestamp": item_timestamp.astimezone(tz=STGO).strftime("%d-%m-%Y %H:%M")
+        }
+        ans.append(aux)
+    print("TABLA BUSCADOR ITEM")
+    print(ans)
+    return ans, 201
+
 
 def ingresar_nuevo_item(data):
+    print(data)
     area = data['area']
     categoriaid =  Categorias.query.filter_by(nombre=data['categoria']).first()
     categoria = data['categoria']

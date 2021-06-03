@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import axios from 'axios';
+
 import Alert from 'react-bootstrap/Alert';
+
 import Container from 'react-bootstrap/Container';
 import MyNavbar from '../../components/Navbar';
 import MyTittle from '../../components/Tittle';

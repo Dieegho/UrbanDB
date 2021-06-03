@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import './index.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
+import filterFactory from 'react-bootstrap-table2-filter';
 
 interface tableArr {
   headArr: {

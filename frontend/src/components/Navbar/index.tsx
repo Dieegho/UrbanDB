@@ -24,17 +24,15 @@ const MyNavbar: FC<MenuNav> = ({menuArr, menuArrLog}) => {
   if(menuArrLog){
     return (
       <Navbar expand="lg" bg="dark" variant="dark" fixed="top">
-        <Navbar.Brand>
+        <Navbar.Brand as={Link} key={"/login"} to={"/login"}>
           <img
             alt=""
             src={logo}
             width="130"
             height="90"
             className="d-inline-block align-top"
-          />{' '}
+          />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           {menuArrLog.map((elem)=>{
             return(
@@ -42,24 +40,19 @@ const MyNavbar: FC<MenuNav> = ({menuArr, menuArrLog}) => {
             )
           })}
         </Nav>
-        <Nav>
-          <Nav.Link as={Link} key={"#" + '/menu'} to={'/menu'}>Menú</Nav.Link>
-        </Nav>
-        </Navbar.Collapse>
       </Navbar>
     );
   };
   if(menuArr){
     return (
       <Navbar bg="dark" variant="dark" fixed="top" >
-        <Navbar.Brand href="/menu">
+        <Navbar.Brand as={Link} key={"/menu"} to={"/menu"}>
           <img
-            alt=""
             src={logo}
             width="130"
             height="90"
             className="d-inline-block align-top"
-          />{' '}
+          />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
