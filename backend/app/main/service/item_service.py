@@ -17,6 +17,7 @@ def generar_codigo(area):
     print("PRINT CANT")
     cant = db.session.query(func.count(area),area).group_by(area).all()
     print(cant)
+
     if area == 'Bombas':
         codigo = '134'
         codigo_item = codigo+str(cant)
@@ -203,6 +204,7 @@ def ingresar_nuevo_item(data):
     print("CODIGO AKI")
     codigo = generar_codigo(area)
     print(codigo)
+
     nombre = data['name']
     unidad_medida = data['unidadMedida']
     critico = data['critico']
