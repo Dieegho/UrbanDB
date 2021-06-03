@@ -32,10 +32,18 @@ let revisar = (id) => {
 const Areas = () =>  {
   const [areas, setAreas] = useState([]);
   useEffect(()=>{
+    console.log("AAAAA");
+    
     axios.get('http://127.0.0.1:5000/area/')
     .then(res => {
+      console.log("AAAAA2");
+      console.log(res);
+      
       setAreas(res.data.data)
     })
+    .catch(error => {
+      console.log(error)
+    });
   },[])  
 
   return (

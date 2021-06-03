@@ -1,7 +1,7 @@
 from flask import request
 from flask_restplus import Resource
 
-from ..service.item_service import lista_items, ingresar_items, lista_link_items, tabla_retirar, retirar_item, tabla_todo, ingresar_nuevo_item
+from ..service.item_service import lista_items, ingresar_items, lista_link_items, tabla_retirar, retirar_item, tabla_todo, ingresar_nuevo_item, tabla_buscador_item
 from ..util.dto import ItemDto
 
 api = ItemDto.api
@@ -48,7 +48,6 @@ class ItemsListRetirar(Resource):
         data = request.json
         return retirar_item(data=data)
 
-
 @api.route('/todo/<id>')
 @api.param('id', 'The categoria identifier for an item')
 @api.response(404, 'Item not found.')
@@ -62,7 +61,18 @@ class Items(Resource):
         else:
             return item
 
-
+@api.route('/buscador/<nombre>')
+@api.param('nombre', 'The name of item identifier for an item')
+@api.response(404, 'Item not found.')
+class Items(Resource):
+    @api.doc('Obtiene todo de los items')
+    # @api.marshal_with(_item)
+    def get(self, nombre):
+        item = tabla_buscador_item(nombre)
+        if not item:
+            api.abort(404)
+        else:
+            return item
 
 @api.route('/nuevo_item')
 class New_Item(Resource):
