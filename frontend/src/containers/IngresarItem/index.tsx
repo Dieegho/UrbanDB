@@ -109,7 +109,6 @@ const IngresarProducto = () => {
   const [newItems, setnewItems] = useState([]);
 
   const handleAddItemsTable = (data) => {
-    console.log(newItems);
     let aux = [...newItems];
     aux.push(data);
     setnewItems(aux);    
