@@ -19,10 +19,7 @@ const MyFormNewItem: FC<props> = ({handleAddNewItemsTable}) => {
     const [validated, setValidated] = useState(false);
     
     const handleSubmit = (e) =>{
-        //hacer dos constantes UN y kit 
-        //if (unidadCategoria == UN) ==> 
-        console.log(unidadMedida);
-        
+              
       const form = e.currentTarget;
         
       if (form.checkValidity() === false) {
@@ -66,22 +63,24 @@ const MyFormNewItem: FC<props> = ({handleAddNewItemsTable}) => {
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
 
-            {/* <Form.Group as={Col} md="4" controlId="unidadMedida">
+            <Form.Group as={Col} md="4" controlId="unidadMedida">
               <Form.Label>Unidad de Medida</Form.Label>
               <Form.Control
-                required 
-                defaultValue="UN"  
+                required
+                defaultValue="Seleccione la unidad de medida"
                 as="select"
+                type="text"
                 value={unidadMedida}
                 onChange={(e) => setUnidadMedida(e.target.value)}
               >
+                <option>Seleccione la unidad de medida</option>
                 <option>UN</option>
                 <option>kit</option>
               </Form.Control>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group> */}
+            </Form.Group>
 
-            <Form.Group as={Col} md="4" controlId="unidad_medida">
+            {/* <Form.Group as={Col} md="4" controlId="unidad_medida">
                 <Form.Label>Unidad de medida</Form.Label>
                 <Form.Control
                     required 
@@ -91,7 +90,7 @@ const MyFormNewItem: FC<props> = ({handleAddNewItemsTable}) => {
                     onChange={(e) => setUnidadMedida(e.target.value)}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group as={Col} md="4" controlId="critico">
               <Form.Label>Stock Crítico</Form.Label>

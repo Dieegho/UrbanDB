@@ -12,38 +12,6 @@ from app.main.model.areas import Areas
 STGO = tz.gettz('America/Santiago')
 UTC = pytz.timezone("UTC")
 
-def generar_codigo(area):
-    # area = Areas.nombre
-    print("PRINT CANT")
-    tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(Areas.nombre==area).join(Categorias).join(Areas).all()
-    cant = db.session.query(func.count(tabla),tabla).group_by(tabla).all()
-    # cant = db.session.query(func.count()).
-    print(cant)
-
-    if area == 'Bombas':
-        codigo = '134'
-        codigo_item = codigo+str(cant)
-        return codigo_item
-    elif area == 'Electricidad':
-        codigo = '135' 
-        codigo_item = codigo+str(cant)
-        return codigo_item
-    elif area == 'Clima':
-        codigo = '136'
-        codigo_item = codigo+str(cant)
-        return codigo_item
-    elif area == 'Detección':
-        codigo = '137'
-        codigo_item = codigo+str(cant)
-        return codigo_item
-    elif area == 'A1':
-        codigo = '138'
-        codigo_item = codigo+str(cant)
-        return codigo_item
-    else:
-        pass
-
-    
 def lista_items():
     items = Items.query.order_by(Items.id).all()
     return items, 201
@@ -69,22 +37,9 @@ def ingresar_items(data):
         }
 
         return response_object, 201
-    # else:
-    #     new_item.codigo = codigo
-    #     new_item.nombre = nombre
-    #     new_item.id_categoria = id_categoria
-    #     new_item.critico = critico
-    #     new_item.cantidad = cantidad
-    #     new_item.unidad_medida = unidad_medida
-        
-    #     db.session.add(new_item)
-    #     db.session.commit()
-    #     response_object = {
-    #         'status': 'success',
-    #         'message': 'Successfully registered.',
-    #         'id': new_item.id
-    #     }
-        # return response_object, 201
+    else:
+        pass
+    
 
 
 def save_changes(data):
@@ -196,6 +151,33 @@ def tabla_buscador_item(nombre):
     print("TABLA BUSCADOR ITEM")
     print(ans)
     return ans, 201
+
+
+def generar_codigo(area):
+    cant = db.session.query(Items,Categorias,Areas).select_from(Items).join(Categorias).join(Areas).where(Areas.nombre==area).count()
+
+    if area == 'Bombas':
+        codigo = '134'
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    elif area == 'Electricidad':
+        codigo = '135' 
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    elif area == 'Clima':
+        codigo = '136'
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    elif area == 'Detección':
+        codigo = '137'
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    elif area == 'A1':
+        codigo = '138'
+        codigo_item = codigo+str(cant)
+        return codigo_item
+    else:
+        pass
 
 
 def ingresar_nuevo_item(data):
