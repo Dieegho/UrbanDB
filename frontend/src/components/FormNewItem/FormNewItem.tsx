@@ -66,8 +66,8 @@ const MyFormNewItem: FC<props> = ({handleAddNewItemsTable}) => {
             <Form.Group as={Col} md="4" controlId="unidadMedida">
               <Form.Label>Unidad de Medida</Form.Label>
               <Form.Control
-                required 
-                defaultValue="Seleccione la unidad de medida"  
+                required
+                defaultValue="Seleccione la unidad de medida"
                 as="select"
                 type="text"
                 value={unidadMedida}
