@@ -15,7 +15,9 @@ UTC = pytz.timezone("UTC")
 def generar_codigo(area):
     # area = Areas.nombre
     print("PRINT CANT")
-    cant = db.session.query(func.count(area),area).group_by(area).all()
+    tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(Areas.nombre==area).join(Categorias).join(Areas).all()
+    cant = db.session.query(func.count(tabla),tabla).group_by(tabla).all()
+    # cant = db.session.query(func.count()).
     print(cant)
 
     if area == 'Bombas':
