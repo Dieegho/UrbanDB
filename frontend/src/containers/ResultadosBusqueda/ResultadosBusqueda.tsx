@@ -80,7 +80,7 @@ const ResultadosBusqueda = ({match}) => {
 
     useEffect(() =>{
         let params = match.params;
-        axios.get(`http://127.0.0.1:5000/item/buscador/${params.nombre}`)
+        axios.get(`https://control-inventarios-usurban.herokuapp.com/item/buscador/${params.nombre}`)
         .then(res => {
           setItemsBuscador(res.data)
         })

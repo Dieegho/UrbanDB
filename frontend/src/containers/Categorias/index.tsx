@@ -38,7 +38,7 @@ const Categorias = ({match}) => {
   let params = match.params;
   const [categorias, setCategorias] = useState([]);
   useEffect(()=>{
-    axios.get(`http://127.0.0.1:5000/categoria/${params.id}`)
+    axios.get(`https://control-inventarios-usurban.herokuapp.com/${params.id}`)
     .then(res => {
       console.log(res);
       setCategorias(res.data)

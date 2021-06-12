@@ -95,7 +95,7 @@ const IngresarProducto = () => {
     setNewItems(aux);
   };
   useEffect(()=>{
-    axios.get(`http://127.0.0.1:5000/item/todo`)
+    axios.get(`https://control-inventarios-usurban.herokuapp.com/item/todo`)
     .then(res => {
       console.log(res);
       setItems(res.data);

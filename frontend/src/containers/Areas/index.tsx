@@ -34,7 +34,7 @@ const Areas = () =>  {
   useEffect(()=>{
     console.log("AAAAA");
     
-    axios.get('http://127.0.0.1:5000/area/')
+    axios.get('https://control-inventarios-usurban.herokuapp.com/area/')
     .then(res => {
       console.log("AAAAA2");
       console.log(res);
