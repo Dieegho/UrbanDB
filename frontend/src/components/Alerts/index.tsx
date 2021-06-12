@@ -45,14 +45,14 @@ let Alerts: FC<props> = ({alertas_menu}) => {
   if((bajo && countR > 0) || (medio && countA > 0)){
     return (
       <div>
-        <Alert variant="danger" onClose={() => setBajo(false)}>
+        <Alert variant="danger" key={"1"} onClose={() => setBajo(false)}>
           <Alert.Heading>Stock bajo!</Alert.Heading>
           <p>
             Tu stock se encuentra al límite. 
             {mapeoR}
           </p>
         </Alert>
-        <Alert variant="warning" onClose={() => setMedio(false)}>
+        <Alert variant="warning" key={"2"} onClose={() => setMedio(false)}>
           <Alert.Heading>Stock casi bajo!</Alert.Heading>
           <p>
             Tu stock está a punto de llegar a niveles críticos!
@@ -65,7 +65,7 @@ let Alerts: FC<props> = ({alertas_menu}) => {
   
   if(alto && (countA == 0) && (countR ==0)){
     return(
-      <Alert variant="success" onClose={() => setAlto(false)} dismissible>
+      <Alert variant="success" key={"3"} onClose={() => setAlto(false)} dismissible>
         <Alert.Heading>Stock Ok!</Alert.Heading>
         <p>
           Todo bien, aun tienes stock en tu inventario.

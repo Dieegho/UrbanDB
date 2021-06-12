@@ -7,7 +7,7 @@
   "author": {
     "name": "urbandb",
     "email": "pamela.pinilla98@gmail.com",
-    "url": "https://github.com/PamelaCarina/UrbandB"
+    "url": "https://github.com/PamelaCarina/UrbandB_new"
   },
   "scripts": {
     "electron-rebuild": "node -r ../.erb/scripts/BabelRegister.js ../.erb/scripts/ElectronRebuild.js",
