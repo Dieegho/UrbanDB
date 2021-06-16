@@ -19,16 +19,16 @@ let menuNav = [
 ];
 let headTable = [
   {
-    dataField: 'codigo',
-    text: 'Código'
+    dataField: 'area',
+    text: 'Área',
   },
   {
     dataField: 'categoria',
-    text: 'Categoría'
+    text: 'Categoría',
   },
   {
-    dataField: 'area',
-    text: 'Área'
+    dataField: 'codigo',
+    text: 'Código'
   },
   {
     dataField: 'nombre',

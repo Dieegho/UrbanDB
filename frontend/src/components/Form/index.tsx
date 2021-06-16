@@ -1,15 +1,17 @@
 import React, { useState, FC, useRef } from 'react';
 import axios from 'axios';
+
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import AuthService from "./../../services/auth.services";
+
 interface props {
   handleAddItemsTable ?: (item) => void;
   handleRetirarItems ?: (item) => void;
-  // handleLoginUsers ?: (user) => void;
-  // handleAddNewItemsTable ?: (item) => void;
+
   items_id:{
     id:number;
     codigo: string;
@@ -28,9 +30,12 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
     const [name, setName] = useState("");
     const [unidadMedida, setUnidadMedida] = useState("");
     const [cantidad, setCantidad] = useState("");
+    const [userid, setUserId] = useState("");
     const [validated, setValidated] = useState(false);
     const idScannerRef = useRef(null);
     const [show, setShow] = useState(false);
+
+    const user = AuthService.getCurrentUser();
     
     const handleSubmit = (e) =>{
       const form = e.currentTarget;
@@ -50,12 +55,19 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
         unidad_medida: unidadMedida,
         cantidad: cantidad,
       }
+      setUserId(user.id);
 
       handleAddItemsTable(data);
-      axios.post('http://127.0.0.1:5000/item/', {codigo, name, unidadMedida, cantidad} )
+
+      axios.post('http://127.0.0.1:5000/item/', {codigo, name, unidadMedida, cantidad, userid} )
       .then(res => {
         console.log(res);
-      })
+      })      
+
+      // axios.post('http://127.0.0.1:5000/movimientos/', {userid} )
+      // .then(res => {
+      //   console.log(res);
+      // })
     }
 
     const handleIdScanner = (e) => {
@@ -181,9 +193,12 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
     const [name, setName] = useState("");
     const [unidadMedida, setUnidadMedida] = useState("");
     const [cantidad, setCantidad] = useState("");
+    const [userid, setUserId] = useState("");
     const [validated, setValidated] = useState(false);
     const idScannerRef = useRef(null);
     const [show, setShow] = useState(false);
+
+    const user = AuthService.getCurrentUser();
 
     const handleRetirarData = (e) => {
       const form = e.currentTarget;
@@ -192,16 +207,22 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
         e.preventDefault();
         e.stopPropagation();        
       }
+
       setValidated(true);
       e.preventDefault();
+
       const data ={
         codigo: codigo,
         nombre: name,
         unidad_medida: unidadMedida,
         cantidad: cantidad,
       }
+      
+      setUserId(user.id);
+
       handleRetirarItems(data);
-      axios.post('http://127.0.0.1:5000/item/todo', {codigo, name, unidadMedida, cantidad})
+
+      axios.post('http://127.0.0.1:5000/item/todo', {codigo, name, unidadMedida, cantidad, userid})
       .then(res => {
         console.log(res);
       })

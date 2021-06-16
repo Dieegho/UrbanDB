@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
+
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import { Link} from 'react-router-dom';
+
 import MyTable from '../../components/Table';
 import MyTittle from '../../components/Tittle';
 import MyNavbar from '../../components/Navbar';
@@ -38,9 +40,8 @@ const Categorias = ({match}) => {
   let params = match.params;
   const [categorias, setCategorias] = useState([]);
   useEffect(()=>{
-    axios.get(`https://control-inventarios-usurban.herokuapp.com/${params.id}`)
+    axios.get(`https://control-inventarios-usurban.herokuapp.com/categoria/${params.id}`)
     .then(res => {
-      console.log(res);
       setCategorias(res.data)
     })
   },[])

@@ -20,17 +20,6 @@ eval("module.exports = __webpack_require__;\n\n//# sourceURL=webpack://renderer/
 
 /***/ }),
 
-/***/ "@rails/activestorage":
-/*!***************************************!*\
-  !*** external "@rails/activestorage" ***!
-  \***************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = @rails/activestorage;
-
-/***/ }),
-
 /***/ "axios":
 /*!************************!*\
   !*** external "axios" ***!
@@ -160,17 +149,6 @@ module.exports = react-barcode;
 
 "use strict";
 module.exports = react-bootstrap;
-
-/***/ }),
-
-/***/ "react-bootstrap-icons":
-/*!****************************************!*\
-  !*** external "react-bootstrap-icons" ***!
-  \****************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = react-bootstrap-icons;
 
 /***/ }),
 

@@ -101,7 +101,7 @@ const Items = ({match}) => {
   let params = match.params;
   const [items, setItems] = useState([]);
   useEffect(()=>{
-    axios.get(`https://control-inventarios-usurban.herokuapp.com/${params.id}`)
+    axios.get(`https://control-inventarios-usurban.herokuapp.com/item/todo/${params.id}`)
     .then(res => {
       setItems(res.data)
     })

@@ -1,16 +1,19 @@
 import React, {FC} from 'react';
-import logo from '../../img/logo.png';
 import { Link } from 'react-router-dom';
+
+import logo from '../../img/logo.png';
+
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+
 import AuthService from "./../../services/auth.services";
 
 interface MenuNav {
-  menuArr: {
+  menuArr ?: {
     name: string;
     rute: string;
   }[];
-  menuArrLog: {
+  menuArrLog ?: {
     name: string;
     rute: string;
   }[];
