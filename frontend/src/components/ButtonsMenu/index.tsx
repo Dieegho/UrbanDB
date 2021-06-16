@@ -18,24 +18,7 @@ const MyButtonsMenu = () => {
             setShowLectorBoard(true);
         }
       }, []);
-
-    // if(showAdminBoard){
-    //     return(
-    //         <>
-    //             <Button variant="dark" size="lg" block as={Link} to="/areas">Revisar Inventario</Button>
-    //             <Button variant="dark" size="lg" block as={Link} to="/ingresar-item">Ingresar Producto</Button>
-    //             <Button variant="dark" size="lg" block as={Link} to="/retirar-item">Retirar Productos</Button>
-    //             <Button variant="dark" size="lg" block as={Link} to="/nuevo-item">Ingresar Nuevo Producto</Button>
-    //         </>
-    //     )
-    // }
-    // else if(showLectorBoard){
-    //     return(
-    //         <>
-    //             <Button variant="dark" size="lg" block as={Link} to="/areas">Revisar Inventario</Button>
-    //         </>
-    //     )
-    // }
+      
     return(
         <>
             {showAdminBoard && (

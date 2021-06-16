@@ -20,11 +20,13 @@ const Menu = () => {
     })
   },[])
 
+  console.log(items);
+  
   return (
     <div className="Menu">
       <MyNavbar menuArr={menuNav}> </MyNavbar>
       <Container style={{marginTop: "150px"}}>
-        {/* <MyBuscador buscador={items}/> */}
+        <MyBuscador/>
         <h2> Bienvenido al control de inventarios del "Edificio 7"</h2>
         <h2>¿Qué desea hacer?</h2>
         <Alerts alertas_menu={items}></Alerts>

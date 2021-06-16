@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 // import './App.global.css';
 
 import Menu from './containers/Menu';
@@ -14,7 +14,7 @@ import ResultadosBusqueda from './containers/ResultadosBusqueda/ResultadosBusque
 
 export default function App() {
   return (
-    <Router>
+    <HashRouter>
       <Switch>
         <Route path="/menu" component={Menu} />
         <Route path="/items/:id" component={Items} />
@@ -23,9 +23,9 @@ export default function App() {
         <Route path="/ingresar-item/" component={IngresarItem} />
         <Route path="/nuevo-item/" component={NuevoItem} />
         <Route path="/retirar-item" component={RetirarItem} />
-        <Route path="/resultados-busqueda/:data" component={ResultadosBusqueda} />
+        <Route path="/resultados-busqueda/:filter" component={ResultadosBusqueda} />
         <Route path="/" component={Login} />
       </Switch>
-    </Router>
+    </HashRouter>
   );
 }

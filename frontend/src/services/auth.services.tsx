@@ -5,7 +5,7 @@ const API_URL = "https://control-inventarios-usurban.herokuapp.com/auth/login";
 const login = (email, password) => {
   return axios.post(API_URL, {email, password})
     .then((response) => {
-      console.log("response: ", response);
+      // console.log("response: ", response);
       if (response.status == 200) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }

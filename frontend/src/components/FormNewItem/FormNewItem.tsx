@@ -40,7 +40,7 @@ const MyFormNewItem: FC<props> = ({handleAddNewItemsTable}) => {
 
       handleAddNewItemsTable(data);
 
-      axios.post('http://127.0.0.1:5000/item/nuevo_item', {name, unidadMedida, categoria, area, critico} )
+      axios.post('https://control-inventarios-usurban.herokuapp.com/item/nuevo_item', {name, unidadMedida, categoria, area, critico} )
       .then(res => {
         console.log(res);
       })

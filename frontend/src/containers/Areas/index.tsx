@@ -31,14 +31,9 @@ let revisar = (id) => {
 
 const Areas = () =>  {
   const [areas, setAreas] = useState([]);
-  useEffect(()=>{
-    console.log("AAAAA");
-    
+  useEffect(()=>{    
     axios.get('https://control-inventarios-usurban.herokuapp.com/area/')
-    .then(res => {
-      console.log("AAAAA2");
-      console.log(res);
-      
+    .then(res => {    
       setAreas(res.data.data)
     })
     .catch(error => {
