@@ -11,6 +11,7 @@ import Login from './containers/Login';
 import Categorias from './containers/Categorias';
 import Items from './containers/Items';
 import ResultadosBusqueda from './containers/ResultadosBusqueda/ResultadosBusqueda';
+import Movimientos from './containers/Movimientos';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/nuevo-item/" component={NuevoItem} />
         <Route path="/retirar-item" component={RetirarItem} />
         <Route path="/resultados-busqueda/:filter" component={ResultadosBusqueda} />
+        <Route path="/movimientos/" component={Movimientos}/>
         <Route path="/" component={Login} />
       </Switch>
     </HashRouter>

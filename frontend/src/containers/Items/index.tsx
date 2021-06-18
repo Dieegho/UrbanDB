@@ -22,19 +22,6 @@ let menuNavItems = [
   },
 ];
 
-//debo poner las alertas
-const selectOptionsArr = [{
-  value: 0,
-  label: 'Stock Ok'
-}, {
-  value: 1,
-  label: 'Stock casi bajo'
-}, {
-  value: 2,
-  label: '¡Stock Bajo!'
-}];
-
-
 let headTable = [
   {
     dataField: 'codigo',
@@ -50,7 +37,7 @@ let headTable = [
   },
   {
     dataField: 'unidad_medida',
-    text: 'Unidad de Medida'
+    text: 'Und.'
   },
   {
     dataField: 'timestamp',
@@ -58,14 +45,11 @@ let headTable = [
   },
   {
     text: ' Estado ',
-    formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
-    filter: selectFilter({
-      options: selectOptionsArr
-    })
+    formatter: (cell, row) => aviso_stock(row.cantidad, row.critico)
   },
   {
     text: 'Código',
-    formatter: (cell, row) => codigo(row.id, row.nombre)
+    formatter: (cell, row) => codigo(row.codigo, row.nombre)
   }
 ];
 
@@ -87,9 +71,9 @@ let aviso_stock = (cantidad, critico) => {
   }
 };
 
-let codigo = (id, nombre) => {
+let codigo = (codigo, nombre) => {
   let items = {
-    id: id,
+    codigo: codigo,
     nombre: nombre
   }
   return (

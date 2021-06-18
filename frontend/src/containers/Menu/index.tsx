@@ -6,7 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Alerts from '../../components/Alerts';
 import MyNavbar from '../../components/Navbar';
 import MyButtonsMenu from '../../components/ButtonsMenu';
-import MyBuscador from '../../components/Buscador/Buscador';
+import MyBuscador from '../../components/Buscador';
+import Footer from '../../components/Footer';
 
 
 let menuNav = [{name: " ", rute: " "}];
@@ -20,19 +21,18 @@ const Menu = () => {
     })
   },[])
 
-  console.log(items);
-  
   return (
-    <div className="Menu">
-      <MyNavbar menuArr={menuNav}> </MyNavbar>
-      <Container style={{marginTop: "150px"}}>
-        <MyBuscador/>
+    <>
+      <MyNavbar menuArr={menuNav}/>
+      <Container style={{marginTop: "150px", marginBottom:"50px"}}>
         <h2> Bienvenido al control de inventarios del "Edificio 7"</h2>
-        <h2>¿Qué desea hacer?</h2>
+        <MyBuscador items={items}/>
         <Alerts alertas_menu={items}></Alerts>
         <MyButtonsMenu/>
       </Container>
-    </div>
+
+      <Footer/>
+    </>
   );
 };
 

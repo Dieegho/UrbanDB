@@ -1,5 +1,4 @@
 import React, {FC, useState} from 'react';
-import ReactDOM from 'react-dom';
 import Barcode from 'react-barcode';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -7,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 interface props{
     items:{
         id: number;
+        codigo: string;
         nombre: string;
     }
 }
@@ -26,7 +26,7 @@ const MyCodigo: FC<props> = ({items}) => {
             <Modal.Title>¿Desea Imprimir el código de {items.nombre}?</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Barcode value={items.id}/>
+            <Barcode value={items.codigo} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setShow(false)}>

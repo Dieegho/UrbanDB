@@ -1,9 +1,9 @@
 import React, {useState, FC} from 'react';
 import Alert from 'react-bootstrap/Alert';
-import axios from 'axios';
 
 interface props{
   alertas_menu:{
+    id: number;
     critico: string;
     cantidad: string;
     nombre:string;
@@ -15,6 +15,8 @@ interface props{
 let Alerts: FC<props> = ({alertas_menu}) => {
   let countR = 0;
   let countA = 0;
+  let numbers = [1, 2, 3];
+
   const [bajo, setBajo] = useState(true);
   const [medio, setMedio] = useState(true);
   const [alto, setAlto] = useState(true);
@@ -23,7 +25,7 @@ let Alerts: FC<props> = ({alertas_menu}) => {
     if(elem.cantidad <= (elem.critico + 2)){
       countR++;
       return(
-        <p>
+        <p key={elem.id.toString()}>
           El producto {elem.nombre} de la categoría {elem.categoria} del área {elem.area} está bajo.
         </p>
       )
@@ -34,53 +36,45 @@ let Alerts: FC<props> = ({alertas_menu}) => {
     if(elem.cantidad > (elem.critico + 2) && elem.cantidad <= (elem.critico + 4)){
         countA++;
         return(
-          <p>
+          <p key={elem.id.toString()}>
             El producto {elem.nombre} de la categoría {elem.categoria} del área {elem.area} está a punto de agotarse.
           </p>
         )
     }
-  })  
+  }) 
 
-
-  if((bajo && countR > 0) || (medio && countA > 0)){
-    return (
-      <div>
-        <Alert variant="danger" key={"1"} onClose={() => setBajo(false)}>
-          <Alert.Heading>Stock bajo!</Alert.Heading>
+  return(
+    <>
+      {((bajo && countR > 0) || (medio && countA > 0)) && (
+        <>
+          <Alert variant="danger" key={1} onClose={() => setBajo(false)}>
+            <Alert.Heading>Stock bajo!</Alert.Heading>
+            <p>
+              Tu stock se encuentra al límite. 
+              {mapeoR}
+            </p>
+          </Alert>
+          <Alert variant="warning" key={2} onClose={() => setMedio(false)}>
+            <Alert.Heading>Stock casi bajo!</Alert.Heading>
+            <p>
+              Tu stock está a punto de llegar a niveles críticos!
+              {mapeoA}
+            </p>
+          </Alert>
+        </>
+      )}
+      {(alto && (countA == 0) && (countR ==0) &&
+        <Alert variant="success" key={3} onClose={() => setAlto(false)} dismissible>
+          <Alert.Heading>Stock Ok!</Alert.Heading>
           <p>
-            Tu stock se encuentra al límite. 
-            {mapeoR}
+            Todo bien, aun tienes stock en tu inventario.
           </p>
-        </Alert>
-        <Alert variant="warning" key={"2"} onClose={() => setMedio(false)}>
-          <Alert.Heading>Stock casi bajo!</Alert.Heading>
-          <p>
-            Tu stock está a punto de llegar a niveles críticos!
-            {mapeoA}
-          </p>
-        </Alert>
-      </div>
-    ); 
-  }    
-  
-  if(alto && (countA == 0) && (countR ==0)){
-    return(
-      <Alert variant="success" key={"3"} onClose={() => setAlto(false)} dismissible>
-        <Alert.Heading>Stock Ok!</Alert.Heading>
-        <p>
-          Todo bien, aun tienes stock en tu inventario.
-        </p>
-        <hr />
           <p className="mb-0">
             Recuerda siempre llenarlo.
           </p>
-      </Alert>
-    );
-  };
-
-  return(
-    <div>
-    </div>
+        </Alert>
+      )}
+    </>
   )
 }  
 export default Alerts;

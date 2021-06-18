@@ -20,6 +20,8 @@ interface tableArr {
     categoria: string;
     area: string;
     timestamp: string;
+    // cantidad_ingresada: number;
+    // accion_movimientos: number;
   }[];
 
   bodyArrAreas ? : {
@@ -31,22 +33,38 @@ interface tableArr {
     id_area: number;
     categorias: string;
   }[];
+
+  bodyArrMov ? : {
+    codigo: string;
+    nombre: string;
+    cantidad: number;
+    rank: number;
+    unidad_medida: number;
+    critico: number;
+    categoria: string;
+    area: string;
+    timestamp: string;
+  }[];
 }
 
-const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCategorias}) => {
+const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCategorias, bodyArrMov}) => {
   let columns=[];
   let rows=[];
   if(bodyArrItems){
-      columns= headArr
-      rows=bodyArrItems
+      columns= headArr;
+      rows=bodyArrItems;
   }
   else if(bodyArrAreas){
-    columns= headArr
-    rows=bodyArrAreas
+    columns= headArr;
+    rows=bodyArrAreas;
   }
   else if(bodyArrCategorias){
-      columns= headArr
-      rows=bodyArrCategorias
+      columns= headArr;
+      rows=bodyArrCategorias;
+  }
+  else if(bodyArrMov){
+    columns=headArr;
+    rows=bodyArrMov;
   }
 
   const customTotal = (from, to, size) => (

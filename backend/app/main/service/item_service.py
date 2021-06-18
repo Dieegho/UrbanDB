@@ -40,8 +40,6 @@ def ingresar_items(data):
     else:
         pass
     
-
-
 def save_changes(data):
     db.session.add(data)
     db.session.commit()
@@ -65,7 +63,6 @@ def retirar_item(data):
         return response_object, 201
     else:
         pass
-
 
 def lista_link_items(id):
     items = db.session().query(Items).filter_by(id_categoria=id).join(Categorias).order_by(Categorias.nombre).all()
@@ -120,18 +117,29 @@ def tabla_todo(id):
             "timestamp": item_timestamp.astimezone(tz=STGO).strftime("%d-%m-%Y %H:%M")
         }
         ans.append(aux)
-    print("TABLA TODO")
-    print(ans)
     return ans, 201
 
-def tabla_buscador_item(nombre):
-    tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(nombre=nombre).join(Categorias).join(Areas).all()
+def tabla_buscador(sType, value):
+    print(sType, value)
+    print(value)
+    myFilter = {sType:value}
+    if(sType == 'codigo' or sType == 'nombre'):
+        tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(**myFilter).join(Categorias).join(Areas).all()
+    elif(sType == 'categoria'):
+        categoriaid =  Categorias.query.filter_by(nombre=value).first()
+        tabla = db.session.query(Items,Categorias,Areas).select_from(Items).filter_by(id_categoria=categoriaid.id).join(Categorias).join(Areas).all()
+    elif(sType == 'area'):
+        areaid =  Areas.query.filter_by(nombre=value).first()
+        print(areaid.id)
+        tabla =  db.session.query(Items, Categorias, Areas).select_from(Items, Categorias).where(Categorias.id_area == areaid.id and Items.id_categoria == Categorias.id).join(Areas).all()
+        
+
     ans = []
     for elem in tabla:
         myItem = elem[0]
         myCategoria = elem[1]
         myArea = elem[2]
-        
+
         item_timestamp = UTC.localize(myItem.timestamp)
 
         aux = {
@@ -148,10 +156,7 @@ def tabla_buscador_item(nombre):
             "timestamp": item_timestamp.astimezone(tz=STGO).strftime("%d-%m-%Y %H:%M")
         }
         ans.append(aux)
-    print("TABLA BUSCADOR ITEM")
-    print(ans)
     return ans, 201
-
 
 def generar_codigo(area):
     cant = db.session.query(Items,Categorias,Areas).select_from(Items).join(Categorias).join(Areas).where(Areas.nombre==area).count()
@@ -179,15 +184,12 @@ def generar_codigo(area):
     else:
         pass
 
-
 def ingresar_nuevo_item(data):
     print(data)
     area = data['area']
     categoriaid =  Categorias.query.filter_by(nombre=data['categoria']).first()
     categoria = data['categoria']
-    print("CODIGO AKI")
     codigo = generar_codigo(area)
-    print(codigo)
 
     nombre = data['name']
     unidad_medida = data['unidadMedida']
@@ -214,5 +216,3 @@ def ingresar_nuevo_item(data):
         return response_object, 201
     else:
         pass
-        
-

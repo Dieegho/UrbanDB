@@ -1,25 +1,55 @@
 import React, { FC, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-
-const MyBuscador= () => {
+interface props{
+  items:{
+    codigo:string;
+    nombre:string;
+    area:string;
+    categoria:string;
+  }[];
+}
+const MyBuscador: FC<props>= ({items}) => {
   const [data_input, setDataInput] = useState('');
   const [type_busqueda, setTypeBusqueda] = useState('');
+  const [showType, setShowType] = useState(false);
+  const [showData, setShowData] = useState(false);
+  const [existe, setExiste] = useState(false);
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
-    if (data_input.length !== 0 && type_busqueda.length !== 0) {
-      history.push(`/resultados-busqueda/${type_busqueda + ':' + data_input}`);
-    } else {
-      console.log("falta el filtro")
+
+    if(type_busqueda.length !== 0) {
+      items.map((elem)=>{
+        if(data_input == elem.area && type_busqueda == 'area'){
+          setExiste(true);
+          history.push(`/resultados-busqueda/${type_busqueda + ':' + data_input}`);
+        }
+        else if(data_input == elem.categoria && type_busqueda == 'categoria'){
+          setExiste(true);
+          history.push(`/resultados-busqueda/${type_busqueda + ':' + data_input}`);
+        }
+        else if(data_input == elem.codigo && type_busqueda == 'codigo'){
+          setExiste(true);
+          history.push(`/resultados-busqueda/${type_busqueda + ':' + data_input}`);
+        }
+        else if(data_input == elem.nombre && type_busqueda == 'nombre'){
+          setExiste(true);
+          history.push(`/resultados-busqueda/${type_busqueda + ':' + data_input}`);
+        }
+        else if(existe == false){
+          setShowData(true);
+        }
+      })
+    }else{
+      setShowType(true);
     }
   };
 
@@ -27,16 +57,15 @@ const MyBuscador= () => {
     <>
       <Form onSubmit={handleSubmit}>
         <div key="checkbox" className="mb-3">
-          <Form.Group as={Row}>
-            <Form.Label as="legend" column sm={2}>
-              Escoja el tipo de búsqueda
-            </Form.Label>
+          <h6>Seleccione el tipo de búsqueda:</h6>
+          <Form.Group>
             <Form.Check
               inline
               type="radio"
               label="Código"
               name="searchType"
               id="codigo"
+              color="green"
               onChange={() => {
                 setTypeBusqueda('codigo');
               }}
@@ -73,6 +102,29 @@ const MyBuscador= () => {
             />
           </Form.Group>
         </div>
+
+        <Modal show={showType} onHide={() => setShowType(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Por favor seleccione el tipo de búsqueda</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <Button variant="danger" onClick={() => setShowType(false)}>
+              Aceptar
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={showData} onHide={() => setShowData(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Los datos ingresados no existe para el tipo de búsqueda seleccionado</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <Button variant="danger" onClick={() => setShowData(false)}>
+              Aceptar
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
         <InputGroup className="mb-2 mr-sm-2">
           <InputGroup.Prepend>
             <Button

@@ -27,6 +27,7 @@ const MyButtonsMenu = () => {
                     <Button variant="dark" size="lg" block as={Link} to="/ingresar-item">Ingresar Producto</Button>
                     <Button variant="dark" size="lg" block as={Link} to="/retirar-item">Retirar Productos</Button>
                     <Button variant="dark" size="lg" block as={Link} to="/nuevo-item">Ingresar Nuevo Producto</Button>
+                    <Button variant="dark" size="lg" block as={Link} to="/movimientos">Registro de Entradas y Salidas</Button>
                 </>
             )}
             {showLectorBoard && (

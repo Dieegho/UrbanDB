@@ -31,7 +31,7 @@ let headTable = [
   },
   {
     dataField: 'unidad_medida',
-    text: 'UM'
+    text: 'Und.'
   },
   // {
   //   dataField: 'cantidad',

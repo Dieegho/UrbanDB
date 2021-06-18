@@ -38,7 +38,7 @@ let headTable = [
   },
   {
     dataField: 'unidad_medida',
-    text: 'Unidad de Medida',
+    text: 'Und.',
   },
   {
     dataField: 'timestamp',
