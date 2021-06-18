@@ -7,9 +7,8 @@ import Container from 'react-bootstrap/Container';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
 import MyCodigo from '../../components/Codigo';
-import MyForm from '../../components/Form';
+import MyForm from '../../components/FormIngresarRetirar';
 import Alert from 'react-bootstrap/Alert';
-import MyFooter from '../../components/Footer';
 
 let menuNav = [
   {
@@ -36,20 +35,12 @@ let headTable = [
   },
   {
     dataField: 'unidad_medida',
-    text: 'UM'
+    text: 'Und.'
   },
   {
     dataField: 'cantidad',
     text: 'Cantidad'
   },
-  // {
-  //   dataField: 'rank',
-  //   text: 'Rank',
-  //   formatter: (cell, row) => rankFormatter(row.cantidad, row.critico),
-  //   formatExtraData: {
-  //     up: 'glyphicon glyphicon-chevron-up',
-  //     down: 'glyphicon glyphicon-chevron-down'
-  // },
   {
     dataField: 'critico',
     text: 'Stock Crítico'
@@ -61,19 +52,8 @@ let headTable = [
   {
     text: ' alerta ',
     formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
-  },
-  {
-    text: 'código',
-    formatter: (cell, row) => codigo(row.id, row.nombre)
   }
 ];
-
-// const rankFormatter = (cantidad, critico) =>{
-//   let 
-//   return (
-//     <i className={ formatExtraData[cell] } />
-//   );
-// }
 
 let aviso_stock = (cantidad, critico) => {
   if (cantidad > (critico + 4)) {
@@ -93,25 +73,19 @@ let aviso_stock = (cantidad, critico) => {
   }
 };
 
-let codigo = (id, nombre) => {
-  let items = {
-    id: id,
-    nombre: nombre
-  }
-  return (
-    <MyCodigo items={items}/>
-  );
-};
-
-const IngresarProducto = () => {
+const IngresarItem = () => {
 
   const [items, setItems] = useState([]);
   const [newItems, setnewItems] = useState([]);
 
   const handleAddItemsTable = (data) => {
+    axios.get('https://control-inventarios-usurban.herokuapp.com/item/todo')
+    .then(res => {
+      setItems(res.data)
+    })
     let aux = [...newItems];
     aux.push(data);
-    setnewItems(aux);    
+    setnewItems(aux);  
   };
 
   useEffect(()=>{
@@ -125,6 +99,7 @@ const IngresarProducto = () => {
     <>
       <MyNavbar menuArr={menuNav}> </MyNavbar>
       <Container style={{marginTop: "150px"}}>
+        <h4>Ingresar Productos</h4>
         <MyForm handleAddItemsTable={handleAddItemsTable} items_id={items}></MyForm>
         <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
       </Container>
@@ -132,4 +107,4 @@ const IngresarProducto = () => {
   );
 };
 
-export default IngresarProducto;
+export default IngresarItem;

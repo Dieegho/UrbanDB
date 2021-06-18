@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import MyTable from '../../components/Table';
-import MyNavbar from '../../components/Navbar';
-import MyForm from '../../components/Form';
-import MyCodigo from '../../components/Codigo';
-import MyFooter from '../../components/Footer';
+
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/esm/Container';
+
+import MyTable from '../../components/Table';
+import MyNavbar from '../../components/Navbar';
+import MyForm from '../../components/FormIngresarRetirar';
+import MyCodigo from '../../components/Codigo';
+
 
 let menuNavMod = [
   {
@@ -33,7 +35,7 @@ let headTable = [
   },
   {
     dataField: 'unidad_medida',
-    text: 'Unidad de Medida'
+    text: 'Und.'
   },
   {
     dataField: 'cantidad',
@@ -50,10 +52,6 @@ let headTable = [
   {
     text: ' alerta ',
     formatter: (cell, row) => aviso_stock(row.cantidad, row.critico),
-  },
-  {
-    text: 'código',
-    formatter: (cell, row) => codigo(row.id, row.nombre)
   }
 ];
 
@@ -75,31 +73,25 @@ let aviso_stock = (cantidad, critico) => {
   }
 };
 
-let codigo = (id, nombre) => {
-  let items = {
-    id: id,
-    nombre: nombre
-  }
-  return (
-    <MyCodigo items={items}/>
-  );
-};
+const RetirarItem = () => {
 
-const IngresarProducto = () => {
   const [items, setItems] = useState([]);
   const [newItems, setNewItems] = useState([]);
+
   const handleRetirarItems = (data) => {
-    console.log(newItems);
+    axios.get('https://control-inventarios-usurban.herokuapp.com/item/todo')
+    .then(res => {
+      setItems(res.data)
+    })
     let aux = [...newItems];
     aux.push(data);
     setNewItems(aux);
   };
+
   useEffect(()=>{
     axios.get(`https://control-inventarios-usurban.herokuapp.com/item/todo`)
     .then(res => {
-      console.log(res);
       setItems(res.data);
-      // console.log(res.data);
     })
   },[])
 
@@ -107,6 +99,7 @@ const IngresarProducto = () => {
       <>
         <MyNavbar menuArr={menuNavMod}> </MyNavbar>
         <Container style={{marginTop: "150px"}}>
+          <h4>Retirar Productos</h4>
           <MyForm handleRetirarItems={handleRetirarItems} items_id={items} ></MyForm>
           <MyTable headArr={headTable} bodyArrItems={items}></MyTable>
         </Container>
@@ -114,4 +107,4 @@ const IngresarProducto = () => {
   );
 };
 
-export default IngresarProducto;
+export default RetirarItem;

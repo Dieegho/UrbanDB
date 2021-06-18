@@ -45,6 +45,7 @@ const Areas = () =>  {
     <div className="Areas">
       <MyNavbar menuArr={menuNavAreas}/>
       <Container style={{marginTop: "150px"}}>
+        <h3>Revisión de Inventario</h3>
         <MyTable headArr={headTable} bodyArrAreas={areas}/>
         <Button variant="outline-danger" as={Link} to={'menu'}> Regresar al menú</Button> 
       </Container>
