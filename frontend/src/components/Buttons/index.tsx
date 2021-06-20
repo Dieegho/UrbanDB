@@ -14,12 +14,10 @@ const MyButton: FC<props> = ({items}) => {
     let id;
     let categoria;
     
-    let mapeo = items.map((elem) => {
+    items.map((elem) => {
         id= elem.id_area;
         categoria= elem.categoria;
     })
-    mapeo;
-    console.log(id);
 
     return(
         <div>

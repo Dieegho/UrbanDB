@@ -51,7 +51,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
   }
     
   const handleSubmit = (e) =>{
-    // e.preventDefault();
+    
     const form = e.currentTarget;
     
     if (form.checkValidity() === false) {

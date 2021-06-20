@@ -50,7 +50,7 @@ let headTable = [
   },
   {
     text: 'Código',
-    formatter: (cell, row) => codigo(row.id, row.nombre),
+    formatter: (cell, row) => codigo(row.codigo, row.nombre),
   },
 ];
 
@@ -64,22 +64,20 @@ let aviso_stock = (cantidad, critico) => {
   }
 };
 
-let codigo = (id, nombre) => {
+let codigo = (codigo, nombre) => {
   let items = {
-    id: id,
+    codigo: codigo,
     nombre: nombre,
   };
   return <MyCodigo items={items} />;
 };
 
 const ResultadosBusqueda = ({ match }) => {
-  const [items, setItems] = useState([]);
 
-  console.log(match);
+  const [items, setItems] = useState([]);
   let query = match.params.filter
-  console.log(query)
+
   query = query.split(":")
-  console.log(query)
 
   const searchType = query[0]
   const value = query[1]
