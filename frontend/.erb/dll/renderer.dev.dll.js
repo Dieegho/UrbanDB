@@ -152,6 +152,17 @@ module.exports = react-bootstrap;
 
 /***/ }),
 
+/***/ "react-bootstrap-icons":
+/*!****************************************!*\
+  !*** external "react-bootstrap-icons" ***!
+  \****************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-bootstrap-icons;
+
+/***/ }),
+
 /***/ "react-bootstrap-table":
 /*!****************************************!*\
   !*** external "react-bootstrap-table" ***!

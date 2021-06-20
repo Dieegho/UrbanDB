@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import './index.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import filterFactory from 'react-bootstrap-table2-filter';
 
 interface tableArr {
   headArr: {
@@ -11,6 +10,7 @@ interface tableArr {
   }[];
 
   bodyArrItems ? : {
+    id: number;
     codigo: string;
     nombre: string;
     cantidad: number;
@@ -20,8 +20,6 @@ interface tableArr {
     categoria: string;
     area: string;
     timestamp: string;
-    // cantidad_ingresada: number;
-    // accion_movimientos: number;
   }[];
 
   bodyArrAreas ? : {
@@ -30,11 +28,13 @@ interface tableArr {
   }[];
 
   bodyArrCategorias ? : {
+    id: number;
     id_area: number;
     categorias: string;
   }[];
 
   bodyArrMov ? : {
+    id: number;
     codigo: string;
     nombre: string;
     cantidad: number;
@@ -48,8 +48,10 @@ interface tableArr {
 }
 
 const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCategorias, bodyArrMov}) => {
+
   let columns=[];
   let rows=[];
+
   if(bodyArrItems){
       columns= headArr;
       rows=bodyArrItems;
@@ -67,11 +69,42 @@ const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCate
     rows=bodyArrMov;
   }
 
-  const customTotal = (from, to, size) => (
-    <span className="react-bootstrap-table-pagination-total">
-      Producto { from } al { to } de un total { size }.
-    </span>
-  );
+  const customTotal = (from, to, size) => {
+
+    if(bodyArrItems){
+      
+      return(
+        <span className="react-bootstrap-table-pagination-total">
+          Producto { from } al { to } de un total { size }.
+        </span>
+      )  
+    }
+
+    else if(bodyArrAreas){
+
+      return(
+        <span className="react-bootstrap-table-pagination-total">
+          Área { from } al { to } de un total { size }.
+        </span>
+      )  
+    }
+    else if(bodyArrCategorias){
+
+      return(
+        <span className="react-bootstrap-table-pagination-total">
+          Categoría { from } al { to } de un total { size }.
+        </span>
+      )  
+    }
+    else if(bodyArrMov){
+
+        return(
+          <span className="react-bootstrap-table-pagination-total">
+            Producto { from } al { to } de un total { size }.
+          </span>
+        )  
+    }
+  }
 
   const options = {
     paginationSize: 10,
@@ -99,7 +132,7 @@ const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCate
     // {
     //   text: 'All', value: rows.length
     // }
-  ] // A numeric array is also available. the purpose of above example is custom the text
+    ] // A numeric array is also available. the purpose of above example is custom the text
   };
 
   return (
@@ -109,7 +142,6 @@ const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCate
         data={ rows }
         columns={ columns }
         pagination={ paginationFactory(options) }
-        filter={ filterFactory()}
         striped
         hover
         condensed

@@ -33,22 +33,14 @@ let headTable = [
     dataField: 'unidad_medida',
     text: 'Und.'
   },
-  // {
-  //   dataField: 'cantidad',
-  //   text: 'Cantidad'
-  // },
   {
     dataField: 'critico',
     text: 'Stock Crítico'
   },
-  // {
-  //   dataField: 'timestamp',
-  //   text: 'Fecha'
-  // },
 ];
 
 const NuevoItem = () => {
-  // const [items, setItems] = useState([]);
+  
   const [newItems, setnewItems] = useState([]);
 
   const handleAddNewItemsTable = (data) => {
@@ -56,14 +48,6 @@ const NuevoItem = () => {
     aux.push(data);
     setnewItems(aux);
   };
-  
-  // useEffect(()=>{
-  //   axios.get('http://127.0.0.1:5000/item/todo')
-  //   .then(res => {
-  //     console.log(res);
-  //     setItems(res.data)
-  //   })
-  // },[])
 
   return (
     <>

@@ -15,7 +15,6 @@ interface props{
 let Alerts: FC<props> = ({alertas_menu}) => {
   let countR = 0;
   let countA = 0;
-  let numbers = [1, 2, 3];
 
   const [bajo, setBajo] = useState(true);
   const [medio, setMedio] = useState(true);
