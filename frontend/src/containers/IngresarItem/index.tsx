@@ -6,7 +6,6 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
-import MyCodigo from '../../components/Codigo';
 import MyForm from '../../components/FormIngresarRetirar';
 import Alert from 'react-bootstrap/Alert';
 

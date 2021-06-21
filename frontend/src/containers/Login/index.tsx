@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import MyNavbar from '../../components/Navbar';
-import MyFormLogin from '../../components/FormLogin/FormLogin';
+import MyFormLogin from '../../components/FormLogin';
 
 let menuNavLog =[
   {

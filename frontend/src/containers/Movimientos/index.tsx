@@ -23,6 +23,10 @@ let headTable = [
       text: 'Categorías'
     },
     {
+      dataField: 'codigo',
+      text: 'Código'
+    },
+    {
       dataField: 'nombre',
       text: 'Nombre'
     },
@@ -33,6 +37,10 @@ let headTable = [
     {
       dataField: 'cantidad_ingresada',
       text: 'Ingreso/Retiro'
+    },
+    {
+      dataField: 'accion',
+      text: 'Acción'
     },
     {
       dataField: 'unidad_medida',
@@ -53,7 +61,7 @@ const Movimientos = () => {
     const [todo, setTodo] = useState([]);
 
     useEffect(()=>{
-      axios.get(`https://control-inventarios-usurban.herokuapp.com/item/todo`)
+      axios.get(`https://control-inventarios-usurban.herokuapp.com/movimientos`)
       .then(res => {
         setTodo(res.data)
       })

@@ -18,10 +18,6 @@ let menuNavMod = [
 ];
 let headTable = [
   {
-    dataField: 'codigo',
-    text: 'Código'
-  },
-  {
     dataField: 'categoria',
     text: 'Categoría'
   },
@@ -89,7 +85,7 @@ const RetirarItem = () => {
   };
 
   useEffect(()=>{
-    axios.get(`https://control-inventarios-usurban.herokuapp.com/item/todo`)
+    axios.get(`http://127.0.0.1:5000/item/todo`)
     .then(res => {
       setItems(res.data);
     })
