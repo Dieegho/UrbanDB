@@ -4,7 +4,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 
-import MyTableBuscador from './../../components/TableBuscador/TableBuscador';
+import MyTableBuscador from '../../components/TableBuscador';
 import MyNavbar from './../../components/Navbar';
 import MyCodigo from './../../components/Codigo';
 

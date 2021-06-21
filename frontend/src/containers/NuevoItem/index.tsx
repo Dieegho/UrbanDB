@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React, {useState} from 'react';
 
 import Container from 'react-bootstrap/Container';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
-import MyFormNewItem from '../../components/FormNewItem/FormNewItem';
+import MyFormNewItem from '../../components/FormNewItem';
 
 let menuNav = [
   {
@@ -13,10 +12,6 @@ let menuNav = [
   },
 ];
 let headTable = [
-  {
-    dataField: 'codigo',
-    text: 'Código'
-  },
   {
     dataField: 'area',
     text: 'Área'

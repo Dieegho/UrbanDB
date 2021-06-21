@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
+import AuthService from "../../services/auth.services";
+
 interface props{
     handleAddNewItemsTable: (item) => void;
 }
@@ -16,7 +18,10 @@ const MyFormNewItem: FC<props> = ({handleAddNewItemsTable}) => {
     const [categoria, setCategoria] = useState("");
     const [area, setArea] = useState("");
     const [critico, setCritico] = useState("");
+    const [userid, setUserId] = useState("");
     const [validated, setValidated] = useState(false);
+
+    const user = AuthService.getCurrentUser();
     
     const handleSubmit = (e) =>{
               
@@ -38,11 +43,13 @@ const MyFormNewItem: FC<props> = ({handleAddNewItemsTable}) => {
         critico: critico
       }
 
-      handleAddNewItemsTable(data);
+      setUserId(user.id);
 
-      axios.post('https://control-inventarios-usurban.herokuapp.com/item/nuevo_item', {name, unidadMedida, categoria, area, critico} )
+      
+      axios.post('https://control-inventarios-usurban.herokuapp.com/item/nuevo_item', {name, unidadMedida, categoria, area, critico, userid} )
       .then(res => {
         console.log(res);
+        handleAddNewItemsTable(data);
       })
     }
 

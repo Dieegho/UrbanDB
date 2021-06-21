@@ -40,6 +40,10 @@ let headTable = [
     text: 'Und.'
   },
   {
+    dataField: 'critico',
+    text: 'Stock Crítico'
+  },
+  {
     dataField: 'timestamp',
     text: 'Fecha'
   },
