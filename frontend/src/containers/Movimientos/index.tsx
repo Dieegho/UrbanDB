@@ -63,6 +63,18 @@ const Movimientos = () => {
     useEffect(()=>{
       axios.get(`https://control-inventarios-usurban.herokuapp.com/movimientos`)
       .then(res => {
+        res.data.map((elem)=>{
+          if(elem.accion == 1){
+            elem.accion = 'Ingresado';
+          }
+          else if(elem.accion == 2){
+            elem.accion = 'Retirado';
+          }
+          else if(elem.accion == 3){
+            elem.accion = 'Nuevo';
+          }
+        })
+
         setTodo(res.data)
       })
     },[])

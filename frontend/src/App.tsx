@@ -8,6 +8,7 @@ import IngresarItem from './containers/IngresarItem';
 import NuevoItem from './containers/NuevoItem';
 import RetirarItem from './containers/RetirarItem';
 import Login from './containers/Login';
+import Register from './containers/Register';
 import Categorias from './containers/Categorias';
 import Items from './containers/Items';
 import ResultadosBusqueda from './containers/ResultadosBusqueda/ResultadosBusqueda';
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/retirar-item" component={RetirarItem} />
         <Route path="/resultados-busqueda/:filter" component={ResultadosBusqueda} />
         <Route path="/movimientos/" component={Movimientos}/>
+        <Route path="/register/" component={Register}/>
         <Route path="/" component={Login} />
       </Switch>
     </HashRouter>

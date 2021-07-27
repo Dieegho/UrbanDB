@@ -6,7 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 
 import MyTableBuscador from '../../components/TableBuscador';
 import MyNavbar from './../../components/Navbar';
-import MyCodigo from './../../components/Codigo';
+import MyCodigo from '../../components/ModalCodigo';
 
 let menuNav = [
   {
@@ -90,12 +90,12 @@ const ResultadosBusqueda = ({ match }) => {
   },[])
 
   return (
-    <div className="Menu">
+    <>
       <MyNavbar menuArr={menuNav} />
       <Container style={{ marginTop: '150px' }}>
         <MyTableBuscador headArr={headTable} bodyitem={items}/>
       </Container>
-    </div>
+    </>
   );
 };
 

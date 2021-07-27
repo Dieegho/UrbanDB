@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 interface props {
     items ? :{
-        categoria: string;
+        area: string;
         id: number;
         id_area: number;
     }[];
@@ -12,16 +12,16 @@ interface props {
 const MyButton: FC<props> = ({items}) => {
     let mensaje = "Regresar a ";
     let id;
-    let categoria;
+    let area;
     
     items.map((elem) => {
         id= elem.id_area;
-        categoria= elem.categoria;
+        area= elem.area;
     })
 
     return(
         <div>
-            <Button variant="outline-danger" as={Link} to={`/categorias/${id}`}> {mensaje} {categoria}</Button> 
+            <Button variant="outline-danger" as={Link} to={`/categorias/${id}`}> {mensaje} {area}</Button> 
         </div>
     )
 };

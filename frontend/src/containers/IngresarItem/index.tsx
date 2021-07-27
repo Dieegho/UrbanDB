@@ -4,10 +4,11 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
 import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
 import MyForm from '../../components/FormIngresarRetirar';
-import Alert from 'react-bootstrap/Alert';
 
 let menuNav = [
   {
@@ -75,16 +76,16 @@ let aviso_stock = (cantidad, critico) => {
 const IngresarItem = () => {
 
   const [items, setItems] = useState([]);
-  const [newItems, setnewItems] = useState([]);
+  // const [newItems, setnewItems] = useState([]);
 
   const handleAddItemsTable = (data) => {
     axios.get('https://control-inventarios-usurban.herokuapp.com/item/todo')
     .then(res => {
-      setItems(res.data)
+      setItems(res.data);
     })
-    let aux = [...newItems];
-    aux.push(data);
-    setnewItems(aux);  
+    // let aux = [...newItems];
+    // aux.push(data);
+    // setnewItems(aux);  
   };
 
   useEffect(()=>{

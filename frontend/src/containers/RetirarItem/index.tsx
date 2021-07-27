@@ -7,8 +7,6 @@ import Container from 'react-bootstrap/esm/Container';
 import MyTable from '../../components/Table';
 import MyNavbar from '../../components/Navbar';
 import MyForm from '../../components/FormIngresarRetirar';
-import MyCodigo from '../../components/Codigo';
-
 
 let menuNavMod = [
   {
@@ -18,24 +16,28 @@ let menuNavMod = [
 ];
 let headTable = [
   {
+    dataField: 'area',
+    text: 'Área'
+  },
+  {
     dataField: 'categoria',
     text: 'Categoría'
   },
   {
-    dataField: 'area',
-    text: 'Área'
+    dataField: 'codigo',
+    text: 'Código'
   },
   {
     dataField: 'nombre',
     text: 'Nombre'
   },
   {
-    dataField: 'unidad_medida',
-    text: 'Und.'
-  },
-  {
     dataField: 'cantidad',
     text: 'Cantidad'
+  },
+  {
+    dataField: 'unidad_medida',
+    text: 'Und.'
   },
   {
     dataField: 'critico',
@@ -72,20 +74,20 @@ let aviso_stock = (cantidad, critico) => {
 const RetirarItem = () => {
 
   const [items, setItems] = useState([]);
-  const [newItems, setNewItems] = useState([]);
+  // const [newItems, setNewItems] = useState([]);
 
   const handleRetirarItems = (data) => {
     axios.get('https://control-inventarios-usurban.herokuapp.com/item/todo')
     .then(res => {
       setItems(res.data)
     })
-    let aux = [...newItems];
-    aux.push(data);
-    setNewItems(aux);
+    // let aux = [...newItems];
+    // aux.push(data);
+    // setNewItems(aux);
   };
 
   useEffect(()=>{
-    axios.get(`http://127.0.0.1:5000/item/todo`)
+    axios.get(`https://control-inventarios-usurban.herokuapp.com/item/todo`)
     .then(res => {
       setItems(res.data);
     })

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import axios from 'axios';
 
 import Alert from 'react-bootstrap/Alert';
@@ -9,7 +8,7 @@ import MyNavbar from '../../components/Navbar';
 import MyTittle from '../../components/Tittle';
 import MyTable from '../../components/Table';
 import MyButton from '../../components/Buttons';
-import MyCodigo from '../../components/Codigo';
+import MyModalCodigo from '../../components/ModalCodigo';
 
 let menuNavItems = [
   {
@@ -76,18 +75,26 @@ let aviso_stock = (cantidad, critico) => {
 };
 
 let codigo = (codigo, nombre) => {
+
   let items = {
     codigo: codigo,
     nombre: nombre
   }
+  //le tengo que entregar items al modal para que se lo entregue al código
+  // const handleCodigo = (data) =>{
+  //   const [item, setItem] = useState([]);
+  //   setItem(data);
+  // }
+
   return (
-    <MyCodigo items={items}/>
+    <MyModalCodigo items={items}/>
   );
 };
 
 const Items = ({match}) => {
   let params = match.params;
   const [items, setItems] = useState([]);
+
   useEffect(()=>{
     axios.get(`https://control-inventarios-usurban.herokuapp.com/item/todo/${params.id}`)
     .then(res => {
@@ -96,14 +103,14 @@ const Items = ({match}) => {
   },[])
 
   return (
-    <div className="Items">
+    <>
       <MyNavbar menuArr={menuNavItems}/>
       <Container style={{marginTop: "150px"}}>
         <MyTittle nombres_items={items}/>
         <MyTable headArr={headTable} bodyArrItems={items}/>
         <MyButton items={items}/>
       </Container>
-    </div>
+    </>
   );
 };
 

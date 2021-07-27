@@ -22,7 +22,7 @@ interface props {
 }
 
 const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id}) => {
-  const [scannerid, setScannerId] = useState(false);
+  const [scannerCodigo, setScannerCodigo] = useState(false);
   const [codigo, setCodigo] = useState("");
   const [name, setName] = useState("");
   const [unidadMedida, setUnidadMedida] = useState("");
@@ -35,17 +35,18 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
   
   const user = AuthService.getCurrentUser();
 
-  const handleIdScanner = (e) => {
-    let id = e.target.value;
-    setScannerId(id);
+  const handleCodigoScanner = (e) => {
+    let codigo = e.target.value;
+    setScannerCodigo(codigo);
     
     items_id.map((elem)=>{
-      if(id == elem.id){
+      if(codigo == elem.codigo){
         setCodigo(elem.codigo);
         setName(elem.nombre);
         setUnidadMedida(elem.unidad_medida);
         setShow(false);
         setCantidadMax(elem.cantidad);
+        setUserId(user.id);
       }
     })
   }
@@ -54,7 +55,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
     
     const form = e.currentTarget;
     
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === true) {
       e.preventDefault();
       e.stopPropagation();        
     }
@@ -67,12 +68,8 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
       unidad_medida: unidadMedida,
       cantidad: cantidad,
     }
-
-    setUserId(user.id);
-
+    
     if(handleAddItemsTable){
-
-      
       axios.post('https://control-inventarios-usurban.herokuapp.com/item/', {codigo, name, unidadMedida, cantidad, userid} )
       .then(res => {
         console.log(res);
@@ -82,15 +79,12 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
     }
 
     else if(handleRetirarItems){
-
-      
       axios.post('https://control-inventarios-usurban.herokuapp.com/item/todo', {codigo, name, unidadMedida, cantidad, userid})
       .then(res => {
         console.log(res);
         handleRetirarItems(data);
       })
     }
-
 
   }
 
@@ -160,9 +154,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
           </Button>
           <Button 
             variant="danger" 
-            onClick = {() =>{
-              setShow(true);
-            }}>
+            onClick = {() => setShow(true)}>
             Escanear
           </Button>
 
@@ -180,8 +172,8 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
                       hidden={false}
                       ref={idScannerRef}
                       type="number" 
-                      value={scannerid}
-                      onChange={handleIdScanner}
+                      value={scannerCodigo}
+                      onChange={handleCodigoScanner}
                     />
                   </Form.Group>
                 </Form.Row>
@@ -199,6 +191,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
         </Form>
       </>
     )}
+
     {handleRetirarItems && (
       <>
         <Form validated={validated} onSubmit = {handleSubmit}>
@@ -264,9 +257,7 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
         </Button>
         <Button 
           variant="danger" 
-          onClick = {() =>{
-            setShow(true);
-          }}>
+          onClick = {() => setShow(true)}>
           Escanear
         </Button>
 
@@ -284,8 +275,8 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
                     hidden={false}
                     ref={idScannerRef}
                     type="number" 
-                    value={scannerid}
-                    onChange={handleIdScanner}
+                    value={scannerCodigo}
+                    onChange={handleCodigoScanner}
                   />
                 </Form.Group>
               </Form.Row>

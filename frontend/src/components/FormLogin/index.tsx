@@ -9,6 +9,11 @@ import AuthService from "../../services/auth.services";
 
 import { isEmail } from "validator";
 
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+
+import './index.css';
 const required = (value) => {
     if (!value) {
       return (
@@ -63,50 +68,57 @@ const MyFormLogin = ({history}) => {
         }
     }
 
+    const mystyle = {
+      position: 'relative',
+      top: "10px",
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+
     return(
-      <div>
-        <Form onSubmit={handleSubmit} ref={form}>
-            <div className="MyFormLogin">
-              <label htmlFor="email">Correo Electrónico</label>
-              <Input 
-                type="email" 
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                validations={[required, validemail]}
-              />
-            </div>
+      <>
+        <Container style={{marginTop: "150px"}}>
+        <Col md={{ span: 3, offset: 4}} >
 
-            <div className="MyFormLogin">
-              <label htmlFor="password">Contraseña</label>  
-              <Input 
-                type="password" 
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                validations={[required]}
+          <h3>Iniciar Sesión</h3>
+          <Form onSubmit={handleSubmit} ref={form}>
+                <label htmlFor="email">Correo Electrónico</label>
+                <Input 
+                  type="email" 
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  validations={[required, validemail]}
                 />
-            </div>
-            <div className="MyFormLogin">
-              <button className="btn btn-primary btn-block" disabled={loading}>
-                  {loading && (
-                    <span className="spinner-border spinner-border-sm"></span>
-                  )}
-                  <span>Login</span>
-              </button>
-            </div>
-            
-            {message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {message}
+                <label htmlFor="password">Contraseña</label>  
+                <Input 
+                  type="password" 
+                  placeholder="Contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  validations={[required]}
+                  />
+                
+                  <Button variant="danger" block type="submit" style={mystyle} disabled={loading}>
+                      {loading && (
+                        <span className="spinner-border spinner-border-sm"></span>
+                      )}
+                      <span>Login</span>
+                  </Button>
+              
+              {message && (
+                <div className="form-group">
+                  <div className="alert alert-danger" role="alert">
+                    {message}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
-      </div>
+              <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          </Form>
+        </Col>
+        </Container>
+      </>
     )
 }
 

@@ -20,6 +20,28 @@ eval("module.exports = __webpack_require__;\n\n//# sourceURL=webpack://renderer/
 
 /***/ }),
 
+/***/ "@createnextapp/react-barcode":
+/*!***********************************************!*\
+  !*** external "@createnextapp/react-barcode" ***!
+  \***********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = @createnextapp/react-barcode;
+
+/***/ }),
+
+/***/ "@rails/activestorage":
+/*!***************************************!*\
+  !*** external "@rails/activestorage" ***!
+  \***************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = @rails/activestorage;
+
+/***/ }),
+
 /***/ "axios":
 /*!************************!*\
   !*** external "axios" ***!
@@ -53,6 +75,28 @@ module.exports = bootstrap-icons;
 
 /***/ }),
 
+/***/ "classnames":
+/*!*****************************!*\
+  !*** external "classnames" ***!
+  \*****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = classnames;
+
+/***/ }),
+
+/***/ "css-what":
+/*!***************************!*\
+  !*** external "css-what" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = css-what;
+
+/***/ }),
+
 /***/ "electron-debug":
 /*!*********************************!*\
   !*** external "electron-debug" ***!
@@ -72,6 +116,17 @@ module.exports = electron-debug;
 
 "use strict";
 module.exports = electron-log;
+
+/***/ }),
+
+/***/ "eslint-plugin-testcafe":
+/*!*****************************************!*\
+  !*** external "eslint-plugin-testcafe" ***!
+  \*****************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = eslint-plugin-testcafe;
 
 /***/ }),
 
@@ -97,14 +152,14 @@ module.exports = jquery;
 
 /***/ }),
 
-/***/ "mdbreact":
-/*!***************************!*\
-  !*** external "mdbreact" ***!
-  \***************************/
+/***/ "node-fetch":
+/*!*****************************!*\
+  !*** external "node-fetch" ***!
+  \*****************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = mdbreact;
+module.exports = node-fetch;
 
 /***/ }),
 
@@ -116,6 +171,17 @@ module.exports = mdbreact;
 
 "use strict";
 module.exports = popper.js;
+
+/***/ }),
+
+/***/ "prop-types":
+/*!*****************************!*\
+  !*** external "prop-types" ***!
+  \*****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = prop-types;
 
 /***/ }),
 
@@ -229,6 +295,17 @@ module.exports = react-dom;
 
 /***/ }),
 
+/***/ "react-hooks-barcode":
+/*!**************************************!*\
+  !*** external "react-hooks-barcode" ***!
+  \**************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-hooks-barcode;
+
+/***/ }),
+
 /***/ "react-router":
 /*!*******************************!*\
   !*** external "react-router" ***!
@@ -248,6 +325,17 @@ module.exports = react-router;
 
 "use strict";
 module.exports = react-router-dom;
+
+/***/ }),
+
+/***/ "react-to-print":
+/*!*********************************!*\
+  !*** external "react-to-print" ***!
+  \*********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-to-print;
 
 /***/ }),
 
