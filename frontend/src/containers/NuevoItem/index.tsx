@@ -44,9 +44,7 @@ const NuevoItem = (match) => {
   const handleAddNewItemsTable = (data) => {
     axios.get(`https://control-inventarios-usurban.herokuapp.com/item/todo`)
     .then(res => {
-      setItems(res.data);
-      console.log("ACTUALIZADO JIJI");
-      
+      setItems(res.data);      
     })
     let aux = [...newItems];
     aux.push(data);

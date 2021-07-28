@@ -22,16 +22,18 @@ interface props {
 }
 
 const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id}) => {
-  const [scannerCodigo, setScannerCodigo] = useState(false);
   const [codigo, setCodigo] = useState("");
   const [name, setName] = useState("");
   const [unidadMedida, setUnidadMedida] = useState("");
   const [cantidad, setCantidad] = useState("");
   const [cantidadMax, setCantidadMax] = useState("");
   const [userid, setUserId] = useState("");
+
   const [validated, setValidated] = useState(false);
-  const idScannerRef = useRef(null);
+  const [scannerCodigo, setScannerCodigo] = useState(false);
   const [show, setShow] = useState(false);
+  
+  const idScannerRef = useRef(null);
   
   const user = AuthService.getCurrentUser();
 

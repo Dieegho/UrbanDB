@@ -20,27 +20,27 @@ eval("module.exports = __webpack_require__;\n\n//# sourceURL=webpack://renderer/
 
 /***/ }),
 
-/***/ "@createnextapp/react-barcode":
-/*!***********************************************!*\
-  !*** external "@createnextapp/react-barcode" ***!
-  \***********************************************/
-/***/ ((module) => {
+// /***/ "@createnextapp/react-barcode":
+// /*!***********************************************!*\
+//   !*** external "@createnextapp/react-barcode" ***!
+//   \***********************************************/
+// /***/ ((module) => {
 
-"use strict";
-module.exports = @createnextapp/react-barcode;
+// "use strict";
+// module.exports = @createnextapp/react-barcode;
 
-/***/ }),
+// /***/ }),
 
-/***/ "@rails/activestorage":
-/*!***************************************!*\
-  !*** external "@rails/activestorage" ***!
-  \***************************************/
-/***/ ((module) => {
+// /***/ "@rails/activestorage":
+// /*!***************************************!*\
+//   !*** external "@rails/activestorage" ***!
+//   \***************************************/
+// /***/ ((module) => {
 
-"use strict";
-module.exports = @rails/activestorage;
+// "use strict";
+// module.exports = @rails/activestorage;
 
-/***/ }),
+// /***/ }),
 
 /***/ "axios":
 /*!************************!*\
@@ -127,6 +127,17 @@ module.exports = electron-log;
 
 "use strict";
 module.exports = eslint-plugin-testcafe;
+
+/***/ }),
+
+/***/ "glob-parent":
+/*!******************************!*\
+  !*** external "glob-parent" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = glob-parent;
 
 /***/ }),
 

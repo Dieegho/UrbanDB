@@ -34,6 +34,7 @@ let Alerts: FC<props> = ({alertas_menu}) => {
   let mapeoA = alertas_menu.map((elem) =>{
     if(elem.cantidad > elem.critico  && elem.cantidad <= (elem.critico + 2)){
         countA++;
+        
         return(
           <p key={elem.id.toString()}>
             El producto {elem.nombre} de la categoría {elem.categoria} del área {elem.area} está a punto de agotarse.
@@ -41,6 +42,9 @@ let Alerts: FC<props> = ({alertas_menu}) => {
         )
     }
   }) 
+
+  console.log(countA)
+  console.log(countR)
 
   return(
     <>
@@ -54,8 +58,8 @@ let Alerts: FC<props> = ({alertas_menu}) => {
             </p>
           </Alert>
         </>
-      )}
-      {(medio && countA > 0) && (
+      ) ||
+      (medio && countA > 0) && (
         <Alert variant="warning" key={2} onClose={() => setMedio(false)}>
         <Alert.Heading>Stock casi bajo!</Alert.Heading>
         <p>
@@ -65,7 +69,7 @@ let Alerts: FC<props> = ({alertas_menu}) => {
         </Alert>
       )}
       {(alto && (countA == 0) && (countR ==0) &&
-        <Alert variant="success" key={3} onClose={() => setAlto(false)} dismissible>
+        (<Alert variant="success" key={3} onClose={() => setAlto(false)} dismissible>
           <Alert.Heading>Stock Ok!</Alert.Heading>
           <p>
             Todo bien, aun tienes stock en tu inventario.
@@ -73,7 +77,7 @@ let Alerts: FC<props> = ({alertas_menu}) => {
           <p className="mb-0">
             Recuerda siempre llenarlo.
           </p>
-        </Alert>
+        </Alert>)
       )}
     </>
   )
