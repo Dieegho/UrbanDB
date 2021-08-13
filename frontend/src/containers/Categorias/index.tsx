@@ -47,14 +47,14 @@ const Categorias = ({match}) => {
   },[])
 
   return (
-    <div className="Categorias">
+    <>
       <MyNavbar menuArr={menuNav}></MyNavbar>
       <Container style={{marginTop: "150px"}}>
         <MyTittle nombres_areas={categorias}></MyTittle>
         <MyTable headArr={headTable} bodyArrCategorias={categorias}/>
         <Button variant="outline-danger" as={Link} to={'/areas'}>Regresar a Áreas</Button> 
       </Container>
-    </div>
+    </>
   );
 };
 

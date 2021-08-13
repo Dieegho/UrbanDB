@@ -76,16 +76,12 @@ let aviso_stock = (cantidad, critico) => {
 const IngresarItem = () => {
 
   const [items, setItems] = useState([]);
-  // const [newItems, setnewItems] = useState([]);
 
   const handleAddItemsTable = (data) => {
     axios.get('https://control-inventarios-usurban.herokuapp.com/item/todo')
     .then(res => {
       setItems(res.data);
     })
-    // let aux = [...newItems];
-    // aux.push(data);
-    // setnewItems(aux);  
   };
 
   useEffect(()=>{

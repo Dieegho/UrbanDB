@@ -43,7 +43,7 @@ let Alerts: FC<props> = ({alertas_menu}) => {
     }
   }) 
 
-  console.log(countA)
+  console.log('AMARILLO',countA)
   console.log(countR)
 
   return(
@@ -58,8 +58,8 @@ let Alerts: FC<props> = ({alertas_menu}) => {
             </p>
           </Alert>
         </>
-      ) ||
-      (medio && countA > 0) && (
+      )}
+      {(medio && countA > 0) && (
         <Alert variant="warning" key={2} onClose={() => setMedio(false)}>
         <Alert.Heading>Stock casi bajo!</Alert.Heading>
         <p>

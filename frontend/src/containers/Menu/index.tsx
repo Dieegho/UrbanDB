@@ -24,7 +24,7 @@ const Menu = () => {
     <>
       <MyNavbar menuArr={menuNav}/>
       <Container style={{marginTop: "150px", marginBottom:"50px"}}>
-        <h2> Bienvenido al control de inventarios del "Edificio 7"</h2>
+        <h2> Bienvenido al control de inventarios de "NLC7"</h2>
         <MyBuscador items={items}/>
         <Alerts alertas_menu={items}></Alerts>
         <MyButtonsMenu/>

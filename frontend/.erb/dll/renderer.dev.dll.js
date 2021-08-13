@@ -20,27 +20,27 @@ eval("module.exports = __webpack_require__;\n\n//# sourceURL=webpack://renderer/
 
 /***/ }),
 
-// /***/ "@createnextapp/react-barcode":
-// /*!***********************************************!*\
-//   !*** external "@createnextapp/react-barcode" ***!
-//   \***********************************************/
-// /***/ ((module) => {
+/***/ "@createnextapp/react-barcode":
+/*!***********************************************!*\
+  !*** external "@createnextapp/react-barcode" ***!
+  \***********************************************/
+/***/ ((module) => {
 
-// "use strict";
-// module.exports = @createnextapp/react-barcode;
+"use strict";
+module.exports = @createnextapp/react-barcode;
 
-// /***/ }),
+/***/ }),
 
-// /***/ "@rails/activestorage":
-// /*!***************************************!*\
-//   !*** external "@rails/activestorage" ***!
-//   \***************************************/
-// /***/ ((module) => {
+/***/ "@rails/activestorage":
+/*!***************************************!*\
+  !*** external "@rails/activestorage" ***!
+  \***************************************/
+/***/ ((module) => {
 
-// "use strict";
-// module.exports = @rails/activestorage;
+"use strict";
+module.exports = @rails/activestorage;
 
-// /***/ }),
+/***/ }),
 
 /***/ "axios":
 /*!************************!*\
@@ -160,6 +160,17 @@ module.exports = history;
 
 "use strict";
 module.exports = jquery;
+
+/***/ }),
+
+/***/ "mdbreact":
+/*!***************************!*\
+  !*** external "mdbreact" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = mdbreact;
 
 /***/ }),
 
@@ -295,6 +306,17 @@ module.exports = react-bootstrap-table2-toolkit;
 
 /***/ }),
 
+/***/ "react-chartjs-2":
+/*!**********************************!*\
+  !*** external "react-chartjs-2" ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-chartjs-2;
+
+/***/ }),
+
 /***/ "react-dom":
 /*!****************************!*\
   !*** external "react-dom" ***!
@@ -317,6 +339,17 @@ module.exports = react-hooks-barcode;
 
 /***/ }),
 
+/***/ "react-native":
+/*!*******************************!*\
+  !*** external "react-native" ***!
+  \*******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-native;
+
+/***/ }),
+
 /***/ "react-router":
 /*!*******************************!*\
   !*** external "react-router" ***!
@@ -336,6 +369,17 @@ module.exports = react-router;
 
 "use strict";
 module.exports = react-router-dom;
+
+/***/ }),
+
+/***/ "react-scripts":
+/*!********************************!*\
+  !*** external "react-scripts" ***!
+  \********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-scripts;
 
 /***/ }),
 

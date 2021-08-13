@@ -27,7 +27,7 @@ const MyNavbar: FC<MenuNav> = ({menuArr, menuArrLog}) => {
   if(menuArrLog){
     return (
       <Navbar expand="lg" bg="dark" variant="dark" fixed="top">
-        <Navbar.Brand as={Link} key={"/login"} to={"/login"}>
+        <Navbar.Brand>
           <img
             alt=""
             src={logo}

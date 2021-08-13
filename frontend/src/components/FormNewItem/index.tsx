@@ -72,7 +72,7 @@ const MyFormNewItem: FC<props> = ({handleAddNewItemsTable, items}) => {
       }
     })
 
-    if(count==0){
+    if(count==0 && userid){
 
       setValidated(true);
   

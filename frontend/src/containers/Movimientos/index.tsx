@@ -80,13 +80,13 @@ const Movimientos = () => {
     },[])
 
     return(
-        <>
-            <MyNavbar menuArr={menuNav}/>
-            <Container style={{marginTop: "150px"}}>
-                <h4>Registro de Entradas y Salidas</h4>
-                <MyTable headArr={headTable} bodyArrMov={todo} />
-            </Container>
-        </>
+      <>
+        <MyNavbar menuArr={menuNav}/>
+        <Container style={{marginTop: "150px"}}>
+            <h4>Registro de Entradas y Salidas</h4>
+            <MyTable headArr={headTable} bodyArrMov={todo} />
+        </Container>
+      </>
     )
 }
 
