@@ -18,9 +18,6 @@ interface props{
         nombre: string;
         cantidad: number;
         unidad_medida: number;
-        critico: number;
-        categoria: string;
-        area: string;
         timestamp: string;
     }[];
 
@@ -29,21 +26,20 @@ interface props{
     }[];
 }
 
-const TableInforme: FC<props> = ({bodyitem, headArr, headArea, bodyarea}) =>{
-    console.log(bodyarea);
+const TableInforme: FC<props> = ({bodyitem, headArr, headArea, bodyarea}) =>{    
     
     let columns=[];
     let rows=[];
     let head=[];
     let data=[];
-
-    if(bodyitem){
-        columns=headArr;
-        rows=bodyitem;
+    
+    if(bodyarea){
         head=headArea;
         data=bodyarea;
+        columns=headArr;
+        rows=bodyitem;
     }
-
+    
     const expandRow = {
         renderer: row => (
           <div>
@@ -60,7 +56,8 @@ const TableInforme: FC<props> = ({bodyitem, headArr, headArea, bodyarea}) =>{
     };
 
     return(
-        <div>
+        <>
+            <h3>Detalle por producto retirado</h3>
             <BootstrapTable
                 keyField='id'
                 data={ data }
@@ -70,7 +67,7 @@ const TableInforme: FC<props> = ({bodyitem, headArr, headArea, bodyarea}) =>{
                 hover
                 condensed
             />
-        </div>
+        </>
     )
 }
 
