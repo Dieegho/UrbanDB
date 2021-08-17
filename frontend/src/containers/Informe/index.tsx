@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 
 import MyNavbar from '../../components/Navbar';
@@ -9,6 +9,9 @@ import MyTable from './../../components/TableInforme';
 import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+
+import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
 
 let menuNav = [
   {
@@ -88,20 +91,32 @@ const Informe = ({ match }) => {
 
   },[])
 
+  const pdfExportComponent = useRef(null);
 
+  const  handleExportWithComponent  = (e) => {
+    pdfExportComponent.current.save();
+  }
 
   return(
     <>
       <MyNavbar menuArr={menuNav}/>
-      <Container style={{marginTop: "150px"}}>
-        <Row>
-          <Col><MyTorta/></Col>
-          <Col><MyBarra/></Col>
-        </Row>
-        <Col style={{marginTop: "50px", marginBottom:"70px"}}>
-          <MyTable headArr={headTable} headArea={headArea} bodyarea={areas} bodyitem={todo}/>
-        </Col>
-      </Container>
+        <Container style={{marginTop: "150px"}}>
+          <Col style={{marginTop: "50px", marginBottom:"30px"}}>
+            <h3>Informe Mensual</h3>
+            <div className="button-area">
+            <Button variant="danger" onClick={handleExportWithComponent}>Descargar PDF</Button>
+            </div>
+          </Col>
+          <PDFExport  ref={pdfExportComponent}  paperSize="A4">
+            <Row>
+              <Col><MyTorta/></Col>
+              <Col><MyBarra/></Col>
+            </Row>
+            <Col style={{marginTop: "50px", marginBottom:"70px"}}>
+              <MyTable headArr={headTable} headArea={headArea} bodyarea={areas} bodyitem={todo}/>
+            </Col>
+          </PDFExport>
+        </Container>
     </>
   )
 }

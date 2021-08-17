@@ -2,6 +2,8 @@ import axios from "axios";
 
 const API_URL = "https://control-inventarios-usurban.herokuapp.com/auth/login";
 
+//const API_URL = "http://127.0.0.1:5000/auth/login";
+
 const API_URL_2 = "https://control-inventarios-usurban.herokuapp.com/user/";
 
 const register = (username, email, password, admin) => {
