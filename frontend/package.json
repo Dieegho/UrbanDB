@@ -297,7 +297,7 @@
     "regenerator-runtime": "^0.13.5",
     "source-map-support": "^0.5.19",
     "validator": "^13.6.0",
-    "yarn": "^1.22.10"
+    "yarn": "^1.22.11"
   },
   "devEngines": {
     "node": ">=10.x",

@@ -109,11 +109,13 @@ const Informe = ({ match }) => {
           </Col>
           <PDFExport  ref={pdfExportComponent}  paperSize="A4">
             <Row>
+              <Col>
+                <MyTable headArr={headTable} headArea={headArea} bodyarea={areas} bodyitem={todo}/>
+              </Col>
               <Col><MyTorta/></Col>
-              <Col><MyBarra/></Col>
             </Row>
             <Col style={{marginTop: "50px", marginBottom:"70px"}}>
-              <MyTable headArr={headTable} headArea={headArea} bodyarea={areas} bodyitem={todo}/>
+              <MyBarra/>
             </Col>
           </PDFExport>
         </Container>
