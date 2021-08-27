@@ -14,6 +14,7 @@ import Items from './containers/Items';
 import ResultadosBusqueda from './containers/ResultadosBusqueda/ResultadosBusqueda';
 import Movimientos from './containers/Movimientos';
 import Informe from './containers/Informe';
+import InformePDF from './containers/InformePDF';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/movimientos/" component={Movimientos}/>
         {/* <Route path="/register/" component={Register}/> */}
         <Route path="/informe/" component={Informe}/>
+        <Route path="/informePDF/" component={InformePDF}/>
         <Route path="/" component={Login} />
       </Switch>
     </HashRouter>

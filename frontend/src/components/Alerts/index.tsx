@@ -30,7 +30,7 @@ let Alerts: FC<props> = ({alertas_menu}) => {
       )
     }
   })
-
+  
   let mapeoA = alertas_menu.map((elem) =>{
     if(elem.cantidad > elem.critico  && elem.cantidad <= (elem.critico + 2)){
         countA++;
@@ -41,10 +41,7 @@ let Alerts: FC<props> = ({alertas_menu}) => {
           </p>
         )
     }
-  }) 
-
-  console.log('AMARILLO',countA)
-  console.log(countR)
+  })
 
   return(
     <>

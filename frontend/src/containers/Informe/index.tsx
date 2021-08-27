@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 import MyNavbar from '../../components/Navbar';
@@ -11,8 +12,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
-
 let menuNav = [
   {
     name: "Menú",
@@ -20,48 +19,28 @@ let menuNav = [
   }
 ];
 
-let headTable = [
-  {
-    dataField: 'codigo',
-    text: 'Código',
-  },
+let headRetirados = [
   {
     dataField: 'nombre',
     text: 'Nombre',
   },
   {
-    dataField: 'cantidad',
+    dataField: 'cantidad_retirada',
     text: 'Cantidad',
-  },
-  {
-    dataField: 'unidad_medida',
-    text: 'Und.',
-  },
-  {
-    dataField: 'timestamp',
-    text: 'Fecha',
   }
 ];
 
 let headArea = [
   {
     dataField: 'nombre',
-    text: 'Área',
+    text: 'Area',
   }
 ];
 
-// le mando un área y que me entregue los items relacionado a esa área
-const Informe = ({ match }) => {
-
-  //el area llega a la tabla
-  //de la tabla lo envía de vuelta para acá en un prop
-  //meto el area en un estado
-  //esa área va a ser la ruta del get
-
-  //hacer el get en la tabla
+const Informe = () => {
 
   const [areas, setAreas] = useState([]);
-  const [todo, setTodo] = useState([]);
+  const [retirados, setRetirados] = useState([]);  
 
   useEffect(()=>{
     axios.get('https://control-inventarios-usurban.herokuapp.com/area/')
@@ -72,30 +51,17 @@ const Informe = ({ match }) => {
       console.log(error)
     });
 
-    axios.get(`https://control-inventarios-usurban.herokuapp.com/movimientos`)
-    .then(res => {
-      res.data.map((elem)=>{
-        if(elem.accion == 1){
-          elem.accion = 'Ingresado';
-        }
-        else if(elem.accion == 2){
-          elem.accion = 'Retirado';
-        }
-        else if(elem.accion == 3){
-          elem.accion = 'Nuevo';
-        }
-      })
-
-      setTodo(res.data)
+    axios.get('https://control-inventarios-usurban.herokuapp.com/movimientos/retirados/')
+    .then(res => {    
+      //console.log(res.data);
+      setRetirados(res.data)
+      
+    })
+    .catch(error => {
+      console.log(error)
     });
 
   },[])
-
-  const pdfExportComponent = useRef(null);
-
-  const  handleExportWithComponent  = (e) => {
-    pdfExportComponent.current.save();
-  }
 
   return(
     <>
@@ -104,20 +70,20 @@ const Informe = ({ match }) => {
           <Col style={{marginTop: "50px", marginBottom:"30px"}}>
             <h3>Informe Mensual</h3>
             <div className="button-area">
-            <Button variant="danger" onClick={handleExportWithComponent}>Descargar PDF</Button>
+            <Button variant="danger" as={Link} to={'/InformePDF'}>Exportar PDF</Button>
             </div>
           </Col>
-          <PDFExport  ref={pdfExportComponent}  paperSize="A4">
-            <Row>
-              <Col>
-                <MyTable headArr={headTable} headArea={headArea} bodyarea={areas} bodyitem={todo}/>
-              </Col>
-              <Col><MyTorta/></Col>
-            </Row>
-            <Col style={{marginTop: "50px", marginBottom:"70px"}}>
-              <MyBarra/>
+          <Row>
+            <Col>
+              <MyTable headRetirados={headRetirados} headAreas={headArea} bodyAreas={areas} bodyRetirados={retirados}/>
             </Col>
-          </PDFExport>
+            <Col>
+              <MyTorta info={retirados}/>
+            </Col>
+          </Row>
+          <Col style={{marginTop: "50px", marginBottom:"70px"}}>
+            <MyBarra info={retirados}/>
+          </Col>
         </Container>
     </>
   )

@@ -26,7 +26,7 @@ const MyTableBuscador: FC<props> = ({bodyitem, headArr}) =>{
     if(bodyitem){
         columns=headArr;
         rows=bodyitem;
-    }
+    } 
 
     const customTotal = (from, to, size) => (
         <span className="react-bootstrap-table-pagination-total">
