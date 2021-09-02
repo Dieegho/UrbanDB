@@ -39,10 +39,9 @@ interface tableArr {
     id: number;
     codigo: string;
     nombre: string;
-    cantidad: number;
+    cantidad_modificada: number;
     accion: number;
     unidad_medida: number;
-    critico: number;
     categoria: string;
     area: string;
     timestamp: string;

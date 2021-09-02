@@ -31,11 +31,11 @@ let headTable = [
       text: 'Nombre'
     },
     {
-      dataField: 'cantidad',
+      dataField: 'cantidad_total',
       text: 'Cantidad'
     },
     {
-      dataField: 'cantidad_ingresada',
+      dataField: 'cantidad_modificada',
       text: 'Ingreso/Retiro'
     },
     {
