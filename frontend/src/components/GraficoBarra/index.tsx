@@ -91,7 +91,7 @@ const HorizontalBarChart: FC<props> = ({info}) => {
 
   return(
     <>
-      <p>Cantidad de productos retirados por area</p>
+      <p>Cantidad de productos retirados</p>
       <Bar data={data} options={options} />
     </>
 

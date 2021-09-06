@@ -19,27 +19,55 @@ const PieChart: FC<props> = ({info}) => {
   let cantidad_D = 0;
   let cantidad_A = 0;
 
+  let auxB = [];
+  let auxE = [];
+  let auxC = [];
+  let auxD = [];
+  let auxA = [];
+
   info.map((elem) => {
     if(!area.includes(elem.area)){
       area.push(elem.area);
     }
 
     if(elem.area == 'Bombas de Agua Potable'){
-      cantidad_B = cantidad_B + elem.cantidad_retirada; 
+
+      if(!auxB.includes(elem.nombre)){
+        cantidad_B = cantidad_B + elem.cantidad_retirada; 
+      }
+      auxB.push(elem.nombre);
     }
     else if(elem.area == 'Electricidad'){
-      cantidad_E = cantidad_E + elem.cantidad_retirada;    
+
+      if(!auxE.includes(elem.nombre)){
+        cantidad_E = cantidad_E + elem.cantidad_retirada;   
+      }
+      auxE.push(elem.nombre);
+       
     }
     else if(elem.area == 'Clima'){
-      cantidad_C = cantidad_C + elem.cantidad_retirada;   
+
+      if(!auxC.includes(elem.nombre)){
+        cantidad_C = cantidad_C + elem.cantidad_retirada;  
+      }
+      auxC.push(elem.nombre);
+        
     }
     else if(elem.area == 'Detección de Incendios'){
-      cantidad_D = cantidad_D + elem.cantidad_retirada;  
+        
+      if(!auxD.includes(elem.nombre)){
+        cantidad_D = cantidad_D + elem.cantidad_retirada; 
+      }
+      auxD.push(elem.nombre);
     }
     else if(elem.area == 'Ascensores'){
-      cantidad_A = cantidad_A + elem.cantidad_retirada;
+      
+      if(!auxA.includes(elem.nombre)){
+        cantidad_A = cantidad_A + elem.cantidad_retirada; 
+      }
+      auxA.push(elem.nombre);
     }
-  })
+  }) 
   
   for (let i = 0; i < area.length; i++){
     if(cantidad_B>0 && (area[i] == 'Bombas de Agua Potable')){
