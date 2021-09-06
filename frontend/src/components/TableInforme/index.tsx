@@ -14,10 +14,11 @@ interface props{
     }[];
 
     bodyRetirados ?:{
-        cant_retirada: number;
+        cantidad_retirada: number;
         area: string;
         categoria: string;
         nombre: string;
+        fecha_retirado: string;
     }[];
 
     bodyAreas ?:{
@@ -37,6 +38,12 @@ const TableInforme: FC<props> = ({bodyRetirados, headRetirados, headAreas, bodyA
     let bodyRetirado_Clima=[];
     let bodyRetirado_Deteccion_de_Incendios=[];
     let bodyRetirado_Ascensores=[];
+
+    let auxB = [];
+    let auxE = [];
+    let auxC = [];
+    let auxD = [];
+    let auxA = [];
     let i = -1;    
 
     if(bodyArea){
@@ -45,33 +52,61 @@ const TableInforme: FC<props> = ({bodyRetirados, headRetirados, headAreas, bodyA
         bodyRetirado=bodyRetirados;
         
         bodyRetirado.map((elem)=>{
-            cantidad.push(elem.cantidad_retirada);
+            elem.fecha_retirado = elem.fecha_retirado.slice(0, 10)
+            elem.mes = elem.fecha_retirado.slice(3,5)
+            //console.log(elem.mes);
+            //console.log(elem.fecha_retirado)
             i+=1;
             if(elem.area == 'Bombas de Agua Potable'){
-                bodyRetirado_Bombas_de_Agua_Potable.push(bodyRetirados[i])
+        
+                if(!auxB.includes(bodyRetirado[i].nombre)){
+                    bodyRetirado_Bombas_de_Agua_Potable.push(bodyRetirado[i]);
+                    cantidad.push(elem.cantidad_retirada);
+                }
+
+                auxB.push(elem.nombre);
             }
             else if(elem.area == 'Electricidad'){
                 
-                bodyRetirado_Electricidad.push(bodyRetirados[i])
+                if(!auxE.includes(bodyRetirado[i].nombre)){
+                    bodyRetirado_Electricidad.push(bodyRetirados[i]);
+                    cantidad.push(elem.cantidad_retirada);
+                }
+
+                auxE.push(elem.nombre);
             }
             else if(elem.area == 'Clima'){
                 
-                bodyRetirado_Clima.push(bodyRetirados[i])
+                if(!auxC.includes(bodyRetirado[i].nombre)){
+                    bodyRetirado_Clima.push(bodyRetirados[i]);
+                    cantidad.push(elem.cantidad_retirada);
+                }
+
+                auxC.push(elem.nombre);
             }
             else if(elem.area == 'Detección de Incendios'){
                 
-                bodyRetirado_Deteccion_de_Incendios.push(bodyRetirados[i])
+                if(!auxD.includes(bodyRetirado[i].nombre)){
+                    bodyRetirado_Deteccion_de_Incendios.push(bodyRetirados[i]);
+                    cantidad.push(elem.cantidad_retirada);
+                }
+
+                auxD.push(elem.nombre);
             }
             else if(elem.area == 'Ascensores'){
-                
-                bodyRetirado_Ascensores.push(bodyRetirados[i])
-                
+                 
+                if(!auxA.includes(bodyRetirado[i].nombre)){
+                    bodyRetirado_Ascensores.push(bodyRetirados[i]);
+                    cantidad.push(elem.cantidad_retirada);
+                }
+
+                auxA.push(elem.nombre);
             }
         })
+
         headRetirado=headRetirados;
     }
-
-    
+      
     let cantidad_total = 0;
     cantidad.forEach(function(numero){
         cantidad_total += numero;

@@ -9,67 +9,45 @@ interface props{
   }[];
 }
 
-//la cantidad debería cambiar con el area cantidadA.lengh == nombres.lenght
-
-//diferentes datas segun area
-//3 cosas x: area y: cantidad nombre barra: nombre item
-
 const HorizontalBarChart: FC<props> = ({info}) => {
 
   let areas = [];
   let cantidades = [];
   let items = [];
+  let suma = 0;
   let i = 0;
+  let j = 0;
 
-  let cantidad_B = [];
-  let cantidad_E = [];
-  let cantidad_C = [];
-  let cantidad_D = [];
-  let cantidad_A = [];
-  
-  info.map((elem) => {
+  info.map((elem)=>{
     cantidades.push(elem.cantidad_retirada);
-    items.push(elem.nombre)
-    areas.push(elem.area)
-
-    // i+=1
-    // if(!areas.includes(elem.area)){
-    //   if(elem.area == 'Bombas de Agua Potable'){
-    //     areas[0] = elem.area;
-    //   }
-    //   else if(elem.area == 'Electricidad'){
-    //     areas[1] = elem.area;
-    //   }
-    //   else if(elem.area == 'Clima'){
-    //     areas[2] = elem.area;
-    //   }
-    //   else if(elem.area == 'Detección de Incendios'){
-    //     areas[3] = elem.area;
-    //   }
-    //   else if(elem.area == 'Ascensores'){
-    //     areas[4] = elem.area;
-    //   }
-    // }
-    if(elem.area == 'Bombas de Agua Potable'){
-      cantidad_B.push(elem.cantidad_retirada);
-    }
-    else if(elem.area == 'Electricidad'){
-      cantidad_E.push(elem.cantidad_retirada);   
-    }
-    else if(elem.area == 'Clima'){
-      cantidad_C.push(elem.cantidad_retirada);  
-    }
-    else if(elem.area == 'Detección de Incendios'){
-      cantidad_D.push(elem.cantidad_retirada);
-    }
-    else if(elem.area == 'Ascensores'){
-      cantidad_A.push(elem.cantidad_retirada);
-    }
   })
+  
+  let cantidades2 = []
+  info.map((elem)=>{
+    i+=1
+    if(!areas.includes(elem.area)){
+      areas.push(elem.area);
+    }
+
+    if(!items.includes(elem.nombre)){
+      j+=1
+      items.push(elem.nombre);
+      for (let k=j; k<i+1; k++){
+        suma=suma+cantidades[k];
+      }
+      cantidades2.push(suma);
+      console.log(suma);
+    }
+
+
+  })
+  
+
+  console.log('despues del filtro', items);
+  
 
   const data = {
-    
-    //labels: ['Bombas de Agua Potable', 'Electricidad', 'Clima', 'Detección de Incendios', 'Ascensores'],
+
     labels: items,
     datasets: [
       {
@@ -98,8 +76,6 @@ const HorizontalBarChart: FC<props> = ({info}) => {
   
   const options = {
     indexAxis: 'y',
-    // Elements options apply to all of the options unless overridden in a dataset
-    // In this case, we are setting the border of each horizontal bar to be 2px wide
     elements: {
       bar: {
         borderWidth: 2,
