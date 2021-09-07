@@ -6,6 +6,7 @@ import MyNavbar from '../../components/Navbar';
 import MyBarra from '../../components/GraficoBarra';
 import MyTorta from '../../components/GraficoTorta';
 import MyTable from './../../components/TableInforme';
+import MyForm from '../../components/FormInforme';
 
 import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/Row';
@@ -41,6 +42,18 @@ const Informe = () => {
 
   const [areas, setAreas] = useState([]);
   const [retirados, setRetirados] = useState([]);  
+  const [date, setDate] = useState([]);
+  
+  const handleChangeDate = (data) => {
+    setDate(data);
+    axios.get('https://control-inventarios-usurban.herokuapp.com/movimientos/retirados/')
+    .then(res => {    
+      setRetirados(res.data);
+    })
+    .catch(error => {
+      console.log(error)
+    });
+  }
 
   useEffect(()=>{
     axios.get('https://control-inventarios-usurban.herokuapp.com/area/')
@@ -53,36 +66,37 @@ const Informe = () => {
 
     axios.get('https://control-inventarios-usurban.herokuapp.com/movimientos/retirados/')
     .then(res => {    
-      //console.log(res.data);
-      setRetirados(res.data)
-      
+      setRetirados(res.data);
+      console.log(res.data);
     })
     .catch(error => {
       console.log(error)
     });
-
   },[])
-
+  
   return(
     <>
       <MyNavbar menuArr={menuNav}/>
         <Container style={{marginTop: "150px"}}>
           <Col style={{marginTop: "50px", marginBottom:"30px"}}>
+
             <h3>Informe Mensual</h3>
-            <div className="button-area">
+            <MyForm handleChangeDate={handleChangeDate}/>
             <Button variant="danger" as={Link} to={'/InformePDF'}>Exportar PDF</Button>
-            </div>
+
           </Col>
+
           <Row>
             <Col>
-              <MyTable headRetirados={headRetirados} headAreas={headArea} bodyAreas={areas} bodyRetirados={retirados}/>
+              <MyTable headRetirados={headRetirados} headAreas={headArea} bodyAreas={areas} bodyRetirados={retirados} date={date}/>
             </Col>
             <Col>
-              <MyTorta info={retirados}/>
+              <MyTorta info={retirados} date={date}/>
             </Col>
           </Row>
+
           <Col style={{marginTop: "50px", marginBottom:"70px"}}>
-            <MyBarra info={retirados}/>
+            <MyBarra info={retirados} date={date}/>
           </Col>
         </Container>
     </>

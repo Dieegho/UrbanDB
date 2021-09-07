@@ -6,13 +6,22 @@ interface props{
   info :{
     cantidad_retirada: number;
     area: string;
+    mes: string;
+    anio: string;
+    fecha_retirado: string;
+  }[];
+
+  date?:{
+    mes: string;
+    anio: string;
   }[];
 }
 
-const PieChart: FC<props> = ({info}) => {
+const PieChart: FC<props> = ({info, date}) => {
 
   let area = []
   let cantidad = []
+
   let cantidad_B = 0;
   let cantidad_E = 0;
   let cantidad_C = 0;
@@ -25,47 +34,57 @@ const PieChart: FC<props> = ({info}) => {
   let auxD = [];
   let auxA = [];
 
+  let mes = date.mes;
+  let anio = date.anio;
+
   info.map((elem) => {
-    if(!area.includes(elem.area)){
-      area.push(elem.area);
-    }
-
-    if(elem.area == 'Bombas de Agua Potable'){
-
-      if(!auxB.includes(elem.nombre)){
-        cantidad_B = cantidad_B + elem.cantidad_retirada; 
+    //elem.mes = elem.fecha_retirado.slice(3,5);
+    //elem.fecha_retirado = elem.fecha_retirado.slice(6,10);
+    console.log('torta', elem.mes, elem.anio);
+    
+  
+    if(elem.anio==anio && elem.mes == mes){
+      if(!area.includes(elem.area)){
+        area.push(elem.area);
       }
-      auxB.push(elem.nombre);
-    }
-    else if(elem.area == 'Electricidad'){
-
-      if(!auxE.includes(elem.nombre)){
-        cantidad_E = cantidad_E + elem.cantidad_retirada;   
+  
+      if(elem.area == 'Bombas de Agua Potable'){
+  
+        if(!auxB.includes(elem.nombre)){
+          cantidad_B = cantidad_B + elem.cantidad_retirada; 
+        }
+        auxB.push(elem.nombre);
       }
-      auxE.push(elem.nombre);
-       
-    }
-    else if(elem.area == 'Clima'){
-
-      if(!auxC.includes(elem.nombre)){
-        cantidad_C = cantidad_C + elem.cantidad_retirada;  
+      else if(elem.area == 'Electricidad'){
+  
+        if(!auxE.includes(elem.nombre)){
+          cantidad_E = cantidad_E + elem.cantidad_retirada;   
+        }
+        auxE.push(elem.nombre);
+         
       }
-      auxC.push(elem.nombre);
+      else if(elem.area == 'Clima'){
+  
+        if(!auxC.includes(elem.nombre)){
+          cantidad_C = cantidad_C + elem.cantidad_retirada;  
+        }
+        auxC.push(elem.nombre);
+          
+      }
+      else if(elem.area == 'Detección de Incendios'){
+          
+        if(!auxD.includes(elem.nombre)){
+          cantidad_D = cantidad_D + elem.cantidad_retirada; 
+        }
+        auxD.push(elem.nombre);
+      }
+      else if(elem.area == 'Ascensores'){
         
-    }
-    else if(elem.area == 'Detección de Incendios'){
-        
-      if(!auxD.includes(elem.nombre)){
-        cantidad_D = cantidad_D + elem.cantidad_retirada; 
+        if(!auxA.includes(elem.nombre)){
+          cantidad_A = cantidad_A + elem.cantidad_retirada; 
+        }
+        auxA.push(elem.nombre);
       }
-      auxD.push(elem.nombre);
-    }
-    else if(elem.area == 'Ascensores'){
-      
-      if(!auxA.includes(elem.nombre)){
-        cantidad_A = cantidad_A + elem.cantidad_retirada; 
-      }
-      auxA.push(elem.nombre);
     }
   }) 
   

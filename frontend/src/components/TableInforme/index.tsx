@@ -19,14 +19,22 @@ interface props{
         categoria: string;
         nombre: string;
         fecha_retirado: string;
+        mes: string;
+        anio: string;
     }[];
 
     bodyAreas ?:{
         nombre:string;
     }[];
+
+    date?:{
+        mes: string;
+        anio: string;
+    }[];
 }
 
-const TableInforme: FC<props> = ({bodyRetirados, headRetirados, headAreas, bodyAreas}) =>{    
+const TableInforme: FC<props> = ({bodyRetirados, headRetirados, headAreas, bodyAreas, date}) =>{    
+    
     let cantidad = [];
     let headArea=[];
     let bodyArea=[];
@@ -44,6 +52,9 @@ const TableInforme: FC<props> = ({bodyRetirados, headRetirados, headAreas, bodyA
     let auxC = [];
     let auxD = [];
     let auxA = [];
+
+    let mes = date.mes;
+    let anio = date.anio;
     let i = -1;    
 
     if(bodyArea){
@@ -52,55 +63,56 @@ const TableInforme: FC<props> = ({bodyRetirados, headRetirados, headAreas, bodyA
         bodyRetirado=bodyRetirados;
         
         bodyRetirado.map((elem)=>{
-            elem.fecha_retirado = elem.fecha_retirado.slice(0, 10)
-            elem.mes = elem.fecha_retirado.slice(3,5)
-            //console.log(elem.mes);
-            //console.log(elem.fecha_retirado)
+
+            console.log('tabla',elem.mes, elem.anio);
+            
             i+=1;
-            if(elem.area == 'Bombas de Agua Potable'){
+            if(elem.anio==anio && elem.mes == mes){
+                if(elem.area == 'Bombas de Agua Potable'){
         
-                if(!auxB.includes(bodyRetirado[i].nombre)){
-                    bodyRetirado_Bombas_de_Agua_Potable.push(bodyRetirado[i]);
-                    cantidad.push(elem.cantidad_retirada);
+                    if(!auxB.includes(bodyRetirado[i].nombre)){
+                        bodyRetirado_Bombas_de_Agua_Potable.push(bodyRetirado[i]);
+                        cantidad.push(elem.cantidad_retirada);
+                    }
+    
+                    auxB.push(elem.nombre);
                 }
-
-                auxB.push(elem.nombre);
-            }
-            else if(elem.area == 'Electricidad'){
-                
-                if(!auxE.includes(bodyRetirado[i].nombre)){
-                    bodyRetirado_Electricidad.push(bodyRetirados[i]);
-                    cantidad.push(elem.cantidad_retirada);
+                else if(elem.area == 'Electricidad'){
+                    
+                    if(!auxE.includes(bodyRetirado[i].nombre)){
+                        bodyRetirado_Electricidad.push(bodyRetirados[i]);
+                        cantidad.push(elem.cantidad_retirada);
+                    }
+    
+                    auxE.push(elem.nombre);
                 }
-
-                auxE.push(elem.nombre);
-            }
-            else if(elem.area == 'Clima'){
-                
-                if(!auxC.includes(bodyRetirado[i].nombre)){
-                    bodyRetirado_Clima.push(bodyRetirados[i]);
-                    cantidad.push(elem.cantidad_retirada);
+                else if(elem.area == 'Clima'){
+                    
+                    if(!auxC.includes(bodyRetirado[i].nombre)){
+                        bodyRetirado_Clima.push(bodyRetirados[i]);
+                        cantidad.push(elem.cantidad_retirada);
+                    }
+    
+                    auxC.push(elem.nombre);
                 }
-
-                auxC.push(elem.nombre);
-            }
-            else if(elem.area == 'Detección de Incendios'){
-                
-                if(!auxD.includes(bodyRetirado[i].nombre)){
-                    bodyRetirado_Deteccion_de_Incendios.push(bodyRetirados[i]);
-                    cantidad.push(elem.cantidad_retirada);
+                else if(elem.area == 'Detección de Incendios'){
+                    
+                    if(!auxD.includes(bodyRetirado[i].nombre)){
+                        bodyRetirado_Deteccion_de_Incendios.push(bodyRetirados[i]);
+                        cantidad.push(elem.cantidad_retirada);
+                    }
+    
+                    auxD.push(elem.nombre);
                 }
-
-                auxD.push(elem.nombre);
-            }
-            else if(elem.area == 'Ascensores'){
-                 
-                if(!auxA.includes(bodyRetirado[i].nombre)){
-                    bodyRetirado_Ascensores.push(bodyRetirados[i]);
-                    cantidad.push(elem.cantidad_retirada);
+                else if(elem.area == 'Ascensores'){
+                     
+                    if(!auxA.includes(bodyRetirado[i].nombre)){
+                        bodyRetirado_Ascensores.push(bodyRetirados[i]);
+                        cantidad.push(elem.cantidad_retirada);
+                    }
+    
+                    auxA.push(elem.nombre);
                 }
-
-                auxA.push(elem.nombre);
             }
         })
 

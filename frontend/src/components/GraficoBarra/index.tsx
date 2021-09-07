@@ -6,45 +6,56 @@ interface props{
     cantidad_retirada: number;
     nombre: string;
     area: string;
+    fecha_retirado: string;
+    mes: string;
+    anio: string;
+  }[];
+
+  date?:{
+    mes: string;
+    anio: string;
   }[];
 }
 
-const HorizontalBarChart: FC<props> = ({info}) => {
-
+const HorizontalBarChart: FC<props> = ({info, date}) => {
+  console.log('barra', date);
+  
   let areas = [];
   let cantidades = [];
+  let cantidades2 = [];
   let items = [];
   let suma = 0;
+  let mes = date.mes;
+  let anio = date.anio;
   let i = 0;
   let j = 0;
-
+  console.log('info', info);
   info.map((elem)=>{
     cantidades.push(elem.cantidad_retirada);
+    // elem.mes = elem.fecha_retirado.slice(3,5);
+    //elem.fecha_retirado = elem.fecha_retirado.slice(6,10);
+    console.log('barra',elem.mes, elem.anio);
   })
   
-  let cantidades2 = []
+  
+
   info.map((elem)=>{
     i+=1
-    if(!areas.includes(elem.area)){
-      areas.push(elem.area);
-    }
-
-    if(!items.includes(elem.nombre)){
-      j+=1
-      items.push(elem.nombre);
-      for (let k=j; k<i+1; k++){
-        suma=suma+cantidades[k];
+    if(elem.anio==anio && elem.mes == mes){
+      if(!areas.includes(elem.area)){
+        areas.push(elem.area);
       }
-      cantidades2.push(suma);
-      console.log(suma);
+  
+      if(!items.includes(elem.nombre)){
+        j+=1
+        items.push(elem.nombre);
+        for (let k=j; k<i+1; k++){
+          suma=suma+cantidades[k];
+        }
+        cantidades2.push(suma);
+      }
     }
-
-
   })
-  
-
-  console.log('despues del filtro', items);
-  
 
   const data = {
 
