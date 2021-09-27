@@ -31,11 +31,11 @@ let headTable = [
       text: 'Nombre'
     },
     {
-      dataField: 'cantidad',
+      dataField: 'cantidad_total',
       text: 'Cantidad'
     },
     {
-      dataField: 'cantidad_ingresada',
+      dataField: 'cantidad_modificada',
       text: 'Ingreso/Retiro'
     },
     {
@@ -58,35 +58,35 @@ let headTable = [
 
 const Movimientos = () => {
 
-    const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState([]);
 
-    useEffect(()=>{
-      axios.get(`https://control-inventarios-usurban.herokuapp.com/movimientos`)
-      .then(res => {
-        res.data.map((elem)=>{
-          if(elem.accion == 1){
-            elem.accion = 'Ingresado';
-          }
-          else if(elem.accion == 2){
-            elem.accion = 'Retirado';
-          }
-          else if(elem.accion == 3){
-            elem.accion = 'Nuevo';
-          }
-        })
-
-        setTodo(res.data)
+  useEffect(()=>{
+    axios.get(`https://control-inventarios-usurban.herokuapp.com/movimientos`)
+    .then(res => {
+      res.data.map((elem)=>{
+        if(elem.accion == 1){
+          elem.accion = 'Ingresado';
+        }
+        else if(elem.accion == 2){
+          elem.accion = 'Retirado';
+        }
+        else if(elem.accion == 3){
+          elem.accion = 'Nuevo';
+        }
       })
-    },[])
+
+      setTodo(res.data)
+    })
+  },[])
 
     return(
-        <>
-            <MyNavbar menuArr={menuNav}/>
-            <Container style={{marginTop: "150px"}}>
-                <h4>Registro de Entradas y Salidas</h4>
-                <MyTable headArr={headTable} bodyArrMov={todo} />
-            </Container>
-        </>
+      <>
+        <MyNavbar menuArr={menuNav}/>
+        <Container style={{marginTop: "150px"}}>
+            <h4>Registro de Entradas y Salidas</h4>
+            <MyTable headArr={headTable} bodyArrMov={todo} />
+        </Container>
+      </>
     )
 }
 

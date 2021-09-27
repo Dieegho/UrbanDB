@@ -8,11 +8,13 @@ import IngresarItem from './containers/IngresarItem';
 import NuevoItem from './containers/NuevoItem';
 import RetirarItem from './containers/RetirarItem';
 import Login from './containers/Login';
-import Register from './containers/Register';
+// import Register from './containers/Register';
 import Categorias from './containers/Categorias';
 import Items from './containers/Items';
 import ResultadosBusqueda from './containers/ResultadosBusqueda/ResultadosBusqueda';
 import Movimientos from './containers/Movimientos';
+import Informe from './containers/Informe';
+import InformePDF from './containers/InformePDF';
 
 export default function App() {
   return (
@@ -27,7 +29,9 @@ export default function App() {
         <Route path="/retirar-item" component={RetirarItem} />
         <Route path="/resultados-busqueda/:filter" component={ResultadosBusqueda} />
         <Route path="/movimientos/" component={Movimientos}/>
-        <Route path="/register/" component={Register}/>
+        {/* <Route path="/register/" component={Register}/> */}
+        <Route path="/informe/" component={Informe}/>
+        <Route path="/informePDF/" component={InformePDF}/>
         <Route path="/" component={Login} />
       </Switch>
     </HashRouter>

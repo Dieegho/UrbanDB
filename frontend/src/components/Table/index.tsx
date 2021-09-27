@@ -1,7 +1,9 @@
 import React, {FC} from 'react';
 import './index.css';
+
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+// import { CSVLink } from "react-csv";
 
 interface tableArr {
   headArr: {
@@ -37,10 +39,9 @@ interface tableArr {
     id: number;
     codigo: string;
     nombre: string;
-    cantidad: number;
+    cantidad_modificada: number;
     accion: number;
     unidad_medida: number;
-    critico: number;
     categoria: string;
     area: string;
     timestamp: string;
@@ -107,45 +108,38 @@ const MyTable: FC<tableArr> = ({headArr, bodyArrItems, bodyArrAreas, bodyArrCate
   }
 
   const options = {
-    paginationSize: 10,
+    paginationSize: 5,
     pageStartIndex: 1,
-    //alwaysShowAllBtns: true, // Always show next and previous button
-    //withFirstAndLast: false, // Hide the going to First and Last page button
-    //hideSizePerPage: true, // Hide the sizePerPage dropdown always
-    //hidePageListOnlyOnePage: true, // Hide the pagination list when only one page
-    //firstPageText: 'First',
     prePageText: 'Atrás',
     nextPageText: 'Siguiente',
-    //lastPageText: 'Last',
-    //nextPageTitle: 'First page',
     prePageTitle: 'Pre page',
     firstPageTitle: 'Next page',
     lastPageTitle: 'Last page',
     showTotal: true,
     paginationTotalRenderer: customTotal,
-    disablePageTitle: true,
-    sizePerPageList: [{
-      text: '5', value: 5
-    }, {
-      text: '10', value: 10
-    },
-    // {
-    //   text: 'All', value: rows.length
-    // }
-    ] // A numeric array is also available. the purpose of above example is custom the text
+    disablePageTitle: true
   };
 
   return (
     <div>
-      <BootstrapTable
-        keyField='id'
-        data={ rows }
-        columns={ columns }
-        pagination={ paginationFactory(options) }
-        striped
-        hover
-        condensed
-      />
+        <BootstrapTable
+          keyField='id'
+          data={ rows }
+          columns={ columns }
+          pagination={ paginationFactory(options) }
+          striped
+          hover
+          condensed
+        />
+      {/* <CSVLink 
+        data={rows} 
+        //headers={columns}
+        // filename={"my-file.csv"}
+        // className="btn btn-primary"
+        // target="_blank"
+      >
+        Download me
+      </CSVLink>; */}
     </div>
   );
 }

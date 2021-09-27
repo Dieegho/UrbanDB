@@ -9,10 +9,9 @@ import MyButtonsMenu from '../../components/ButtonsMenu';
 import MyBuscador from '../../components/Buscador';
 import Footer from '../../components/Footer';
 
-
 let menuNav = [{name: " ", rute: " "}];
 const Menu = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]);  
 
   useEffect(()=>{
     axios.get(`https://control-inventarios-usurban.herokuapp.com/item/todo`)
@@ -25,7 +24,7 @@ const Menu = () => {
     <>
       <MyNavbar menuArr={menuNav}/>
       <Container style={{marginTop: "150px", marginBottom:"50px"}}>
-        <h2> Bienvenido al control de inventarios del "Edificio 7"</h2>
+        <h2> Bienvenido al control de inventarios de "NLC7"</h2>
         <MyBuscador items={items}/>
         <Alerts alertas_menu={items}></Alerts>
         <MyButtonsMenu/>

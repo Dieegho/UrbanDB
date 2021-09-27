@@ -14,14 +14,21 @@ interface props{
   }[];
 }
 
-//necesito el id, codigo y nombre del item
 const MyCodigo: FC<props> = ({items}) => {
+
+  //if codigo > numero => barcode mas grande
+  // if codigo < número => barcode mas pequeño
+
+  //codigo.lenght > 4 = width = 3.1
+
+  //NLC7
+  // ecarrasco@usurbanrealty.com
   const componentRef = useRef();
   const config = {
     // marginTop: "20px",
     // marginBottom: "20px",
     fontOptions: "bold",
-    width: 3.2,
+    width: 2.3,
     height: 45,
     format: "CODE128",
     fontSize: 12

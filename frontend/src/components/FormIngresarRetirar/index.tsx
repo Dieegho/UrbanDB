@@ -22,22 +22,25 @@ interface props {
 }
 
 const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id}) => {
-  const [scannerCodigo, setScannerCodigo] = useState(false);
   const [codigo, setCodigo] = useState("");
   const [name, setName] = useState("");
   const [unidadMedida, setUnidadMedida] = useState("");
   const [cantidad, setCantidad] = useState("");
   const [cantidadMax, setCantidadMax] = useState("");
   const [userid, setUserId] = useState("");
+
   const [validated, setValidated] = useState(false);
-  const idScannerRef = useRef(null);
+  const [scannerCodigo, setScannerCodigo] = useState(false);
   const [show, setShow] = useState(false);
+  
+  const idScannerRef = useRef(null);
   
   const user = AuthService.getCurrentUser();
 
   const handleCodigoScanner = (e) => {
     let codigo = e.target.value;
     setScannerCodigo(codigo);
+    console.log('CODIGO',codigo);
     
     items_id.map((elem)=>{
       if(codigo == elem.codigo){
@@ -55,8 +58,8 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
     
     const form = e.currentTarget;
     
-    if (form.checkValidity() === true) {
-      e.preventDefault();
+    if (form.checkValidity() === false) {
+      // e.preventDefault();
       e.stopPropagation();        
     }
 
@@ -69,20 +72,24 @@ const MyForm: FC<props> = ({ handleAddItemsTable, handleRetirarItems, items_id})
       cantidad: cantidad,
     }
     
-    if(handleAddItemsTable){
+    console.log('DATA', data);
+    
+    if(handleAddItemsTable && cantidad){
       axios.post('https://control-inventarios-usurban.herokuapp.com/item/', {codigo, name, unidadMedida, cantidad, userid} )
       .then(res => {
         console.log(res);
         handleAddItemsTable(data);
+        setScannerCodigo(false);
       })
       
     }
 
-    else if(handleRetirarItems){
+    else if(handleRetirarItems && cantidad){
       axios.post('https://control-inventarios-usurban.herokuapp.com/item/todo', {codigo, name, unidadMedida, cantidad, userid})
       .then(res => {
         console.log(res);
         handleRetirarItems(data);
+        setScannerCodigo(false);
       })
     }
 

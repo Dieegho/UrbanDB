@@ -130,6 +130,17 @@ module.exports = eslint-plugin-testcafe;
 
 /***/ }),
 
+/***/ "glob-parent":
+/*!******************************!*\
+  !*** external "glob-parent" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = glob-parent;
+
+/***/ }),
+
 /***/ "history":
 /*!**************************!*\
   !*** external "history" ***!
@@ -149,6 +160,17 @@ module.exports = history;
 
 "use strict";
 module.exports = jquery;
+
+/***/ }),
+
+/***/ "mdbreact":
+/*!***************************!*\
+  !*** external "mdbreact" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = mdbreact;
 
 /***/ }),
 
@@ -284,6 +306,17 @@ module.exports = react-bootstrap-table2-toolkit;
 
 /***/ }),
 
+/***/ "react-chartjs-2":
+/*!**********************************!*\
+  !*** external "react-chartjs-2" ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-chartjs-2;
+
+/***/ }),
+
 /***/ "react-dom":
 /*!****************************!*\
   !*** external "react-dom" ***!
@@ -306,6 +339,17 @@ module.exports = react-hooks-barcode;
 
 /***/ }),
 
+/***/ "react-native":
+/*!*******************************!*\
+  !*** external "react-native" ***!
+  \*******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-native;
+
+/***/ }),
+
 /***/ "react-router":
 /*!*******************************!*\
   !*** external "react-router" ***!
@@ -325,6 +369,17 @@ module.exports = react-router;
 
 "use strict";
 module.exports = react-router-dom;
+
+/***/ }),
+
+/***/ "react-scripts":
+/*!********************************!*\
+  !*** external "react-scripts" ***!
+  \********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-scripts;
 
 /***/ }),
 
