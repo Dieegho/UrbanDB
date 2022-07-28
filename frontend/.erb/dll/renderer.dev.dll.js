@@ -31,6 +31,39 @@ module.exports = @createnextapp/react-barcode;
 
 /***/ }),
 
+/***/ "@progress/kendo-drawing":
+/*!******************************************!*\
+  !*** external "@progress/kendo-drawing" ***!
+  \******************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = @progress/kendo-drawing;
+
+/***/ }),
+
+/***/ "@progress/kendo-licensing":
+/*!********************************************!*\
+  !*** external "@progress/kendo-licensing" ***!
+  \********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = @progress/kendo-licensing;
+
+/***/ }),
+
+/***/ "@progress/kendo-react-pdf":
+/*!********************************************!*\
+  !*** external "@progress/kendo-react-pdf" ***!
+  \********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = @progress/kendo-react-pdf;
+
+/***/ }),
+
 /***/ "@rails/activestorage":
 /*!***************************************!*\
   !*** external "@rails/activestorage" ***!
@@ -39,6 +72,17 @@ module.exports = @createnextapp/react-barcode;
 
 "use strict";
 module.exports = @rails/activestorage;
+
+/***/ }),
+
+/***/ "apexcharts":
+/*!*****************************!*\
+  !*** external "apexcharts" ***!
+  \*****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = apexcharts;
 
 /***/ }),
 
@@ -72,6 +116,17 @@ module.exports = bootstrap;
 
 "use strict";
 module.exports = bootstrap-icons;
+
+/***/ }),
+
+/***/ "chart.js":
+/*!***************************!*\
+  !*** external "chart.js" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = chart.js;
 
 /***/ }),
 
@@ -185,6 +240,17 @@ module.exports = node-fetch;
 
 /***/ }),
 
+/***/ "plist":
+/*!************************!*\
+  !*** external "plist" ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = plist;
+
+/***/ }),
+
 /***/ "popper.js":
 /*!****************************!*\
   !*** external "popper.js" ***!
@@ -215,6 +281,17 @@ module.exports = prop-types;
 
 "use strict";
 module.exports = react;
+
+/***/ }),
+
+/***/ "react-apexcharts":
+/*!***********************************!*\
+  !*** external "react-apexcharts" ***!
+  \***********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-apexcharts;
 
 /***/ }),
 
@@ -314,6 +391,17 @@ module.exports = react-bootstrap-table2-toolkit;
 
 "use strict";
 module.exports = react-chartjs-2;
+
+/***/ }),
+
+/***/ "react-csv":
+/*!****************************!*\
+  !*** external "react-csv" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = react-csv;
 
 /***/ }),
 
@@ -424,6 +512,28 @@ module.exports = regenerator-runtime;
 
 "use strict";
 module.exports = source-map-support;
+
+/***/ }),
+
+/***/ "tar":
+/*!**********************!*\
+  !*** external "tar" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = tar;
+
+/***/ }),
+
+/***/ "url-parse":
+/*!****************************!*\
+  !*** external "url-parse" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = url-parse;
 
 /***/ }),
 

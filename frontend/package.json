@@ -274,6 +274,7 @@
     "jquery": "^3.6.0",
     "mdbreact": "^5.1.0",
     "node-fetch": "^2.6.1",
+    "plist": "^3.0.5",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -298,8 +299,11 @@
     "react-validation": "^3.0.7",
     "regenerator-runtime": "^0.13.5",
     "source-map-support": "^0.5.19",
+    "sweetalert2": "^11.4.24",
+    "tar": "^6.1.11",
+    "url-parse": "^1.5.10",
     "validator": "^13.6.0",
-    "yarn": "^1.22.11"
+    "yarn": "^1.22.18"
   },
   "devEngines": {
     "node": ">=10.x",

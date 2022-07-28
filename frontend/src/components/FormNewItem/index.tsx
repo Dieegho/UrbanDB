@@ -15,8 +15,8 @@ interface props{
     categoria: string;
     area: string;
   }[];
-  
 }
+
 // un arreglo y lo meto en el setCategorias como arreglo[i] en un for
 const MyFormNewItem: FC<props> = ({handleAddNewItemsTable, items}) => {
   

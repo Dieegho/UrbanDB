@@ -21,7 +21,18 @@ const MyButton: FC<props> = ({items}) => {
 
     return(
         <div>
-            <Button variant="outline-danger" as={Link} to={`/categorias/${id}`}> {mensaje} {area}</Button> 
+            {(items.length == 0) && (
+                <>
+                    <h5>No hay nada en esta categoría</h5>
+                    <Button variant="outline-danger" as={Link} to={'/areas'}>Regresar a Áreas</Button> 
+                </>
+            )}
+
+            {(items.length > 0) && (
+                <>
+                    <Button variant="outline-danger" as={Link} to={`/categorias/${id}`}> {mensaje} {area}</Button>
+                </>
+            )}
         </div>
     )
 };
