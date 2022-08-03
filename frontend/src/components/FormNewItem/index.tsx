@@ -161,6 +161,7 @@ const MyFormNewItem: FC<props> = ({handleAddNewItemsTable, items}) => {
                 <option>Clima</option>
                 <option>Detección de Incendios</option>
                 <option>Ascensores</option>
+                <option>Artículos Electrónicos</option>
               </Form.Control>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
